@@ -1,0 +1,223 @@
+.rsln-choosenFlight {
+	@media (max-width: 900px) {
+		&__selected,
+		&__payInfo {
+			display: block;
+			width: auto;
+			padding: 0;
+		}
+	}
+
+	@media (max-width: 750px) {
+		&__buyBlock {
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+
+		&__selected,
+		&__payInfo {
+			&__header {
+				text-align: center;
+				padding: 0 20px;
+				line-height: 35px;
+			}
+		}
+
+		&__selected {
+			&__flights {
+				border-radius: 0;
+				background-color: transparent;
+			}
+
+			&__flight {
+				margin-top: 15px;
+				border: none;
+
+				&:first-child {
+					border-top: 0;
+					margin-top: -10px;
+				}
+
+				&__header {
+					padding-top: 0;
+					padding-bottom: 0;
+					text-align: center;
+					line-height: 25px;
+					font-size: 12px;
+					font-weight: 400;
+					color: #fff;
+
+					&__DOW {
+						display: inline;
+					}
+
+					&__departure,
+					&__arrival {
+						white-space: nowrap;
+					}
+
+					&__localTime {
+						color: #fff;
+						padding-bottom: 5px;
+					}
+				}
+
+				&__wrap {
+					background: #fff;
+					box-shadow: 0 1px 2px rgba(0,0,0,.1);
+				}
+
+				&__passengers {
+					display: none;
+				}
+
+				&__route {
+					padding: 5px 5px 0 175px;
+					color: #a0a0a0;
+					font-size: 11px;
+					text-align: left;
+					display: flex;
+					flex-flow: row wrap;
+					justify-content: flex-start;
+					align-content: center;
+					width: 100%;
+					min-width: 1px;
+					border: none;
+					min-height: 60px;
+
+					&:before {
+						content: '';
+						position: absolute;
+						left: 170px;
+						top: 0;
+						bottom: 0;
+						border-right: 1px solid #eee;
+					}
+
+					&__departure,
+					&__arrival {
+						width: 80px;
+
+						&__time {
+							font-size: 22px;
+						}
+
+						&__IATA {
+							font-size: 14px;
+						}
+					}
+
+					&__departure {
+						left: 10px;
+
+						&:before {
+							content: '';
+							position: absolute;
+							right: 0;
+							top: 50%;
+							margin-top: -33px;
+							width: 11px;
+							height: 60px;
+							background: url(https://tickets.rusline.aero/templates/frida/css/img/flightselect-rarr.svg) center center no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+
+					&__passengers {
+						display: inline-block;
+						line-height: 14px;
+						padding-right: 5px;
+					}
+
+					&__price {
+						display: inline-block;
+						font-size: 12px;
+						padding-right: 5px;
+						line-height: 14px;
+					}
+
+					&__transfers {
+						display: none;
+					}
+
+					&__arrival {
+						left: 100px;
+					}
+
+					&__distance {
+						display: none;
+					}
+
+					&__timeEnRoute {
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						flex-grow: 0;
+						flex-shrink: 1;
+						text-align: left;
+						position: static;
+						margin: 0;
+						padding: 0;
+						line-height: 14px;
+						display: inline-block;
+						width: auto;
+					}
+
+					&__fullTransfers {
+						line-height: 14px;
+						width: 100%;
+
+						&__caption {
+							margin-right: 3px;
+						}
+					}
+				}
+
+				&__fare {
+					padding: 0 10px;
+
+					&__header {
+						font-size: 11px;
+						padding: 7px 0;
+
+						&__caption {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+
+	    &__payInfo {
+			&__details {
+				border-radius: 0;
+				box-shadow: 0 1px 2px rgba(0,0,0,.1);
+				margin-bottom: 10px;
+
+				&__priceParts {
+					padding-left: 10px;
+					padding-right: 10px;
+				}
+			}
+
+			&__total {
+				padding-left: 10px;
+				padding-right: 10px;
+
+				&:after {
+					left: 10px;
+					right: 10px;
+				}
+			}
+	    }
+	}
+}
+
+.rsln-searchResultsControl {
+	@media (max-width: 750px) {
+		&_selectedVariant {
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+	}
+}

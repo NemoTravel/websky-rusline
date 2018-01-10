@@ -1,0 +1,269 @@
+.rsln {
+	&-chooseDate {
+		padding: 0 70px;
+		position: relative;
+		text-align: center;
+
+		&__arrow {
+			position: absolute;
+			width: 70px;
+			height: 70px;
+			border-radius: 35px;
+			cursor: pointer;
+			top: 50%;
+			margin-top: -35px;
+			left: 0;
+			background-color: rgba(255, 255, 255, .2);
+			transition: all .2s;
+
+			&:hover, &:active, &:focus {
+				background: rgba(255,255,255,.3);
+			}
+
+			&:before {
+				content: '';
+				position: absolute;
+				width: 15px;
+				height: 26px;
+				left: 50%;
+				top: 50%;
+				margin: -13px 0 0 -8px;
+				background: url(https://tickets.rusline.aero/templates/frida/css/img/sprite.svg) -19px 0;
+			}
+
+			&_next {
+				left: auto;
+				right: 0;
+
+				&:before {
+					transform: rotate(180deg);
+				}
+			}
+
+			&_disabled {
+				display: none;
+			}
+		}
+
+		&__date {
+			display: inline-block;
+			vertical-align: bottom;
+			width: 120px;
+			border-radius: 4px 4px 0 0;
+			margin: 0 10px;
+			background: #fff;
+			cursor: pointer;
+			padding: 10px 20px 0;
+			font-size: 12px;
+			text-align: left;
+			color: #6b6b6b;
+
+			&__date {
+				font-size: 30px;
+				font-weight: 700;
+				line-height: 40px;
+				float: left;
+				margin: 0 10px 0 0;
+			}
+
+			&__month {
+				font-size: 16px;
+				font-weight: 700;
+			}
+
+			&__price {
+				max-width: 100%;
+				line-height: 30px;
+				font-size: 12px;
+				clear: both;
+				height: 30px;
+				position relative;
+
+				.loading {
+					display: block;
+					width: 40px;
+					height: 20px;
+					background: url("https://tst.sirena-travel.ru/websky-prod-gru/themes/websky/assets/static/img/general/form/loader-line.gif") no-repeat;
+					background-size: contain;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+
+			&.active {
+				background: #ff1724;
+				color: #fff;
+			}
+
+			&.disabled {
+				background: #f0f0f0;
+				color: #a0a0a0;
+				opacity: .5;
+				cursor: auto;
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 1179px) {
+	.rsln {
+		&-chooseDate {
+			padding: 0;
+
+			&__date {
+				width: 12%;
+				margin: 0 .5%;
+			}
+
+			&__arrow {
+				width: 4.5%;
+				border-radius: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 970px) {
+	.rsln {
+		&-chooseDate {
+			&__date {
+				padding: 10px 10px 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.rsln {
+		&-chooseDate {
+			&__date {
+				&__date {
+					font-size: 24px;
+					line-height: 30px;
+				}
+
+				&__month {
+					font-size: 13px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 750px) {
+	.rsln {
+		&-chooseDate {
+			box-shadow: 0 1px 2px rgba(0,0,0,.1);
+			padding: 0;
+			display: flex;
+			flex-wrap: nowrap;
+
+			&__date {
+				margin: 0;
+				width: 13%;
+				padding: 5px 5px 0;
+				border-radius: 0 !important;
+				border-left: 1px solid #eee;
+
+				&__date {
+					line-height: 35px;
+					margin-right: 10px;
+					letter-spacing: -.2ch;
+				}
+
+				&__price {
+					line-height: 23px;
+				}
+
+				&.active,
+				&:nth-child(2) {
+					border: 0;
+				}
+			}
+
+			&__arrow {
+				height: inherit;
+				vertical-align: bottom;
+				position: relative;
+				display: inline-block;
+				width: 4.5%;
+				margin-top: 0;
+
+				&_disabled {
+					&:before {
+						background: 0 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 570px) {
+	.rsln {
+		&-chooseDate {
+			display: flex;
+			flex-wrap: wrap;
+
+			&__date {
+				width: 27%;
+
+				&__date {
+					line-height: 28px;
+				}
+
+				&.active {
+					width: 100%;
+					text-align: center;
+					padding: 0;
+
+					.rsln-chooseDate__date {
+						&__date {
+							display: inline-block;
+							float: none;
+							line-height: 40px;
+						}
+
+						&__month,
+						&__DOW {
+							display: inline-block;
+							line-height: 35px;
+							vertical-align: bottom;
+							font-size: 16px;
+							margin-right: 5px;
+							font-weight: 400;
+						}
+
+						&__price {
+							display: inline-block;
+							line-height: 35px;
+							vertical-align: bottom;
+							font-size: 18px;
+							font-weight: 700;
+							height: auto;
+
+							.loading {
+								position: relative;
+								left: auto;
+								top: auto;
+								transform: none;
+							}
+						}
+					}
+				}
+			}
+
+			&__arrow {
+				height: inherit;
+				vertical-align: bottom;
+				position: relative;
+				display: inline-block;
+				width: 19%;
+				margin-top: 0;
+			}
+		}
+	}
+}

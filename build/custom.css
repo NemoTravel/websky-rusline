@@ -1,0 +1,1870 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=cyrillic");
+body {
+  font-family: Roboto, Open Sans, sans-serif;
+}
+body[style="overflow: hidden;"] {
+  padding-right: 17px;
+}
+.rsln-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("https://tickets.rusline.aero/static/cms/sites/470/images/banner_result_autumn.jpg") center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+@media (max-width: 570px) {
+  .rsln-bg {
+    background: #63636c url("https://tickets.rusline.aero/static/cms/sites/470/images/banner_results_mobile_summer.jpg") center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+}
+.rsln-wrap {
+  max-width: 1400px;
+}
+@media (max-width: 750px) {
+  .rsln-wrap {
+    padding: 0 !important;
+  }
+}
+.rsln-wrap .infoMessage.infoMessage_error {
+  margin-top: 20px;
+}
+.rsln-way {
+  color: #fff;
+  padding: 25px 0;
+  text-align: center;
+  line-height: 20px;
+  font-size: 24px;
+  position: relative;
+}
+@media (max-width: 750px) {
+  .rsln-way {
+    padding: 7px 0;
+  }
+}
+.rsln-way__header {
+  font-weight: normal;
+  font-size: 1em;
+}
+.rsln-way__header__caption {
+  text-transform: capitalize;
+  display: inline-block;
+  margin-right: 7px;
+}
+@media (max-width: 750px) {
+  .rsln-way__header {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .rsln-way__header__date {
+    display: none;
+  }
+}
+.rsln-searchParams_change {
+  cursor: pointer;
+}
+.tooltipster-wrap {
+  position: relative;
+}
+.tooltipster-wrap:hover .tooltipster-content {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltipster-content {
+  position: absolute;
+  display: block;
+  bottom: 100%;
+  background: #fff;
+  color: #000;
+  max-width: 240px;
+  min-width: 200px;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  left: 50%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  -webkit-transition-duration: 450ms;
+          transition-duration: 450ms;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+.tooltipster-text {
+  font-size: 12px;
+  line-height: 15px;
+  padding: 5px 15px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+}
+#preloader {
+  background: rgba(255,255,255,0.6) !important;
+}
+.formLoaderWrap {
+  background: rgba(255,255,255,0.6);
+}
+.popup_airplaneInfo {
+  min-height: 500px;
+}
+.popup_airplaneInfo_loading {
+  background: #fff;
+}
+.orderSearchForm.rsln-searchForm {
+  width: 100%;
+  background: rgba(0,0,0,0.6) !important;
+  border-radius: 2px;
+  padding: 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples {
+  padding-top: 15px;
+  padding-right: 10px;
+  width: 13%;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples .col {
+  padding: 0;
+  width: 100%;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples .item__i {
+  margin-left: 0;
+  margin-right: 0;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples pass-picker:nth-child(odd) .col {
+  padding-right: 0;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples pass-picker:nth-child(even) .col {
+  padding-left: 0;
+}
+.orderSearchForm.rsln-searchForm .item.item_peoples .textInp {
+  padding-right: 25px;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer {
+  width: 48%;
+  padding-right: 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer .item__i {
+  white-space: nowrap;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer .col {
+  width: 49%;
+  display: inline-block;
+  float: none;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker:first-child .col {
+  margin-right: 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker .arrowDown {
+  display: none;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker .iata {
+  margin-top: 2px;
+}
+@media (max-width: 767px) {
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker .iata {
+    right: 35px;
+  }
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker .inpTo .inp__i > .iata {
+  right: 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker .inpTo .textInp {
+  padding-right: 45px;
+}
+@media (max-width: 767px) {
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker .inpTo {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+.orderSearchForm.rsln-searchForm .item.item_transfer city-picker .inpFrom .textInp {
+  padding-right: 80px;
+}
+.orderSearchForm.rsln-searchForm .item.item_date {
+  width: 30.5%;
+  padding-right: 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_date .col:first-child {
+  padding-right: 0;
+}
+.orderSearchForm.rsln-searchForm .item.item_date .calendarInp {
+  position: relative;
+  padding: 0 36px 0 10px;
+}
+.orderSearchForm.rsln-searchForm .item.item_date .calendarInp + .calendarIcon:after {
+  content: '';
+  background: #fff url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAVCAYAAABVAo5cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABAhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU0QzI1NzE5MDY1QjExRTZBN0Q1ODU4RUYyQTM3NDk4IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU0QzI1NzE4MDY1QjExRTZBN0Q1ODU4RUYyQTM3NDk4IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIElsbHVzdHJhdG9yIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0idXVpZDo1Njg5ZmE1NC0wYmMwLTgxNDMtOTRlOC01NTE5ODMwNDBmYzQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MTVjOWIzNmItZDM1Yy00YzE4LWJlMGQtOGU0YjUzYmEzZTI5Ii8+IDxkYzp0aXRsZT4gPHJkZjpBbHQ+IDxyZGY6bGkgeG1sOmxhbmc9IngtZGVmYXVsdCI+UnVzTGluZSAtLSDQv9C+0LjRgdC6IDEuMTwvcmRmOmxpPiA8L3JkZjpBbHQ+IDwvZGM6dGl0bGU+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+HcT9tgAAAYhJREFUeNrUlb9KA0EQxvfieVG5IJGAiKhYBCv1Ci38g2BloWAhViLWYi0WCla+ha2d4lv4Aj6AoNjYWBgSDjHntzAHwzCb9XKC+MGPZD/2bnZ39maM0TUAxoU3CBqKN6q9IMsyFakAhGAanNH/nCY4Ed48OAQRLdIbMGBzVsCOKacncAM62m64NsExiGmXE7TDgDFDc7g3Bw5ot3aHy+DSjnsdqZ14BariaGOxqAoYUXJdFd4uWHIFzF/SASlPAWiJF3VBW3hf4jmrRzDpOsqQflOx6pCN0wJevojIF5BrEeyxsc3JKthi3gVYE975T25VxfyBauBUfMw1RhHP0G3ed10a7UiHwBgb28szDOrM+3B4XmkBm0oOEyWHyb/NYVkVzuGsrRRsfEfHvMC8WyoOhaUFrFN+ct1Tq0pEQFMmIA/8Bh5ESXsRnu9edHtNiKh4/9YF2gDrvgZsm+g2dYkyatDiY18DtoX4CEyB1z6DxVQwrsGzqwEHykNxnwE/wXueP1fAbwEGABm7zbfJO561AAAAAElFTkSuQmCC") center center no-repeat;
+  position: absolute;
+  width: 28px;
+  height: 24px;
+  top: 50%;
+  margin-top: -12px;
+  right: 5px;
+  opacity: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  z-index: 3;
+}
+.orderSearchForm.rsln-searchForm .item.item_date .calendarIcon {
+  position: static;
+  background: 0 0;
+}
+.orderSearchForm.rsln-searchForm .item.item_btn {
+  width: 10%;
+}
+.orderSearchForm.rsln-searchForm .item.item_btn .btn_formSearch {
+  position: relative;
+  width: 100%;
+  line-height: 43px;
+  height: 45px;
+  font-weight: 300;
+  font-size: 18px;
+  padding: 0 15px;
+  border-radius: 4px;
+}
+@media (max-width: 1000px) {
+  .orderSearchForm.rsln-searchForm .item.item_btn .btn_formSearch {
+    margin: 0;
+  }
+}
+.orderSearchForm.rsln-searchForm .item__i {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+.orderSearchForm.rsln-searchForm .closeForm {
+  display: none;
+}
+.orderSearchForm.rsln-searchForm .compactShow {
+  display: block;
+}
+.orderSearchForm.rsln-searchForm .compactHide {
+  display: none;
+}
+.orderSearchForm.rsln-searchForm .compactDrop {
+  position: absolute;
+  background: #fff;
+  z-index: 9;
+  left: auto;
+  right: 0;
+  top: 100%;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity, 450ms, ease;
+  transition: opacity, 450ms, ease;
+  min-width: 275px;
+}
+.orderSearchForm.rsln-searchForm .compactDrop.active {
+  opacity: 1;
+  visibility: visible;
+  -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+          box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.orderSearchForm.rsln-searchForm .compactDrop .col {
+  float: none;
+  width: 100%;
+}
+.orderSearchForm.rsln-searchForm .compactDrop .inpCol {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  width: 35%;
+}
+.orderSearchForm.rsln-searchForm .compactDrop .inpCol:first-child {
+  width: 65%;
+}
+.orderSearchForm.rsln-searchForm .btnPlus {
+  border: 1px solid #f2f2f2;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  right: 10px;
+  left: auto;
+}
+.orderSearchForm.rsln-searchForm .btnPlus i {
+  font-size: 9px;
+}
+.orderSearchForm.rsln-searchForm .btnMinus {
+  border: 1px solid #f2f2f2;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  left: 10px;
+  right: auto;
+}
+.orderSearchForm.rsln-searchForm .info {
+  display: none;
+}
+.orderSearchForm.rsln-searchForm .textInp {
+  border-radius: 2px;
+  height: 45px;
+  line-height: 46px;
+  font-size: 18px;
+  font-weight: 300;
+  border: 0;
+  padding: 0 10px;
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap {
+  height: 45px;
+  width: 45px;
+  background: 0 0;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin-left: -28px;
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap:after {
+  content: '';
+  width: 17px;
+  height: 7px;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMTdweCIgaGVpZ2h0PSI3cHgiIHZpZXdCb3g9IjAgMCAxNyA3IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxNyA2LjU4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6I2ZmMTcyMzt9Cjwvc3R5bGU+Cjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTcsMy4yOSAxMS4zLDAgMTEuMywyLjI5IDAsMi4yOSAwLDQuMjkgMTEuMyw0LjI5IDExLjMsNi41OCAiLz4KPC9zdmc+Cg==");
+  position: absolute;
+  top: 21px;
+  left: 12px;
+  -webkit-transform: rotate(180deg) translateX(1px);
+          transform: rotate(180deg) translateX(1px);
+  -webkit-transition: -webkit-transform 0.1s ease-in-out;
+  transition: -webkit-transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap:before {
+  content: '';
+  width: 17px;
+  height: 7px;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMTdweCIgaGVpZ2h0PSI3cHgiIHZpZXdCb3g9IjAgMCAxNyA3IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxNyA2LjU4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6I2ZmMTcyMzt9Cjwvc3R5bGU+Cjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTcsMy4yOSAxMS4zLDAgMTEuMywyLjI5IDAsMi4yOSAwLDQuMjkgMTEuMyw0LjI5IDExLjMsNi41OCAiLz4KPC9zdmc+Cg==");
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  -webkit-transform: translateX(1px);
+          transform: translateX(1px);
+  -webkit-transition: -webkit-transform 0.1s ease-in-out;
+  transition: -webkit-transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap:hover:before {
+  -webkit-transform: translateX(3px);
+          transform: translateX(3px);
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap:hover:after {
+  -webkit-transform: rotate(180deg) translateX(3px);
+          transform: rotate(180deg) translateX(3px);
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__arrowDown {
+  margin-top: 1px;
+}
+.orderSearchForm.rsln-searchForm .rsln-searchForm__arrowDown:after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 9px;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  right: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIxMS41MzZweCIgaGVpZ2h0PSI4LjIwMnB4IiB2aWV3Qm94PSIwIDAgMTEuNTM2IDguMjAyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMS41MzYgOC4yMDIiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkYxNzIzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgcG9pbnRzPSIxMC43NjgsMC42NCA1Ljc2OCw2LjY0IDAuNzY4LDAuNjQgIi8+Cjwvc3ZnPgo=");
+  background-repeat: no-repeat;
+}
+.orderSearchForm.rsln-searchForm .compactDropShow.open .arrowDown:after {
+  -webkit-transform: translate(0, -50%) rotate(180deg);
+          transform: translate(0, -50%) rotate(180deg);
+}
+.orderSearchForm.rsln-searchForm .pika-single {
+  left: 50% !important;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.orderSearchForm .formBody__i {
+  padding-bottom: 0;
+}
+.orderSearchForm.orderSearchForm_change .formBody__i .steps {
+  padding-right: 0;
+}
+@media (max-width: 767px) {
+  .orderSearchForm.orderSearchForm_change .formBody__i .steps {
+    padding: 0;
+  }
+}
+.orderSearchForm .steps__i {
+  display: table;
+}
+.orderSearchForm .steps.active .item {
+  display: table-cell;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  vertical-align: top;
+}
+@media only screen and (max-width: 767px) {
+  .orderSearchForm .steps__i {
+    display: block;
+  }
+  .orderSearchForm .steps.active .item {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 10px !important;
+  }
+  .orderSearchForm.rsln-searchForm {
+    border-radius: 0;
+  }
+  .orderSearchForm.rsln-searchForm .item .item__i {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker {
+    width: 100%;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker:first-child {
+    margin-right: 10px;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_transfer .col {
+    width: 100%;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_date {
+    margin-top: 0;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_date .col {
+    padding-left: 0;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_date .col:first-child {
+    margin-right: 10px;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_peoples {
+    width: 50%;
+    display: inline-block;
+    padding-right: 5px;
+    padding-bottom: 0 !important;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_peoples .compactShow {
+    width: 100%;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_peoples .compactDrop {
+    left: 0;
+    right: auto;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_btn {
+    width: 50%;
+    display: inline-block;
+    padding-left: 5px;
+    padding-bottom: 0 !important;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .orderSearchForm.rsln-searchForm .item.item_transfer .item__i {
+    display: block;
+    white-space: normal;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker:first-child {
+    margin-right: 0;
+  }
+  .orderSearchForm.rsln-searchForm .item.item_transfer city-picker .inpFrom {
+    margin-bottom: 10px;
+  }
+  .orderSearchForm.rsln-searchForm .rsln-searchForm__citySwap {
+    left: auto;
+    right: 0;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+search-form .wrap {
+  width: 100%;
+  max-width: 1190px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+search-form .searchParams.active .wrap {
+  padding-top: 50px;
+}
+search-form .searchParams.active .changeParams {
+  position: absolute;
+  top: -42px;
+}
+@media (max-width: 767px) {
+  search-form .searchParams.active .changeParams {
+    right: 10px;
+  }
+}
+search-form .searchParams .wrap {
+  padding-top: 10px;
+}
+.rsln-chooseDate {
+  padding: 0 70px;
+  position: relative;
+  text-align: center;
+}
+.rsln-chooseDate__arrow {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  cursor: pointer;
+  top: 50%;
+  margin-top: -35px;
+  left: 0;
+  background-color: rgba(255,255,255,0.2);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.rsln-chooseDate__arrow:hover,
+.rsln-chooseDate__arrow:active,
+.rsln-chooseDate__arrow:focus {
+  background: rgba(255,255,255,0.3);
+}
+.rsln-chooseDate__arrow:before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 26px;
+  left: 50%;
+  top: 50%;
+  margin: -13px 0 0 -8px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/sprite.svg") -19px 0;
+}
+.rsln-chooseDate__arrow_next {
+  left: auto;
+  right: 0;
+}
+.rsln-chooseDate__arrow_next:before {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.rsln-chooseDate__arrow_disabled {
+  display: none;
+}
+.rsln-chooseDate__date {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 120px;
+  border-radius: 4px 4px 0 0;
+  margin: 0 10px;
+  background: #fff;
+  cursor: pointer;
+  padding: 10px 20px 0;
+  font-size: 12px;
+  text-align: left;
+  color: #6b6b6b;
+}
+.rsln-chooseDate__date__date {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  float: left;
+  margin: 0 10px 0 0;
+}
+.rsln-chooseDate__date__month {
+  font-size: 16px;
+  font-weight: 700;
+}
+.rsln-chooseDate__date__price {
+  max-width: 100%;
+  line-height: 30px;
+  font-size: 12px;
+  clear: both;
+  height: 30px;
+  position: relative;
+}
+.rsln-chooseDate__date__price .loading {
+  display: block;
+  width: 40px;
+  height: 20px;
+  background: url("https://tst.sirena-travel.ru/websky-prod-gru/themes/websky/assets/static/img/general/form/loader-line.gif") no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.rsln-chooseDate__date.active {
+  background: #ff1724;
+  color: #fff;
+}
+.rsln-chooseDate__date.disabled {
+  background: #f0f0f0;
+  color: #a0a0a0;
+  opacity: 0.5;
+  cursor: auto;
+  pointer-events: none;
+}
+@media (max-width: 1179px) {
+  .rsln-chooseDate {
+    padding: 0;
+  }
+  .rsln-chooseDate__date {
+    width: 12%;
+    margin: 0 0.5%;
+  }
+  .rsln-chooseDate__arrow {
+    width: 4.5%;
+    border-radius: 0;
+  }
+}
+@media (max-width: 970px) {
+  .rsln-chooseDate__date {
+    padding: 10px 10px 0;
+  }
+}
+@media (max-width: 900px) {
+  .rsln-chooseDate__date__date {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .rsln-chooseDate__date__month {
+    font-size: 13px;
+  }
+}
+@media (max-width: 750px) {
+  .rsln-chooseDate {
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+  .rsln-chooseDate__date {
+    margin: 0;
+    width: 13%;
+    padding: 5px 5px 0;
+    border-radius: 0 !important;
+    border-left: 1px solid #eee;
+  }
+  .rsln-chooseDate__date__date {
+    line-height: 35px;
+    margin-right: 10px;
+    letter-spacing: -0.2ch;
+  }
+  .rsln-chooseDate__date__price {
+    line-height: 23px;
+  }
+  .rsln-chooseDate__date.active,
+  .rsln-chooseDate__date:nth-child(2) {
+    border: 0;
+  }
+  .rsln-chooseDate__arrow {
+    height: inherit;
+    vertical-align: bottom;
+    position: relative;
+    display: inline-block;
+    width: 4.5%;
+    margin-top: 0;
+  }
+  .rsln-chooseDate__arrow_disabled:before {
+    background: 0 0;
+  }
+}
+@media (max-width: 570px) {
+  .rsln-chooseDate {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .rsln-chooseDate__date {
+    width: 27%;
+  }
+  .rsln-chooseDate__date__date {
+    line-height: 28px;
+  }
+  .rsln-chooseDate__date.active {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  .rsln-chooseDate__date.active .rsln-chooseDate__date__date {
+    display: inline-block;
+    float: none;
+    line-height: 40px;
+  }
+  .rsln-chooseDate__date.active .rsln-chooseDate__date__month,
+  .rsln-chooseDate__date.active .rsln-chooseDate__date__DOW {
+    display: inline-block;
+    line-height: 35px;
+    vertical-align: bottom;
+    font-size: 16px;
+    margin-right: 5px;
+    font-weight: 400;
+  }
+  .rsln-chooseDate__date.active .rsln-chooseDate__date__price {
+    display: inline-block;
+    line-height: 35px;
+    vertical-align: bottom;
+    font-size: 18px;
+    font-weight: 700;
+    height: auto;
+  }
+  .rsln-chooseDate__date.active .rsln-chooseDate__date__price .loading {
+    position: relative;
+    left: auto;
+    top: auto;
+    -webkit-transform: none;
+            transform: none;
+  }
+  .rsln-chooseDate__arrow {
+    height: inherit;
+    vertical-align: bottom;
+    position: relative;
+    display: inline-block;
+    width: 19%;
+    margin-top: 0;
+  }
+}
+.rsln-flightTable {
+  display: table;
+  table-layout: fixed;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+.rsln-flightTable__row {
+  display: table-row;
+}
+.rsln-flightTable__flightsHeader {
+  width: 320px;
+  padding: 20px;
+  line-height: 20px;
+  font-size: 24px;
+  color: #a0a0a0;
+  border-bottom: 1px solid #eee;
+}
+.rsln-flightTable__cell {
+  display: table-cell;
+}
+.rsln-flightTable__fareHeader {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 5px;
+  border-left: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: relative;
+}
+.rsln-flightTable__fareHeader_best {
+  position: absolute;
+  bottom: 0;
+  line-height: 18px;
+  width: 100%;
+  left: 0;
+  font-size: 11px;
+  color: #a0a0a0;
+  font-weight: lighter;
+}
+.rsln-flightTable__fareHeader__title {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  line-height: 22px;
+  color: #505050;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+}
+.rsln-flightTable__flightInfo {
+  vertical-align: top;
+  border-bottom: 1px solid #eee;
+}
+.rsln-flightTable__flightInfo_flightSelected {
+  background: #f7f7f7;
+}
+.rsln-flightTable__flightInfo__shortInfo {
+  padding: 10px 125px 10px 85px;
+  position: relative;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  color: #505050;
+  font-size: 11px;
+  cursor: pointer;
+  height: 60px;
+}
+.rsln-flightTable__flightInfo__shortInfo__departure,
+.rsln-flightTable__flightInfo__shortInfo__arrival {
+  position: absolute;
+  width: 50px;
+  top: 50%;
+  height: 45px;
+  margin-top: -23px;
+  text-align: left;
+}
+.rsln-flightTable__flightInfo__shortInfo__departure__time,
+.rsln-flightTable__flightInfo__shortInfo__arrival__time {
+  line-height: 25px;
+  font-size: 20px;
+  color: #636467;
+  font-weight: 700;
+}
+.rsln-flightTable__flightInfo__shortInfo__departure__IATA,
+.rsln-flightTable__flightInfo__shortInfo__arrival__IATA {
+  line-height: 20px;
+  font-size: 16px;
+  color: #505050;
+  opacity: 0.5;
+}
+.rsln-flightTable__flightInfo__shortInfo__departure {
+  left: 20px;
+}
+.rsln-flightTable__flightInfo__shortInfo__arrival {
+  right: 50px;
+}
+.rsln-flightTable__flightInfo__shortInfo__transfers {
+  border-bottom: 1px solid #d0d0d0;
+  position: relative;
+}
+.rsln-flightTable__flightInfo__shortInfo__transfers:after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-top: 1px solid #d0d0d0;
+  border-left: 1px solid #d0d0d0;
+  bottom: -3px;
+  right: -1px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.rsln-flightTable__flightInfo__shortInfo:after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 12px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/sprite.svg") -39px 0 no-repeat;
+  top: 50%;
+  right: 20px;
+  margin-top: -6px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.rsln-flightTable__flightInfo__shortInfo.detailOpen:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.rsln-flightTable__flightInfo__shortInfo__minPrice {
+  display: none;
+}
+.rsln-flightTable__row:last-child .rsln-flightTable__flightInfo {
+  border-bottom-left-radius: 4px;
+  border-bottom: none;
+}
+.rsln-flightTable__flightRoute {
+  border-top: 1px solid #eee;
+  color: #505050;
+  line-height: 20px;
+}
+.rsln-flightTable__flightRoute__header {
+  padding: 10px 10px 5px 20px;
+  border-bottom: 1px solid #eee;
+}
+.rsln-flightTable__flightRoute__header__logo,
+.rsln-flightTable__flightRoute__header__flight,
+.rsln-flightTable__flightRoute__header__aircraft {
+  display: inline-block;
+  vertical-align: middle;
+  width: 38%;
+}
+.rsln-flightTable__flightRoute__header__logo {
+  padding-right: 10px;
+}
+.rsln-flightTable__flightRoute__header__logo__image {
+  max-width: 100%;
+  max-height: 30px;
+}
+.rsln-flightTable__flightRoute__header__aircraft,
+.rsln-flightTable__flightRoute__header__flight {
+  padding-left: 10px;
+}
+.rsln-flightTable__flightRoute__header__aircraft__title,
+.rsln-flightTable__flightRoute__header__flight__title {
+  font-size: 11px;
+  color: #a0a0a0;
+}
+.rsln-flightTable__flightRoute__header__aircraft__value,
+.rsln-flightTable__flightRoute__header__flight__value {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rsln-flightTable__flightRoute__header__aircraft__value_link,
+.rsln-flightTable__flightRoute__header__flight__value_link {
+  color: #0a0a0f;
+  border-bottom: 1px dashed #0a0a0f;
+}
+.rsln-flightTable__flightRoute__header__flight {
+  width: 24%;
+}
+.rsln-flightTable__flightRoute__header__flight__value {
+  font-weight: 700;
+}
+.rsln-flightTable__flightRoute__header__aircraft__value {
+  display: inline;
+}
+.rsln-flightTable__flightRoute__subHeader {
+  border-bottom: 1px solid #eee;
+  font-size: 11px;
+  color: #a0a0a0;
+}
+.rsln-flightTable__flightRoute__subHeader__item {
+  padding-left: 20px;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+.rsln-flightTable__flightRoute__segment {
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.rsln-flightTable__flightRoute__segment__departure,
+.rsln-flightTable__flightRoute__segment__arrival {
+  padding: 5px 10px 5px 20px;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  font-size: 11px;
+  line-height: 15px;
+}
+.rsln-flightTable__flightRoute__segment:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 40px;
+  margin: -20px 0 0 -6px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/sprite.svg") -90px -1px no-repeat;
+}
+.rsln-flightTable__flightRoute__transfer,
+.rsln-flightTable__flightRoute__footer,
+.rsln-flightTable__flightRoute__landing {
+  border-bottom: 1px solid #eee;
+  padding: 0 20px;
+  font-size: 11px;
+}
+.rsln-flightTable__flightRoute__transfer__caption,
+.rsln-flightTable__flightRoute__footer__caption,
+.rsln-flightTable__flightRoute__landing__caption {
+  color: #a0a0a0;
+  padding-right: 15px;
+}
+.rsln-flightTable__flightRoute__footer {
+  border-bottom: 0;
+  padding: 10px 20px;
+}
+.rsln-flightTable__flightRoute_adaptive {
+  display: none;
+}
+.rsln-flightTable__fareForFlight {
+  border-left: 1px solid #eee;
+  vertical-align: top;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border-bottom: 1px solid #eee;
+}
+.rsln-flightTable__fareForFlight_flightSelected {
+  background: #f7f7f7;
+}
+.rsln-flightTable__fareForFlight_fareSelected .rsln-flightTable__fareForFlight__short {
+  background: #ff1724 !important;
+}
+.rsln-flightTable__fareForFlight_fareSelected .rsln-flightTable__fareForFlight__short * {
+  color: #fff;
+}
+.rsln-flightTable__fareForFlight_fareSelected .rsln-flightTable__fareForFlight__short:after {
+  width: 7px;
+  height: 7px;
+  left: 26px;
+  margin-top: -4px;
+}
+.rsln-flightTable__fareForFlight__short {
+  height: 60px;
+  line-height: 20px;
+  padding: 15px 10px 5px 55px;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.rsln-flightTable__fareForFlight__short:before {
+  content: '';
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/sprite.svg") 0 -30px no-repeat;
+  top: 50%;
+  left: 20px;
+  margin-top: -10px;
+}
+.rsln-flightTable__fareForFlight__short:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  margin-top: 0;
+  top: 50%;
+  background: #ff1724;
+  border-radius: 7px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.rsln-flightTable__fareForFlight__short__price {
+  line-height: 25px;
+  color: #636467;
+  font-size: 24px;
+  display: block;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-weight: 700;
+}
+.rsln-flightTable__fareForFlight__short__adaptiveFareName {
+  display: none;
+  line-height: 25px;
+  font-size: 11px;
+}
+.rsln-flightTable__fareForFlight__noSeats {
+  padding: 10px 20px;
+  line-height: 40px;
+  font-size: 24px;
+  color: #a0a0a0;
+  text-align: center;
+  font-weight: 700;
+}
+.rsln-flightTable__fareForFlight__noSeats_adaptiveFareName {
+  display: none;
+  line-height: 25px;
+  font-size: 11px;
+  text-align: center;
+}
+.rsln-flightTable__fareForFlight__compare {
+  padding: 5px 0;
+  border-top: 1px solid #eee;
+}
+.rsln-flightTable__fareForFlight__compare__item {
+  line-height: 20px;
+  padding: 0 10px 5px 35px;
+  margin-top: 5px;
+  font-size: 11px;
+  position: relative;
+  cursor: pointer;
+}
+.rsln-flightTable__fareForFlight__compare__item:first-child {
+  margin-top: 0;
+}
+.rsln-flightTable__fareForFlight__compare__item__icon,
+.rsln-choosenFlight__selected__flight__fare__features__item__icon {
+  position: absolute;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/sprite.svg") no-repeat;
+  left: 20px;
+  display: inline-block;
+}
+.rsln-flightTable__fareForFlight__compare__item__icon_free,
+.rsln-choosenFlight__selected__flight__fare__features__item__icon_free {
+  background-position: -70px 0;
+  width: 10px;
+  height: 9px;
+  top: 7px;
+  margin-left: -5px;
+}
+.rsln-flightTable__fareForFlight__compare__item__icon_paid,
+.rsln-choosenFlight__selected__flight__fare__features__item__icon_paid {
+  background-position: -70px -20px;
+  width: 7px;
+  height: 12px;
+  top: 3px;
+  margin-left: -4px;
+}
+.rsln-flightTable__fareForFlight__compare__item__icon_no,
+.rsln-choosenFlight__selected__flight__fare__features__item__icon_no {
+  background-position: -70px -40px;
+  width: 8px;
+  height: 8px;
+  top: 7px;
+  margin-left: -4px;
+}
+.rsln-flightTable__fareForFlight__tariff {
+  padding: 0 10px 10px 35px;
+  position: relative;
+}
+.rsln-flightTable__fareForFlight__tariff:before {
+  position: absolute;
+  content: "";
+  top: 1px;
+  left: 13px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/attention.svg") no-repeat;
+  width: 15px;
+  height: 15px;
+}
+.rsln-flightTable__fareForFlight__tariff__link {
+  color: #0a0a0f;
+  border-bottom: 1px dashed #0a0a0f;
+  -webkit-transition: border-color 0.1s ease-in;
+  transition: border-color 0.1s ease-in;
+  cursor: pointer;
+  font-size: 11px;
+}
+@media (max-width: 970px) {
+  .rsln-flightTable {
+    display: block;
+    width: 100%;
+  }
+  .rsln-flightTable__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+  }
+  .rsln-flightTable__row_headrow {
+    display: none;
+  }
+  .rsln-flightTable__flightInfo {
+    display: block;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+  }
+  .rsln-flightTable__row_flight_0 .rsln-flightTable__flightInfo {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .rsln-flightTable__row:last-child .rsln-flightTable__fareForFlight {
+    border-bottom: none;
+  }
+  .rsln-flightTable__flightRoute {
+    display: none;
+  }
+  .rsln-flightTable__flightRoute_adaptive {
+    display: block;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+  .rsln-flightTable__row_flightSelected .rsln-flightTable__flightRoute {
+    background: #f7f7f7;
+  }
+  .rsln-flightTable__fareForFlight {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: 25%;
+        flex-basis: 25%;
+  }
+  .rsln-flightTable__fareForFlight__short {
+    height: 50px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .rsln-flightTable__fareForFlight__short__adaptiveFareName {
+    display: block;
+  }
+  .rsln-flightTable__fareForFlight__short__price {
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .rsln-flightTable__fareForFlight__short__seats {
+    display: none;
+  }
+  .rsln-flightTable__fareForFlight__compare__item {
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .rsln-flightTable__fareForFlight__noSeats {
+    height: 25px;
+    padding: 0 20px;
+    line-height: 20px;
+    font-size: 20px;
+  }
+  .rsln-flightTable__fareForFlight__noSeats_adaptiveFareName {
+    display: block;
+  }
+}
+@media (max-width: 750px) {
+  .rsln-flightTable {
+    border: none;
+    background-color: transparent;
+  }
+  .rsln-flightTable__row {
+    margin-top: 10px;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .rsln-flightTable__flightInfo,
+  .rsln-flightTable__fareForFlight {
+    border-radius: 0 !important;
+    background-color: transparent !important;
+  }
+  .rsln-flightTable__flightInfo {
+    display: block;
+    width: 100%;
+  }
+  .rsln-flightTable__flightInfo__shortInfo {
+    padding: 0 40px 0 180px;
+    color: #a0a0a0;
+    font-size: 11px;
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    width: 100%;
+    min-width: 1px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__departure,
+  .rsln-flightTable__flightInfo__shortInfo__arrival {
+    width: 80px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__departure__time,
+  .rsln-flightTable__flightInfo__shortInfo__arrival__time {
+    font-size: 22px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__departure__IATA,
+  .rsln-flightTable__flightInfo__shortInfo__arrival__IATA {
+    font-size: 14px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__departure {
+    left: 10px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__departure:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -30px;
+    width: 11px;
+    height: 60px;
+    background: url("https://tickets.rusline.aero/templates/frida/css/img/flightselect-rarr.svg") center center no-repeat;
+    background-size: 100% 100%;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__arrival {
+    left: 100px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__minPrice {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__minPrice__price {
+    font-weight: 700;
+    font-size: 16px;
+    color: #505050;
+    padding-left: 4px;
+    white-space: nowrap;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__transfers,
+  .rsln-flightTable__flightInfo__shortInfo__timeEnRoute {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    line-height: 15px;
+  }
+  .rsln-flightTable__flightInfo__shortInfo__transfers {
+    border: none;
+    -webkit-box-ordinal-group: 11;
+        -ms-flex-order: 10;
+            order: 10;
+  }
+  .rsln-flightTable__flightInfo__shortInfo:after {
+    right: 10px;
+  }
+  .rsln-flightTable__flightInfo_flightSelected .rsln-flightTable__flightInfo__shortInfo__minPrice,
+  .rsln-flightTable__flightInfo_flightSelected .rsln-flightTable__flightInfo__shortInfo__minPrice__price {
+    color: #ff1724;
+  }
+  .rsln-flightTable__fareForFlight {
+    border-top: 1px solid #eee;
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    display: none;
+  }
+  .rsln-flightTable__row.detailOpen .rsln-flightTable__fareForFlight {
+    display: block;
+  }
+  .rsln-flightTable__flightRoute {
+    background: #fff !important;
+  }
+}
+.rsln-choosenFlight {
+  margin: 20px auto;
+  max-width: 1400px;
+  color: #505050;
+}
+.rsln-choosenFlight__selected__header,
+.rsln-choosenFlight__payInfo__header {
+  color: #fff;
+  line-height: 50px;
+  font-size: 18px;
+}
+.rsln-choosenFlight__selected {
+  display: inline-block;
+  vertical-align: top;
+  width: 59%;
+}
+.rsln-choosenFlight__selected__flights {
+  border-radius: 4px;
+  background: #fff;
+}
+.rsln-choosenFlight__selected__flight {
+  border-top: 1px solid #eee;
+}
+.rsln-choosenFlight__selected__flight:first-child {
+  border-top: 0;
+}
+.rsln-choosenFlight__selected__flight__header {
+  padding: 10px 20px;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.rsln-choosenFlight__selected__flight__header__text {
+  color: #a0a0a0;
+  text-transform: capitalize;
+}
+.rsln-choosenFlight__selected__flight__header__departure:after {
+  content: " \2012";
+}
+.rsln-choosenFlight__selected__flight__header__localTime {
+  font-size: 12px;
+  color: #a0a0a0;
+  line-height: 12px;
+  font-weight: 400;
+}
+.rsln-choosenFlight__selected__flight__header geo-marker .dep__point_city,
+.rsln-choosenFlight__selected__flight__header geo-marker .arr__point_city {
+  margin-right: 5px;
+}
+.rsln-choosenFlight__selected__flight__header geo-marker .dep__point_airport,
+.rsln-choosenFlight__selected__flight__header geo-marker .arr__point_airport {
+  margin: 0;
+}
+.rsln-choosenFlight__selected__flight__header geo-marker .port__ {
+  margin-left: -5px;
+}
+.rsln-choosenFlight__selected__flight__passengers {
+  padding: 0 20px 10px;
+  font-size: 13px;
+}
+.rsln-choosenFlight__selected__flight__passengers__type {
+  padding-right: 5px;
+}
+.rsln-choosenFlight__selected__flight__passengers__type:after {
+  content: ",";
+}
+.rsln-choosenFlight__selected__flight__passengers__type:last-child:after {
+  content: '';
+}
+.rsln-choosenFlight__selected__flight__route {
+  padding: 10px 20px 10px 300px;
+  border-top: 1px solid #eee;
+  position: relative;
+  min-height: 70px;
+  line-height: 25px;
+  font-size: 12px;
+}
+.rsln-choosenFlight__selected__flight__route__departure,
+.rsln-choosenFlight__selected__flight__route__arrival {
+  position: absolute;
+  width: 50px;
+  height: 45px;
+  text-align: left;
+  top: 10px;
+  font-weight: 700;
+}
+.rsln-choosenFlight__selected__flight__route__departure__time,
+.rsln-choosenFlight__selected__flight__route__arrival__time {
+  line-height: 25px;
+  font-size: 20px;
+  color: #636467;
+}
+.rsln-choosenFlight__selected__flight__route__departure__IATA,
+.rsln-choosenFlight__selected__flight__route__arrival__IATA {
+  line-height: 20px;
+  font-size: 16px;
+  color: #505050;
+  opacity: 0.5;
+}
+.rsln-choosenFlight__selected__flight__route__departure {
+  left: 20px;
+}
+.rsln-choosenFlight__selected__flight__route__arrival {
+  left: 210px;
+}
+.rsln-choosenFlight__selected__flight__route__transfers {
+  border-bottom: 1px solid #d0d0d0;
+  position: absolute;
+  left: 85px;
+  width: 110px;
+  text-align: center;
+  font-size: 11px;
+}
+.rsln-choosenFlight__selected__flight__route__transfers:after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-top: 1px solid #d0d0d0;
+  border-left: 1px solid #d0d0d0;
+  bottom: -3px;
+  right: -1px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.rsln-choosenFlight__selected__flight__route__timeEnRoute {
+  position: absolute;
+  left: 85px;
+  width: 110px;
+  text-align: center;
+  font-size: 11px;
+  top: 35px;
+}
+.rsln-choosenFlight__selected__flight__route__fullTransfers:last-child {
+  padding: 13px 0;
+}
+.rsln-choosenFlight__selected__flight__route__fullTransfers__caption {
+  color: #a0a0a0;
+  display: inline-block;
+  margin-right: 10px;
+}
+.rsln-choosenFlight__selected__flight__route__arrival + .rsln-choosenFlight__selected__flight__route__landings {
+  padding: 13px 0;
+}
+.rsln-choosenFlight__selected__flight__route__price {
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  display: none;
+}
+.rsln-choosenFlight__selected__flight__route__passengers {
+  display: none;
+}
+.rsln-choosenFlight__selected__flight__fare {
+  padding: 0 20px;
+  border-top: 1px solid #eee;
+}
+.rsln-choosenFlight__selected__flight__fare__header {
+  padding: 15px 0;
+  line-height: 20px;
+  font-size: 16px;
+}
+.rsln-choosenFlight__selected__flight__fare__header__caption {
+  color: #a0a0a0;
+}
+.rsln-choosenFlight__selected__flight__fare__link {
+  float: right;
+  font-size: 11px;
+  line-height: normal;
+  margin-top: 3px;
+  position: relative;
+}
+.rsln-choosenFlight__selected__flight__fare__link:before {
+  position: absolute;
+  content: "";
+  top: -1px;
+  left: -20px;
+  background: url("https://tickets.rusline.aero/templates/frida/css/img/attention.svg") no-repeat;
+  width: 15px;
+  height: 15px;
+}
+.rsln-choosenFlight__selected__flight__fare__link a {
+  color: #0a0a0f;
+  border-bottom: 1px dashed #0a0a0f;
+  font-size: 11px;
+}
+.rsln-choosenFlight__selected__flight__fare__features {
+  padding-bottom: 5px;
+}
+.rsln-choosenFlight__selected__flight__fare__features__item {
+  padding: 0 10px 5px 20px;
+  margin: 0;
+  display: inline-block;
+  width: 33.3%;
+  vertical-align: top;
+  line-height: 20px;
+  font-size: 11px;
+  position: relative;
+  cursor: pointer;
+}
+.rsln-choosenFlight__selected__flight__fare__features__item__icon {
+  left: 0;
+  margin-left: 0;
+}
+.rsln-choosenFlight__selected__flight__fare__features__item:first-child {
+  margin-top: 0;
+}
+.rsln-choosenFlight__payInfo {
+  display: inline-block;
+  vertical-align: top;
+  width: 41%;
+  padding-left: 20px;
+}
+.rsln-choosenFlight__payInfo__details {
+  border-radius: 4px;
+  background: #fff;
+  padding: 10px 0;
+  margin-bottom: 15px;
+}
+.rsln-choosenFlight__payInfo__details__priceParts {
+  padding: 0 20px;
+  font-size: 13px;
+}
+.rsln-choosenFlight__payInfo__details__priceParts__item {
+  line-height: 20px;
+  padding: 7px 0;
+}
+.rsln-choosenFlight__payInfo__details__priceParts__item__name,
+.rsln-choosenFlight__payInfo__details__priceParts__item__value {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+}
+.rsln-choosenFlight__payInfo__details__priceParts__item__value {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: medium;
+}
+.rsln-choosenFlight__payInfo__total {
+  padding: 25px 20px 10px;
+  line-height: 20px;
+  position: relative;
+}
+.rsln-choosenFlight__payInfo__total__caption {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  color: #a0a0a0;
+  font-size: 16px;
+}
+.rsln-choosenFlight__payInfo__total__amount {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%;
+  font-size: 20px;
+  text-align: right;
+  font-weight: 500;
+}
+.rsln-choosenFlight__payInfo__total:after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  border-bottom: 1px solid #eee;
+  top: 10px;
+}
+.rsln-searchResultsControl_selectedVariant {
+  padding-top: 0;
+  padding-bottom: 15px;
+}
+.rsln-searchResultsControl__btn {
+  font-weight: 700;
+  font-size: 18px;
+  display: inline-block;
+  float: right;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  position: relative;
+  background-color: #ff1723;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+  padding: 0 65px;
+  cursor: pointer;
+}
+.rsln-searchResultsControl__btn.disabled {
+  background: #ff1723 !important;
+  color: #fff !important;
+  opacity: 0.5 !important;
+}
+.rsln-searchResultsControl__btn:hover,
+.rsln-searchResultsControl__btn:active,
+.rsln-searchResultsControl__btn:focus,
+.rsln-searchResultsControl__btn:focus:hover {
+  background: #ff454f;
+}
+.rsln-searchResultsControl__btn_selectedVariant {
+  float: none;
+  padding: 0 18px;
+  display: block;
+}
+.rsln-searchResultsControl__btn.loading-start:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url("https://tickets.rusline.aero/templates/wurst/f2.0/css/images/fsf-sprite.svg") -30px -60px no-repeat;
+  top: 50%;
+  right: 20px;
+  margin-top: -10px;
+  -webkit-animation: rsln-plane 1s infinite;
+          animation: rsln-plane 1s infinite;
+}
+@-webkit-keyframes rsln-plane {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rsln-plane {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@media (max-width: 900px) {
+  .rsln-choosenFlight__selected,
+  .rsln-choosenFlight__payInfo {
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+}
+@media (max-width: 750px) {
+  .rsln-choosenFlight__buyBlock {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .rsln-choosenFlight__selected__header,
+  .rsln-choosenFlight__payInfo__header {
+    text-align: center;
+    padding: 0 20px;
+    line-height: 35px;
+  }
+  .rsln-choosenFlight__selected__flights {
+    border-radius: 0;
+    background-color: transparent;
+  }
+  .rsln-choosenFlight__selected__flight {
+    margin-top: 15px;
+    border: none;
+  }
+  .rsln-choosenFlight__selected__flight:first-child {
+    border-top: 0;
+    margin-top: -10px;
+  }
+  .rsln-choosenFlight__selected__flight__header {
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    line-height: 25px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #fff;
+  }
+  .rsln-choosenFlight__selected__flight__header__DOW {
+    display: inline;
+  }
+  .rsln-choosenFlight__selected__flight__header__departure,
+  .rsln-choosenFlight__selected__flight__header__arrival {
+    white-space: nowrap;
+  }
+  .rsln-choosenFlight__selected__flight__header__localTime {
+    color: #fff;
+    padding-bottom: 5px;
+  }
+  .rsln-choosenFlight__selected__flight__wrap {
+    background: #fff;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .rsln-choosenFlight__selected__flight__passengers {
+    display: none;
+  }
+  .rsln-choosenFlight__selected__flight__route {
+    padding: 5px 5px 0 175px;
+    color: #a0a0a0;
+    font-size: 11px;
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    width: 100%;
+    min-width: 1px;
+    border: none;
+    min-height: 60px;
+  }
+  .rsln-choosenFlight__selected__flight__route:before {
+    content: '';
+    position: absolute;
+    left: 170px;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid #eee;
+  }
+  .rsln-choosenFlight__selected__flight__route__departure,
+  .rsln-choosenFlight__selected__flight__route__arrival {
+    width: 80px;
+  }
+  .rsln-choosenFlight__selected__flight__route__departure__time,
+  .rsln-choosenFlight__selected__flight__route__arrival__time {
+    font-size: 22px;
+  }
+  .rsln-choosenFlight__selected__flight__route__departure__IATA,
+  .rsln-choosenFlight__selected__flight__route__arrival__IATA {
+    font-size: 14px;
+  }
+  .rsln-choosenFlight__selected__flight__route__departure {
+    left: 10px;
+  }
+  .rsln-choosenFlight__selected__flight__route__departure:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -33px;
+    width: 11px;
+    height: 60px;
+    background: url("https://tickets.rusline.aero/templates/frida/css/img/flightselect-rarr.svg") center center no-repeat;
+    background-size: 100% 100%;
+  }
+  .rsln-choosenFlight__selected__flight__route__passengers {
+    display: inline-block;
+    line-height: 14px;
+    padding-right: 5px;
+  }
+  .rsln-choosenFlight__selected__flight__route__price {
+    display: inline-block;
+    font-size: 12px;
+    padding-right: 5px;
+    line-height: 14px;
+  }
+  .rsln-choosenFlight__selected__flight__route__transfers {
+    display: none;
+  }
+  .rsln-choosenFlight__selected__flight__route__arrival {
+    left: 100px;
+  }
+  .rsln-choosenFlight__selected__flight__route__distance {
+    display: none;
+  }
+  .rsln-choosenFlight__selected__flight__route__timeEnRoute {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    text-align: left;
+    position: static;
+    margin: 0;
+    padding: 0;
+    line-height: 14px;
+    display: inline-block;
+    width: auto;
+  }
+  .rsln-choosenFlight__selected__flight__route__fullTransfers {
+    line-height: 14px;
+    width: 100%;
+  }
+  .rsln-choosenFlight__selected__flight__route__fullTransfers__caption {
+    margin-right: 3px;
+  }
+  .rsln-choosenFlight__selected__flight__fare {
+    padding: 0 10px;
+  }
+  .rsln-choosenFlight__selected__flight__fare__header {
+    font-size: 11px;
+    padding: 7px 0;
+  }
+  .rsln-choosenFlight__selected__flight__fare__header__caption {
+    display: none;
+  }
+  .rsln-choosenFlight__payInfo__details {
+    border-radius: 0;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+  }
+  .rsln-choosenFlight__payInfo__details__priceParts {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .rsln-choosenFlight__payInfo__total {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .rsln-choosenFlight__payInfo__total:after {
+    left: 10px;
+    right: 10px;
+  }
+}
+@media (max-width: 750px) {
+  .rsln-searchResultsControl_selectedVariant {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

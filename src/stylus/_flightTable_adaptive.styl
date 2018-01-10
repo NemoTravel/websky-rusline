@@ -1,0 +1,207 @@
+.rsln-flightTable {
+	@media (max-width: 970px) {
+		display: block;
+		width: 100%;
+
+		&__row {
+			display: flex;
+			flex-flow: row wrap;
+
+			&_headrow {
+				display: none;
+			}
+		}
+
+		&__flightInfo {
+			display: block;
+			flex: 0 0 100%;
+		}
+
+	    &__row_flight_0 &__flightInfo {
+		    border-top-left-radius: 4px;
+		    border-top-right-radius: 4px;
+	    }
+
+	    &__row:last-child &__fareForFlight {
+		    border-bottom: none;
+	    }
+
+	    &__flightRoute {
+			display: none;
+
+			&_adaptive {
+				display: block;
+				flex-basis: 100%;
+			}
+	    }
+
+	    &__row_flightSelected &__flightRoute {
+		    background: #f7f7f7;
+	    }
+
+	    &__fareForFlight {
+		    flex-grow: 1;
+		    flex-shrink: 0;
+		    flex-basis: 25%;
+
+			&__short {
+				height: 50px;
+				padding-top: 0;
+				padding-bottom: 0;
+
+				&__adaptiveFareName {
+					display: block;
+				}
+
+				&__price {
+					line-height: 20px;
+					font-size: 14px;
+					font-weight: 400;
+				}
+
+				&__seats {
+					display: none;
+				}
+			}
+
+			&__compare {
+				&__item {
+					font-size: 11px;
+					line-height: 15px;
+				}
+			}
+
+			&__noSeats {
+				height: 25px;
+				padding: 0 20px;
+				line-height: 20px;
+				font-size: 20px;
+
+				&_adaptiveFareName {
+					display: block;
+				}
+			}
+	    }
+	}
+
+	@media (max-width: 750px) {
+		border: none;
+		background-color: transparent;
+
+		&__row {
+			margin-top: 10px;
+			background: #fff;
+			box-shadow: 0 1px 2px rgba(0,0,0,.1);
+		}
+
+		&__flightInfo,
+		&__fareForFlight {
+			border-radius: 0!important;
+			background-color: transparent!important;
+		}
+
+		&__flightInfo {
+			display: block;
+			width: 100%;
+
+			&__shortInfo {
+				padding: 0 40px 0 180px;
+				color: #a0a0a0;
+				font-size: 11px;
+				text-align: left;
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: flex-start;
+				align-content: center;
+				width: 100%;
+				min-width: 1px;
+
+				&__departure,
+				&__arrival {
+					width: 80px;
+
+					&__time {
+						font-size: 22px;
+					}
+
+					&__IATA {
+						font-size: 14px;
+					}
+				}
+
+				&__departure {
+					left: 10px;
+
+					&:before {
+						content: '';
+						position: absolute;
+						right: 0;
+						top: 50%;
+						margin-top: -30px;
+						width: 11px;
+						height: 60px;
+						background: url(https://tickets.rusline.aero/templates/frida/css/img/flightselect-rarr.svg) center center no-repeat;
+						background-size: 100% 100%;
+					}
+				}
+
+				&__arrival {
+					left: 100px;
+				}
+
+				&__minPrice {
+					display: block;
+					font-size: 12px;
+					line-height: 20px;
+
+					&__price {
+						font-weight: 700;
+						font-size: 16px;
+						color: #505050;
+						padding-left: 4px;
+						white-space: nowrap;
+					}
+				}
+
+				&__transfers,
+				&__timeEnRoute {
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					flex-basis: 100%;
+					flex-grow: 0;
+					flex-shrink: 1;
+					line-height: 15px;
+				}
+
+				&__transfers {
+					border: none;
+					order: 10;
+				}
+
+				&:after {
+					right: 10px;
+				}
+			}
+
+			&_flightSelected &__shortInfo__minPrice,
+			&_flightSelected &__shortInfo__minPrice__price {
+				color: #ff1724;
+			}
+		}
+
+	    &__fareForFlight {
+		    border-top: 1px solid #eee;
+		    flex-basis: 50%;
+		    display: none;
+	    }
+
+	    &__row.detailOpen &__fareForFlight {
+			display: block;
+	    }
+
+	    &__flightRoute {
+			background: #fff !important;
+	    }
+	}
+}

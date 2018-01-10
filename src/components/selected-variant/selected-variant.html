@@ -1,0 +1,176 @@
+<div ng-if="vm.pricingVariant" class="rsln-choosenFlight">
+
+	<!-- BEGIN selected -->
+	<div class="rsln-choosenFlight__selected">
+		<div class="rsln-choosenFlight__selected__header">
+			{{ 'web.choosenFlight.header' | alias }}
+		</div>
+
+		<div class="rsln-choosenFlight__selected__flights">
+			<div class="rsln-choosenFlight__selected__flight" ng-repeat="(segNum, segment) in vm.selectedVariantsInfo">
+				<div class="rsln-choosenFlight__selected__flight__header">
+					<span class="rsln-choosenFlight__selected__flight__header__text" ng-if="vm.selectedVariantsInfo.length > 1">
+						{{"web.searchResult.segmentLabel." + segNum | alias }}:
+					</span>
+					<span class="rsln-choosenFlight__selected__flight__header__date">
+						{{ segment.flightsInfo.departuredate | formatDate: 'D MMMM' }},
+					</span>
+					<span class="rsln-choosenFlight__selected__flight__header__departure">
+						 <geo-marker prefix="dep__point" key="selected-variant" city="segment.flightsInfo.origincity"  cityname="segment.flightsInfo.origincityName" port="segment.flightsInfo.originport"  portname="segment.flightsInfo.originportName"></geo-marker>
+					</span>
+					<span class="rsln-choosenFlight__selected__flight__header__date">
+						{{ segment.flightsInfo.arrivaldate | formatDate: 'D MMMM' }},
+					</span>
+					<span class="rsln-choosenFlight__selected__flight__header__arrival">
+						 <geo-marker prefix="dep__point" key="selected-variant" city="segment.flightsInfo.destinationcity"  cityname="segment.flightsInfo.destinationcityName" port="segment.flightsInfo.destinationport"  portname="segment.flightsInfo.destinationportName"></geo-marker>
+					</span>
+					<div class="rsln-choosenFlight__selected__flight__header__localTime">
+						{{ 'web.searchResult.localTimeMessage' | alias }}
+					</div>
+				</div>
+				<div class="rsln-choosenFlight__selected__flight__wrap">
+					<div class="rsln-choosenFlight__selected__flight__passengers">
+						<span class="rsln-choosenFlight__selected__flight__passengers__type" ng-repeat="(pasNum, pasData) in vm.pricingVariant.passengerCategories">
+						   {{ pasData.passengerCountLabel }}
+						  </span>
+					</div>
+
+					<div class="rsln-choosenFlight__selected__flight__route">
+						<div class="rsln-choosenFlight__selected__flight__route__departure">
+							<div class="rsln-choosenFlight__selected__flight__route__departure__time">
+								{{ segment.flightsInfo.departuretime }}
+							</div>
+							<div class="rsln-choosenFlight__selected__flight__route__departure__IATA">
+								{{ segment.flightsInfo.originport || segment.flightsInfo.origincity }}
+							</div>
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__passengers">
+							{{ vm.getTotalCountPass() }}
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__price">
+							<wrap ng-bind-html="{ value: segment.price, currency: vm.pricingVariant.currency } | price"></wrap>
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__transfers">
+							{{ segment.flightsInfo.connectionsMessage }}
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__timeEnRoute">
+							{{ segment.flightsInfo.flighttime | timeAsWords }}
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__arrival">
+							<div class="rsln-choosenFlight__selected__flight__route__arrival__time">
+								{{ segment.flightsInfo.arrivaltime }}
+							</div>
+							<div class="rsln-choosenFlight__selected__flight__route__arrival__IATA">
+								{{ segment.flightsInfo.destinationport || segment.flightsInfo.destinationcity }}
+							</div>
+						</div>
+						<div class="rsln-choosenFlight__selected__flight__route__fullTransfers" ng-if="segment.flightsInfo.connections && segment.flightsInfo.connections.length > 0">
+							<span class="rsln-choosenFlight__selected__flight__route__fullTransfers__caption">
+								{{ 'web.selected.variant.transplantation' | alias }}
+							</span>
+							<span ng-repeat="(connectionNum, connection) in segment.flightsInfo.connections">
+								{{ connection.cityName }}<span ng-if="connection.nextAirportName">, {{ connection.nextAirportName }}</span> ({{ connection.time | timeAsWords}})
+							</span>
+						</div>
+
+						<div class="rsln-choosenFlight__selected__flight__route__landings" ng-if="segment.flightsInfo.landings.length > 0">
+							<span class="rsln-choosenFlight__selected__flight__route__fullTransfers__caption">
+								{{ 'web.selected.variant.landings' | alias}}
+							</span>
+							<span ng-repeat="(landingNum, landing) in segment.flightsInfo.landings">
+								{{ landing.landingCityName }} ({{ landing.landingTime | timeAsWords}})
+							</span>
+						</div>
+					</div>
+
+					<div class="rsln-choosenFlight__selected__flight__fare">
+						<div class="rsln-choosenFlight__selected__flight__fare__header">
+							<div class="rsln-choosenFlight__selected__flight__fare__link">
+								<a href fancybox="popupRemark">
+									{{ 'web.choosenFlight.remarkLink' | alias }}
+								</a>
+							</div>
+
+							<span class="rsln-choosenFlight__selected__flight__fare__header__caption">
+								{{ 'web.selected.variant.rate' | alias }}
+							</span>
+							<span ng-if="segment.brandName">«{{segment.brandName}}»</span>
+
+							<span ng-if="vm.getFareCodesSegment(segNum).length > 0">
+								<span class="rsln-choosenFlight__selected__flight__fare__header__caption">
+									{{ 'web.selected.variant.code' | alias }}
+								</span>
+								<span ng-repeat="(codeNum, code) in vm.getFareCodesSegment(segNum)">
+									<span ng-if="codeNum >= 1">,</span> {{ code }}
+								</span>
+							</span>
+						</div>
+
+						<!--<div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="segment.brandAvailableProps && segment.brandAvailableProps.length > 0">
+							<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in segment.brandAvailableProps">
+								<p class="rsln-choosenFlight__selected__flight__fare__features__item__content" ng-bind-html="prop"></p>
+							</div>
+						</div>-->
+
+						<div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="segment.brandAvailableProps && segment.brandAvailableProps.length > 0">
+							<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in vm.getBrandsList(segment.brand)" ng-if="prop.shortDesc">
+								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_free" ng-if="prop.available == 'yes'"></span>
+								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_paid" ng-if="prop.available == 'paid'"></span>
+								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_no" ng-if="prop.available == 'no'"></span>
+								<span class="rsln-choosenFlight__selected__flight__fare__features__item__content" ng-bind-html="prop.shortDesc"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END selected -->
+
+	<div class="rsln-choosenFlight__payInfo">
+		<div class="rsln-choosenFlight__payInfo__header">
+			{{ 'web.selected.variant.ticketprice' | alias }}
+		</div>
+
+		<div class="rsln-choosenFlight__payInfo__details">
+			<div class="rsln-choosenFlight__payInfo__details__priceParts">
+				<div class="rsln-choosenFlight__payInfo__details__priceParts__item">
+					<div class="rsln-choosenFlight__payInfo__details__priceParts__item__name">
+						{{ 'web.choosenFlight.fare' | alias }}
+					</div>
+					<div class="rsln-choosenFlight__payInfo__details__priceParts__item__value">
+						<span ng-bind-html="{ value: vm.pricingVariant.totalFare, currency: vm.pricingVariant.currency } | price"></span>
+					</div>
+				</div>
+				<div class="rsln-choosenFlight__payInfo__details__priceParts__item">
+					<div class="rsln-choosenFlight__payInfo__details__priceParts__item__name">
+						{{ 'web.choosenFlight.tax' | alias }}
+					</div>
+					<div class="rsln-choosenFlight__payInfo__details__priceParts__item__value">
+						<span ng-bind-html="{ value: vm.pricingVariant.totalTax, currency: vm.pricingVariant.currency } | price"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="rsln-choosenFlight__payInfo__total">
+				<div class="rsln-choosenFlight__payInfo__total__caption">
+					{{ 'web.choosenFlight.totalPrice' | alias }}
+				</div>
+				<div class="rsln-choosenFlight__payInfo__total__amount">
+					<span ng-bind-html="{ value: vm.pricingVariant.totalPrice, currency: vm.pricingVariant.currency } | price"></span>
+				</div>
+			</div>
+		</div>
+		<div class="searchResultsControl rsln-searchResultsControl rsln-searchResultsControl_selectedVariant" ng-if="vm.selectedVariantsInfo">
+			<div class="searchResultsControl__i rsln-searchResultsControl__i">
+
+				<a href="#{{$root.ROUTES.PASSENGERS}}" class="btn rsln-searchResultsControl__btn rsln-searchResultsControl__btn_selectedVariant" ng-if="vm.selectedVariantsInfo">
+					<span>{{ 'web.buttons.next' | alias }}</span>
+				</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<popup-remark></popup-remark>

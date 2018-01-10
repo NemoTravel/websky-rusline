@@ -1,0 +1,153 @@
+<app-loader ng-if="vm.loadingVariants || vm.loadingPeriodVariants || vm.loading"></app-loader>
+
+<section class="out" ng-if="!vm.loading">
+
+    <app-header></app-header>
+
+    <div class="searchSteps" ng-if="!vm.searchResult">
+        <div class="wrap">
+            <div class="searchSteps__i">
+                <ol>
+
+                    <li ng-if="vm.formOpened" class="active">{{ 'web.steps.search' | alias }}</li>
+                    <li ng-if="vm.formOpened">{{ 'web.steps.selectVariant' | alias }}</li>
+
+
+                    <li ng-if="!vm.formOpened" class="prev"><a href="{{ 'site.mainPageUrl' | param }}">{{ 'web.steps.search' | alias }}</a></li>
+                    <li ng-if="!vm.formOpened" class="active">{{ 'web.steps.selectVariant' | alias }}</li>
+
+                    <li>{{ 'web.steps.passengers' | alias }}</li>
+                    <li>{{ 'web.steps.extraServices' | alias }}</li>
+                    <li>{{ 'web.steps.payment' | alias }}</li>
+                    <li>{{ 'web.steps.order' | alias }}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <search-form
+    	submit="vm.searchSubmitHandler"
+    	change="vm.ruslineSearchChangeHandler"
+    	switch="vm.showSearchSwitch"
+    	opened="vm.formOpened"
+    	limits="vm.bookingLimits"
+        nearest="vm.nearestDates"
+		error="!vm.loadingPeriodVariants && vm.searchResultError"
+        lsp="vm.lastSearchParams"
+		ffp="!!vm.ffpUser"
+		ffp-login-error="vm.ffpLoginError">
+    </search-form>
+
+    <div class="profileInfo" ng-if="vm.ffpUser">
+		<div class="wrap">
+			<div class="profileInfo__i">
+    			<div class="milesText">
+    				{{ 'web.search.bonus.cardNumberLabel' | alias }} {{ vm.ffpUser.cardNumber }}, {{ 'web.search.bonus.accountLabel' | alias }} <strong ng-bind-html="{ value: vm.ffpUser.balance, currency: 'miles' } | price"></strong>
+                    <div class="milesCross" ng-click="vm.logoutFFP();">
+    					<i class="icon_remove"></i>
+    					<div class="infoDrop">
+    						<div class="infoDrop__i">
+    							<p>
+                                    {{ 'web.search.bonus.logoutLabel' | alias }}
+                                </p>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content content-search-result" ng-if="vm.searchResult || vm.searchResultErrorButHasPeriodVariants">
+	    <div class="wrap wrap_pt32" ng-class="{ 'rsln-wrap': ( 'search.useMonoBrandCartesian' | param )}">
+	        <div class="content__i">
+			
+				<div ng-if="vm.searchResultErrorButHasPeriodVariants" class="orderSearchError">
+					<div class="orderSearchError__i">
+						<p ng-bind-html=" 'web.messages.searchResultErrorButHasPeriodVariants.header' | aliasStatic"></p>
+						<p ng-bind-html=" 'web.messages.searchResultErrorButHasPeriodVariants.text' | aliasStatic"></p>
+					</div>
+				</div>
+
+                <wrap ng-if="!vm.ffpUser">
+    				<search-mono-brand-cartesian-variants
+                        ng-if="( 'search.useMonoBrandCartesian' | param )"
+    					result="vm.searchResult"
+    					period="vm.searchResultPeriod"
+    					loading="vm.loadingPeriodVariants"
+    					params="vm.searchParams"
+    					limits="vm.bookingLimits"
+    					resubmit="vm.searchSubmitHandler"
+    					select="vm.monoBrandCartesianVariantSelectHandler">
+    				</search-mono-brand-cartesian-variants>
+                    <wrap ng-if="!( 'search.useMonoBrandCartesian' | param )">
+        				<search-variants
+                            ng-if="!vm.searchResult.fareGroups"
+                            result="vm.searchResult"
+        					params="vm.searchParams"
+        					select="vm.variantSelectHandler">
+        				</search-variants>
+                        <search-fare-group-variants
+                            ng-if="vm.searchResult.fareGroups"
+                            result="vm.searchResult"
+                            period="vm.searchResultPeriod"
+                            loading="vm.loadingPeriodVariants"
+        					params="vm.searchParams"
+                            limits="vm.bookingLimits"
+                            resubmit="vm.searchSubmitHandler"
+        					select="vm.fareGroupVariantSelectHandler">
+        				</search-fare-group-variants>
+                    </wrap>
+                </wrap>
+
+				<search-ffp-variants
+                    ng-if="vm.ffpUser"
+					result="vm.searchResult"
+                    period="vm.searchResultPeriod"
+					params="vm.searchParams"
+                    limits="vm.bookingLimits"
+					resubmit="vm.searchSubmitHandler"
+					select="vm.ffpVariantSelectHandler">
+				</search-ffp-variants>
+
+                <a name="selected-variant"></a>
+
+				<selected-variant
+					ng-if="vm.selectedVariantsInfo"
+					info="vm.selectedVariantsInfo"
+					pricing="vm.pricingVariant">
+				</selected-variant>
+
+                <div ng-if="vm.pricingVariantError" class="infoMessage infoMessage_error">
+                    <div class="infoMessage__i">
+                        <p>{{ vm.pricingVariantError | alias }}</p>
+                    </div>
+                </div>
+
+				<div class="searchResultsControl rsln-searchResultsControl" ng-if="!vm.selectedVariantsInfo && vm.searchResult">
+				    <div class="searchResultsControl__i rsln-searchResultsControl__i">
+
+				        <!--<a href="#{{$root.ROUTES.PASSENGERS}}" class="btn rsln-searchResultsControl__btn" ng-if="vm.selectedVariantsInfo">
+				            <span>{{ 'web.buttons.next' | alias }}</span>
+				        </a>-->
+
+						<a href class="btn rsln-searchResultsControl__btn disabled" ng-if="!vm.selectedVariantsInfo" ng-class="{ 'loading-start': vm.loadingPricingVariant }">
+                            <span>{{ 'web.buttons.next' | alias }}</span>
+				        </a>
+
+				    </div>
+				</div>
+
+	        </div>
+	    </div>
+	</div>
+
+	<div class="push"></div>
+
+</section>
+
+<app-footer ng-if="!vm.loading"></app-footer>
+
+
+<popup-cancel-session ng-if="!vm.loading"></popup-cancel-session>
+<popup-intermodal ng-if="!vm.loading" list="vm.intermodalList"></popup-intermodal>

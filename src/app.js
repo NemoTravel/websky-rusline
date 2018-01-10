@@ -1,0 +1,2 @@
+require('./screens');
+require('./components');
