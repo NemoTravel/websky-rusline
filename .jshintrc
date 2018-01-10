@@ -1,0 +1,21 @@
+{
+    "strict": "implied",
+    "browser": true,
+    "browserify": true,
+    "jasmine": true,
+    "undef": true,
+    "unused": true,
+    "bitwise": true,
+    "noarg": true,
+    "nonew": true,
+    "maxlen": 120,
+    "predef": [
+        "jQuery",
+        "_",
+        "angular",
+        "inject",
+        "moment",
+        "console",
+        "Big"
+    ]
+}
