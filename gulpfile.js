@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     var gulp = require('gulp'),
         del = require('del'),
@@ -19,17 +19,17 @@
         autoprefixer = require('autoprefixer-stylus'),
         lintFiles = ['src/**/*.js', '*.js'];
 
-    gulp.task('clean', function() {
+    gulp.task('clean', function () {
         return del('build');
     });
 
-    gulp.task('jshint', function() {
+    gulp.task('jshint', function () {
         return gulp.src(lintFiles)
             .pipe(jshint())
             .pipe(jshint.reporter('jshint-stylish'));
     });
 
-    gulp.task('jscs', function() {
+    gulp.task('jscs', function () {
         return gulp.src(lintFiles)
             .pipe(jscs())
             .pipe(jscs.reporter());
@@ -37,7 +37,7 @@
 
     gulp.task('lint', gulp.parallel('jshint', 'jscs'));
 
-    gulp.task('build:app:html', function() {
+    gulp.task('build:app:html', function () {
         return gulp.src('src/**/*.html')
             .pipe(minifyHtml({
                 empty: true,
@@ -46,7 +46,7 @@
             }))
             .pipe(ngHtml2Js({
                 moduleName: 'app',
-                rename: function(url) {
+                rename: function (url) {
                     return url.replace('src/', '');
                 }
             }))
@@ -57,7 +57,7 @@
 
     gulp.task('build:app', gulp.series('build:app:html'));
 
-    gulp.task('build:stylus:css', function() {
+    gulp.task('build:stylus:css', function () {
         return gulp.src('src/stylus/custom.styl')
             .pipe(stylus({
                 'use': [autoprefixer('last 2 versions')],
@@ -69,7 +69,7 @@
 
     gulp.task('deploy', shell.task([process.env.DEPLOY_OXY_COMMAND]));
 
-    gulp.task('watch', function() {
+    gulp.task('watch', function () {
         if (process.env.DEPLOY_OXY_COMMAND) {
             gulp.watch('src/**/*.*', gulp.series('build:app', 'deploy'));
         } else {
