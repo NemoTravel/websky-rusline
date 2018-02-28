@@ -111,7 +111,7 @@
 															ng-model="passenger.lastName"
                                                             ng-blur="vm.lastNameBlurHandler(passengerNumber)"
 															required
-															ng-pattern="vm.passengersCheck.passengerLastNameRegexp"
+															ng-pattern=" (passenger.documentType == 'PSP') ? vm.passengerLastNameLatRegexp : vm.passengersCheck.passengerLastNameRegexp "
 															class="textInp inp-animate-placeholder"
 															error-highlight="{{vm.submitTouched}}">
 														<label class="inp-animate-label">
@@ -130,7 +130,7 @@
 															ng-model="passenger.firstName"
                                                             ng-blur="vm.firstNameBlurHandler(passengerNumber)"
 															required
-															ng-pattern="vm.passengersCheck.passengerFirstNameRegexp"
+															ng-pattern=" (passenger.documentType == 'PSP') ? vm.passengerFirstNameLatRegexp : vm.passengersCheck.passengerFirstNameRegexp "
 															class="textInp inp-animate-placeholder"
 															error-highlight="{{vm.submitTouched}}">
 														<label class="inp-animate-label">
@@ -312,6 +312,7 @@
 															ng-required="vm.passengersCheck.requirePhone"
                                                             ng-pattern="'customer.phoneRegexp' | param"
 															class="textInp inp-animate-placeholder"
+															ng-class="{ js_phone_for_nationality_RU : passenger.nationality == 'RU' }"
 															error-highlight="{{vm.submitTouched}}"
 															placeholder="">
 														<label class="inp-animate-label">
@@ -441,6 +442,7 @@
                                                             ng-pattern="'customer.phoneRegexp' | param"
 															required
 															class="textInp inp-animate-placeholder"
+															ng-class="{ js_phone_for_nationality_RU : vm.passengers[0].nationality == 'RU' }"
 															error-highlight="{{vm.submitTouched}}">
 														<label class="inp-animate-label">
 															<span>{{ 'web.customerInfo.phone' | aliasStatic}}</span>
@@ -533,7 +535,7 @@
 
                         <div ng-if="vm.errorMessage" class="infoMessage infoMessage_error">
         					<div class="infoMessage__i">
-        						<p>{{ vm.errorMessage | aliasDynamic }}</p>
+        						<p ng-bind-html=" vm.errorMessage | aliasDynamic "></p>
         					</div>
         				</div>
 
