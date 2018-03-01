@@ -1,0 +1,226 @@
+<app-loader ng-if="vm.loading"></app-loader>
+
+<header class="header header_small">
+
+	<div class="wrap">
+
+		<div class="header__i">
+
+			<div class="logo">
+				<a href="{{ 'site.mainPageUrl' | param }}">
+					<span class="img"></span>
+				</a>
+			</div>
+
+			<a href ng-click="activeNavMobile = !activeNavMobile" class="mainNavBtn mainNavBtn_js mobileShow" ng-class="{ active: activeNavMobile }">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+
+			<nav class="userNav">
+				<div class="userNav__i">
+					<ul>
+						<li ng-if=" vm.availableCurrencies.length > 1 ">
+							<ui-select ng-model="vm.currentCurrency"
+												 theme="selectize"
+												 search-enabled="false"
+												 ng-change="vm.changeCurrencyLanguage()"
+												 name="currency"
+												 class="ui-select-header ui-select-header-currency"
+												 required>
+
+								<ui-select-match placeholder="{{$select.selected.name}}">
+									{{$select.selected.name}}
+								</ui-select-match>
+
+								<ui-select-choices repeat="currency.code as currency in vm.availableCurrencies">
+									<span class="currency_sign currency_sign_{{currency.code}}" ng-bind-html="vm.getUnicodeCurrencySign(currency.code)"></span>
+									<div ng-bind-html="currency.name"></div>
+								</ui-select-choices>
+							</ui-select>
+
+						</li>
+
+						<li ng-if=" vm.availableLanguages.length > 1 ">
+							<ui-select ng-model="vm.currentLanguage" theme="selectize" name="language" search-enabled="false" ng-change="vm.changeCurrencyLanguage()" class="ui-select-header ui-select-header-language" required>
+								<ui-select-match placeholder="	{{ $select.selected.title }}">
+									{{ $select.selected.title }}
+								</ui-select-match>
+								<ui-select-choices repeat="lang.code as lang in vm.availableLanguages">
+									<div>{{ lang.title }}</div>
+								</ui-select-choices>
+							</ui-select>
+						</li>
+
+						<li ng-if="!vm.authoriseCustomer && ('site.bookingEnabled' | param)">
+							<a class="popup_js" href fancybox="popupLogin">
+								<i class="fa fa-user"></i>
+							</a>
+						</li>
+
+						<li ng-if="vm.authoriseCustomer">
+							<ui-select ng-model="vm.privateNav"
+												 theme="selectize"
+												 name="privateNav"
+												 search-enabled="false"
+												 ng-change="vm.changePrivateNav()"
+												 class="ui-select-header ui-select-header-private-nav"
+												 required>
+
+								<ui-select-match placeholder="{{ vm.authoriseCustomer.firstName }}&nbsp;{{ vm.authoriseCustomer.lastName }}">
+									<i class="fa fa-user"></i>
+								</ui-select-match>
+
+								<ui-select-choices repeat="item.code as item in vm.availablePrivateNavItems">
+									<div>{{ item.title }}</div>
+								</ui-select-choices>
+							</ui-select>
+
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+		</div>
+
+		<div class="headerAlias" ng-bind-html="vm.headerAliasHtml"></div>
+
+		<div class="headerRight">
+			<div class="headerRight__col">
+				<nav class="userNav">
+					<div class="userNav__i">
+						<ul>
+							<li ng-if="vm.authoriseCustomer">
+								<ui-select ng-model="vm.privateNav" theme="selectize" name="privateNav" search-enabled="false" ng-change="vm.changePrivateNav()" class="ui-select-header ui-select-header-private-nav" required>
+									<ui-select-match placeholder="{{ vm.authoriseCustomer.firstName }}&nbsp;{{ vm.authoriseCustomer.lastName }}">
+										{{ vm.authoriseCustomer.firstName }}&nbsp;{{ vm.authoriseCustomer.lastName }}
+									</ui-select-match>
+									<ui-select-choices repeat="item.code as item in vm.availablePrivateNavItems">
+										<div>{{ item.title }}</div>
+									</ui-select-choices>
+								</ui-select>
+							</li>
+							<li ng-if="!vm.authoriseCustomer && ('site.bookingEnabled' | param)">
+								<a class="popup_js" href fancybox="popupLogin">
+                                	{{ 'web.buttons.login' | aliasStatic}}
+                                </a>
+							</li>
+							<li ng-if=" vm.availableLanguages.length > 1 ">
+								<ui-select ng-model="vm.currentLanguage" theme="selectize" name="language" search-enabled="false" ng-change="vm.changeCurrencyLanguage()" class="ui-select-header ui-select-header-language" required>
+									<ui-select-match placeholder="	{{ $select.selected.title }}">
+										{{ $select.selected.title }}
+									</ui-select-match>
+									<ui-select-choices repeat="lang.code as lang in vm.availableLanguages">
+										<div>{{ lang.title }}</div>
+									</ui-select-choices>
+								</ui-select>
+							</li>
+							<li ng-if=" vm.availableCurrencies.length > 1 ">
+								<ui-select ng-model="vm.currentCurrency" theme="selectize" search-enabled="false" ng-change="vm.changeCurrencyLanguage()" name="currency" class="ui-select-header ui-select-header-currency" required>
+									<ui-select-match placeholder="{{$select.selected.name}}">
+										{{$select.selected.name}}
+									</ui-select-match>
+									<ui-select-choices repeat="currency.code as currency in vm.availableCurrencies">
+										<span class="currency_sign currency_sign_{{currency.code}}" ng-bind-html="vm.getUnicodeCurrencySign(currency.code)"></span>
+										<div ng-bind-html="currency.name"></div>
+									</ui-select-choices>
+								</ui-select>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div ng-if="!vm.isPrivateScreen" class="headerRight__col">
+
+				<cart-widget></cart-widget>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="mainNavMobile" ng-class="{ active: activeNavMobile }">
+		<div class="mainNavMobile__i">
+
+			<div ng-if="!vm.authoriseCustomer" class="item">
+				<a href fancybox="popupLogin">
+					{{ 'web.buttons.login' | aliasStatic}}
+				</a>
+			</div>
+
+			<wrap ng-if="vm.authoriseCustomer && !vm.isPrivateScreen">
+				<div class="item">
+					<a href="#{{$root.ROUTES.PRIVATE_ORDERS}}">
+						{{ 'web.steps.privateOrders' | aliasStatic}}
+					</a>
+				</div>
+				<div class="item">
+					<a href="#{{$root.ROUTES.PRIVATE_PROFILE}}">
+						{{ 'web.steps.privateProfile' | aliasStatic}} ({{ vm.authoriseCustomer.firstName }}&nbsp;{{ vm.authoriseCustomer.lastName }})
+					</a>
+				</div>
+			</wrap>
+
+			<div ng-if="vm.authoriseCustomer" class="item">
+				<a href ng-click="vm.logoutHandler()">
+					{{ 'web.buttons.logout' | aliasStatic}}
+				</a>
+			</div>
+
+			<div class="item" ng-if=" vm.availableLanguages.length > 1 ">
+				<div class="selectWrap">
+					<ui-select ng-model="vm.currentLanguage" theme="selectize" name="language" search-enabled="false" ng-change="vm.changeCurrencyLanguage()" class="ui-select-header ui-select-header-language ui-select-header-mobile" required>
+						<ui-select-match placeholder="	{{ $select.selected.title }}">
+							{{ $select.selected.title }}
+						</ui-select-match>
+						<ui-select-choices repeat="lang.code as lang in vm.availableLanguages">
+							<div>{{ lang.title }}</div>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+			</div>
+
+			<div class="item" ng-if=" vm.availableCurrencies.length > 1 ">
+				<div class="selectWrap">
+					<ui-select ng-model="vm.currentCurrency" theme="selectize" search-enabled="false" ng-change="vm.changeCurrencyLanguage()" name="currency" class="ui-select-header ui-select-header-currency ui-select-header-mobile" required>
+						<ui-select-match placeholder="{{$select.selected.name}}">
+							{{$select.selected.name}}
+						</ui-select-match>
+						<ui-select-choices repeat="currency.code as currency in vm.availableCurrencies">
+							<span class="currency_sign currency_sign_{{currency.code}}" ng-bind-html="vm.getUnicodeCurrencySign(currency.code)"></span>
+							<div ng-bind-html="currency.name"></div>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</header>
+
+<div ng-if="vm.errorMessage" class="header-error-cont wrap">
+	<div class="infoMessage infoMessage_error">
+		<div class="infoMessage__i">
+			<p>
+				{{ vm.errorMessage | aliasDynamic }}
+			</p>
+		</div>
+	</div>
+</div>
+
+<wrap ng-if="!vm.loading">
+	<popup-login></popup-login>
+	<popup-registration></popup-registration>
+	<popup-reset-password></popup-reset-password>
+	<popup-resend-activation-mail></popup-resend-activation-mail>
+	<popup-compare ng-if="( 'search.useMonoBrandCartesian' | param )"></popup-compare>
+	<popup-session-inactive></popup-session-inactive>
+	<popup-captcha-required></popup-captcha-required>
+	<popup-order-email-required></popup-order-email-required>
+	<popup-patronymic-required></popup-patronymic-required>
+	<popup-cancel-session></popup-cancel-session>
+	<popup-change-currency-error></popup-change-currency-error>
+</wrap>
