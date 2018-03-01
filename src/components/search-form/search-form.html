@@ -140,6 +140,8 @@
                                                         <label class="calendarIcon" for="book_to"></label>
                                                     </div>
                                                 </div>
+												<div class="pikaday__clear__back" ng-show="vm.backDate" 
+												ng-click="vm.segCount = 1; $scope.$apply(); vm.pikadayBack.setDate(null); vm.pikadayBack.hide(); vm.pikadayThere.setEndRange(null); vm.pikadayBack.setEndRange(null);"></div>
                                             </div>
                                         </div>
                                     </div>
