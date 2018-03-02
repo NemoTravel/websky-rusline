@@ -36,6 +36,7 @@
 					</div>
 
 					<div class="rsln-choosenFlight__selected__flight__route">
+
 						<div class="rsln-choosenFlight__selected__flight__route__departure">
 							<div class="rsln-choosenFlight__selected__flight__route__departure__time">
 								{{ segment.flightsInfo.departuretime }}
@@ -44,18 +45,23 @@
 								{{ segment.flightsInfo.originport || segment.flightsInfo.origincity }}
 							</div>
 						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__passengers">
 							{{ vm.getTotalCountPass() }}
 						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__price">
 							<wrap ng-bind-html="{ value: segment.price, currency: vm.pricingVariant.currency } | price"></wrap>
 						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__transfers">
 							{{ segment.flightsInfo.connectionsMessage }}
 						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__timeEnRoute">
 							{{ segment.flightsInfo.flighttime | timeAsWords }}
 						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__arrival">
 							<div class="rsln-choosenFlight__selected__flight__route__arrival__time">
 								{{ segment.flightsInfo.arrivaltime }}
@@ -64,6 +70,11 @@
 								{{ segment.flightsInfo.destinationport || segment.flightsInfo.destinationcity }}
 							</div>
 						</div>
+
+						<div class="rsln-choosenFlight__selected__flight__route__comment">
+							{{ 'web.popupCompare.comment' | alias }}
+						</div>
+
 						<div class="rsln-choosenFlight__selected__flight__route__fullTransfers" ng-if="segment.flightsInfo.connections && segment.flightsInfo.connections.length > 0">
 							<span class="rsln-choosenFlight__selected__flight__route__fullTransfers__caption">
 								{{ 'web.selected.variant.transplantation' | alias }}
