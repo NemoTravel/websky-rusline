@@ -197,7 +197,7 @@
 						<span>{{ 'web.search.monobrand.sales' | alias}}</span>
 					</div>
 
-					<div class="rsln-flightTable__fareForFlight__compare" ng-if="vm.showDetail(segNum, rowNum)">
+					<div class="rsln-flightTable__fareForFlight__compare" ng-if="vm.showDetail(segNum, rowNum) && priceItem">
 						<div class="rsln-flightTable__fareForFlight__compare__item tooltipster-wrap" ng-repeat="(propsNum, propsItem) in vm.searchResult.brandsList[priceNum].props track by $index">
 							<span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_free" ng-if="propsItem.available == 'yes'"></span>
 							<span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_paid" ng-if="propsItem.available == 'paid'"></span>
