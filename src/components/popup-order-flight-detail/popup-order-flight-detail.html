@@ -1,0 +1,109 @@
+<div class="popup popup_detail" id="popupOrderFlightDetail" style="display: none;">
+
+		<div class="title">
+			<div class="title__i">
+				<p>
+					{{ 'web.popupOrderFlightDetail.header' | aliasStatic}}
+				</p>
+				<a href ng-click="vm.close()" class="closePopup closePopup_js"></a>
+			</div>
+		</div>
+
+		<div class="popup__i">
+			<div class="popup_detail">
+
+
+				<div ng-repeat="(segNum, segment) in vm.segmentsList" class="flight">
+
+                    <div class="route_item_container" ng-repeat="(flightNum, flight) in segment.flights">
+
+                        <div class="route_item">
+
+                        	<div class="route__i route_container">
+                        		<div class="route_table">
+                        			<div class="dep">
+                        				<div class="dep__date"  ng-class="{ nextDay: flight.departuredayshift, attention: flight.departuredayshift}">
+                        					{{ flight.departuredate | formatDate: 'D MMM, dd' }}
+                        				</div>
+                        				<div class="dep__time">
+                        					{{ flight.departuretime }}
+                        				</div>
+										<geo-marker prefix="dep__point" key="popup-order-flight-detail" city="flight.origincity"  cityname="flight.origincityName" port="flight.originport"  portname="flight.originportName"></geo-marker>
+                        			</div>
+                        			<div class="info">
+                        				<i class="icon_plane"></i>
+                        				<div class="info__number">{{ flight.company.code || flight.company.code_en }}-{{ flight.racenumber }}</div>
+                        				<div class="info__timeEnRoute">{{ flight.flighttime | timeAsWords }}</div>
+                        			</div>
+                        			<div class="arr">
+                        				<div class="arr__date" ng-class="{ nextDay: flight.arrivaldayshift, attention: flight.arrivaldayshift}">
+                        					{{ flight.arrivaldate | formatDate: 'D MMM, dd' }}
+                        				</div>
+                        				<div class="arr__time">
+                        					{{ flight.arrivaltime }}
+                        				</div>
+                        				<geo-marker prefix="arr__point" key="popup-order-flight-detail" city="flight.destinationcity"  cityname="flight.destinationcityName" port="flight.destinationport"  portname="flight.destinationportName"></geo-marker>
+                        			</div>
+                        		</div>
+                        	</div>
+                        	<div class="route__i additional">
+                        		<span class="additional__company">{{ 'web.choosenFlight.company' | aliasStatic}} {{ flight.company.name }}</span>
+                        		<span class="additional__company" ng-if="flight.operatingCompany">{{ 'web.search.results.operatingCompany' | aliasStatic}} {{ flight.operatingCompany.name }}</span>
+                        		<span class="additional__plane">{{ flight.airplaneName }}</span>
+                        	</div>
+
+                    	</div>
+
+                        <div ng-if="segment.connections[flightNum]" ng-init="connection=segment.connections[flightNum]" class="transfer">
+
+							<span class="transfer__text">
+								<strong>{{ 'web.choosenFlight.connection' | aliasStatic}} {{ connection.time | timeAsWords }}</strong>
+							</span>
+
+                            <span ng-if="
+                                connection.previousAirport && connection.nextAirport &&
+                                connection.previousAirport != connection.nextAirport
+                                " class="terminalChange">
+                                {{ 'web.choosenFlight.airportChange' | aliasStatic}} (<span class="terminalName">{{ connection.previousAirport }}</span>   <span class="terminalName">{{ connection.nextAirport }}</span>)
+                            </span>
+
+                            <span ng-if="
+                                connection.previousAirport == connection.nextAirport &&
+                                connection.previousTerminal && connection.nextTerminal &&
+                                connection.previousTerminal != connection.nextTerminal
+                                " class="terminalChange">
+                                {{ 'web.choosenFlight.terminalChange' | aliasStatic}} (<span class="terminalName">{{ connection.previousTerminal }}</span>   <span class="terminalName">{{ connection.nextTerminal }}</span>)
+                            </span>
+
+						</div>
+
+                        <div ng-repeat="landing in flight.landings" class="landing">
+							<span class="landing__text">
+								<strong>{{ 'web.searchScheduleResult.landing' | aliasStatic}}</strong>
+							</span>
+							<p class="landing__airport">
+								{{ landing.landingCityName }} ({{ landing.landingTime | timeAsWords }})
+							</p>
+						</div>
+
+                    </div>
+                    <div ng-if="segment.flights.length > 1" class="timeEnRoute">
+                    	{{ 'web.choosenFlight.flighttime' | aliasStatic}} {{ segment.flightTime | timeAsWords }}
+                    </div>
+
+                    <div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="$root.getBrandProps(segment.flights[0].brand) && $root.getBrandProps(segment.flights[0].brand).length > 0">
+						<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in $root.getBrandProps(segment.flights[0].brand)" ng-if="prop.shortDesc">
+							<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_free" ng-if="prop.available == 'yes'"></span>
+							<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_paid" ng-if="prop.available == 'paid'"></span>
+							<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_no" ng-if="prop.available == 'no'"></span>
+							<span class="rsln-choosenFlight__selected__flight__fare__features__item__content" ng-bind-html="prop.shortDesc"></span>
+						</div>
+					</div>
+
+                </div>
+
+
+			</div>
+		</div>
+
+	</div>

@@ -117,14 +117,8 @@
 							</span>
 						</div>
 
-						<!--<div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="segment.brandAvailableProps && segment.brandAvailableProps.length > 0">
-							<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in segment.brandAvailableProps">
-								<p class="rsln-choosenFlight__selected__flight__fare__features__item__content" ng-bind-html="prop"></p>
-							</div>
-						</div>-->
-
-						<div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="segment.brandAvailableProps && segment.brandAvailableProps.length > 0">
-							<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in vm.getBrandsList(segment.brand)" ng-if="prop.shortDesc">
+						<div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="$root.getBrandProps(segment.brand) && $root.getBrandProps(segment.brand).length > 0">
+							<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in $root.getBrandProps(segment.brand)" ng-if="prop.shortDesc">
 								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_free" ng-if="prop.available == 'yes'"></span>
 								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_paid" ng-if="prop.available == 'paid'"></span>
 								<span class="rsln-choosenFlight__selected__flight__fare__features__item__icon rsln-choosenFlight__selected__flight__fare__features__item__icon_no" ng-if="prop.available == 'no'"></span>
