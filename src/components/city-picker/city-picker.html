@@ -1,0 +1,40 @@
+<div class="col" ng-class="{ dropActive:active }">
+    <div class="inp" ng-class="{ inpFrom: (role == 'origin'), inpFrom_js: (role == 'origin'), inpTo: (role == 'destination'), inpTo_js: (role == 'destination') }">
+        <div class="inp__i">
+            <p class="iata iataSelected_js">{{ selectedCity.codeEn }}</p>
+            <a href ng-click="dropClick(this)" class="arrowDown">
+                <i class="icon_selectArr"></i>
+            </a>
+            <div class="errorMessage" ng-show="submitTouched && !selectedCity">
+                <p>
+                    {{ 'web.messages.required' | aliasStatic}}
+                </p>
+            </div>
+            <input type="text" placeholder="{{ placeholder }}" autocomplete="off"
+                    tabindex="{{ pickerindex }}"
+                    class="textInp textInp_js"
+                    ng-class="{ textInp_error:(submitTouched && !selectedCity), textInpFrom_js: (role == 'origin'), textInpTo_js: (role == 'destination') }"
+                    ng-change="substrChange(true)" ng-focus="searchFocus()" ng-blur="searchBlur($event)" ng-model="searchSubstr"/>
+            <div class="cityDrop cityDrop_js1">
+                <div class="cityDrop__i">
+                    <ul>
+                        <li ng-repeat="city in filteredCitiesList" class="city-code-{{city.codeEn}}" ng-class="{ popular:city.popular }">
+                            <a class="city_js" href ng-click="cityItemClick(city);">
+                                <span class="name" ng-bind-html="highlightSubstr(city[localNamePropName])"></span>
+                                <span class="iata" ng-bind-html="highlightSubstr(city.codeEn)"></span>
+                            </a>
+                            <ul ng-class="{ 'single-port-list': city.airports.length == 1 }">
+                                <li ng-if="city.airports" class="city-port city-port-code-{{port.codeEn}}" ng-repeat="port in city.airports">
+                                    <a href ng-click="portItemClick(city, port)">
+                                        <span class="name">{{port[localNamePropName]}}</span>
+                                        <span class="iata">{{port.codeEn}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
