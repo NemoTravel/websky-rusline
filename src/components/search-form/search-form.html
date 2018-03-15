@@ -140,7 +140,7 @@
                                                         <label class="calendarIcon" for="book_to"></label>
                                                     </div>
                                                 </div>
-												<div class="pikaday__clear__back" ng-show="vm.backDate" 
+												<div class="pikaday__clear__back" ng-show="vm.backDate"
 												ng-click="vm.segCount = 1; $scope.$apply(); vm.pikadayBack.setDate(null); vm.pikadayBack.hide(); vm.pikadayThere.setEndRange(null); vm.pikadayBack.setEndRange(null);"></div>
                                             </div>
                                         </div>
@@ -149,8 +149,9 @@
                                     <div class="item item_peoples">
                                         <div class="item__i">
 
-                                            <div class="compactPeopleInfo compactShow">
-                                                <a href class="compactDropShow compactDropShow_js" ng-click=" vm.compactPassCountOpened = !vm.compactPassCountOpened; " ng-class="{ 'open': vm.compactPassCountOpened }">
+                                            <div class="compactPeopleInfo compactShow" ng-click=" vm.compactPassCountOpened = !vm.compactPassCountOpened; ">
+                                                <div class="compactPeopleInfo__inner"></div>
+                                                <a href class="compactDropShow compactDropShow_js" ng-class="{ 'open': vm.compactPassCountOpened }">
                                                     <input type="text" value="{{ vm.getTotalPassCountStr() }}" class="textInp" readonly/>
                                                     <div class="arrowDown rsln-searchForm__arrowDown">
                                                         <!--<i class="icon_selectArr"></i>-->
