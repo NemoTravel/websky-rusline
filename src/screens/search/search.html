@@ -61,7 +61,7 @@
 	<div class="content content-search-result" ng-if="vm.searchResult || vm.searchResultErrorButHasPeriodVariants">
 	    <div class="wrap wrap_pt32" ng-class="{ 'rsln-wrap': ( 'search.useMonoBrandCartesian' | param )}">
 	        <div class="content__i">
-			
+
 				<div ng-if="vm.searchResultErrorButHasPeriodVariants" class="orderSearchError">
 					<div class="orderSearchError__i">
 						<p ng-bind-html=" 'web.messages.searchResultErrorButHasPeriodVariants.header' | aliasStatic"></p>
@@ -110,13 +110,13 @@
 					select="vm.ffpVariantSelectHandler">
 				</search-ffp-variants>
 
-                <a name="selected-variant"></a>
-
 				<selected-variant
 					ng-if="vm.selectedVariantsInfo"
 					info="vm.selectedVariantsInfo"
 					pricing="vm.pricingVariant">
 				</selected-variant>
+
+        <a name="selected-variant"></a>
 
                 <div ng-if="vm.pricingVariantError" class="infoMessage infoMessage_error">
                     <div class="infoMessage__i">
