@@ -35,7 +35,7 @@
                                     <wrap ng-if="passengerSegmentService.code == 'baggage'">
                                         <li ng-repeat="baggageItem in passengerSegmentService.items">
                                             <span ng-class="{ line_through: baggageItem.removed }" title="{{ (baggageItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
-                                                {{ baggageItem.amount }} {{ baggageItem.title }}
+                                                {{ baggageItem.title }}
                                                 <wrap ng-if="baggageItem.affectedSegmentIds.length">
                                                     {{ ' (' }}
                                                     <wrap ng-repeat="(flightNum, flight) in vm.getAffectedFlightsByIds(baggageItem.affectedSegmentIds)">{{ flightNum ? ', ' : '' }}{{ 'web.extraServices.baggage.flight' | aliasStatic}} {{ flight.company.code || flight.company.code_en }}-{{ flight.racenumber }}</wrap>
