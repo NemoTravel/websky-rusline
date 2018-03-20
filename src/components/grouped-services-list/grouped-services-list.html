@@ -1,0 +1,165 @@
+<wrap ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ].length">
+
+    <wrap ng-repeat="(passengerNumber, passenger) in vm.orderInfo.passengers" ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ][passengerNumber]">
+
+        <div class="item">
+            <div class="item__i">
+                <p>
+                    <strong>
+                        {{ passenger.lastName }} {{ passenger.firstName }}
+                    </strong>
+                </p>
+
+                <wrap ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ][passengerNumber].passengerSegmentServices">
+                    <wrap ng-repeat="(segmentNumber, segment) in vm.orderInfo.plainFlights">
+                        <div ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ][passengerNumber].passengerSegmentServices[segmentNumber]" class="passenger-segment-services">
+                            {{ 'web.orderInfo.extraServices.flight' | aliasStatic}} {{ segment.company.code }}-{{ segment.racenumber }}
+                            <ul>
+                                <wrap ng-repeat="passengerSegmentService in vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ][passengerNumber].passengerSegmentServices[segmentNumber]">
+                                    <li ng-if="passengerSegmentService.code == 'seat'">
+                                        <span ng-class="{ line_through: passengerSegmentService.serviceItem.removed }" title="{{ (passengerSegmentService.serviceItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                            {{ 'web.orderInfo.extraServices.seat' | aliasStatic}} {{ passengerSegmentService.serviceItem.value }}
+                                        </span>
+                                        <span ng-if="passengerSegmentService.serviceItem.status" class="service-status service-status-{{ passengerSegmentService.serviceItem.status }}">
+                                            {{ 'web.serviceStatus.' | aliasWithPrefix:passengerSegmentService.serviceItem.status }}
+                                        </span>
+                                    </li>
+                                    <li ng-if="passengerSegmentService.code == 'meal'">
+                                        <span ng-class="{ line_through: passengerSegmentService.serviceItem.removed }" title="{{ (passengerSegmentService.serviceItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                            {{ 'web.orderInfo.extraServices.meal' | aliasStatic}} {{ passengerSegmentService.serviceItem.title }}
+                                        </span>
+                                        <span ng-if="passengerSegmentService.serviceItem.status" class="service-status service-status-{{ passengerSegmentService.serviceItem.status }}">
+                                            {{ 'web.serviceStatus.' | aliasWithPrefix:passengerSegmentService.serviceItem.status }}
+                                        </span>
+                                    </li>
+                                    <wrap ng-if="passengerSegmentService.code == 'baggage'">
+                                        <li ng-repeat="baggageItem in passengerSegmentService.items">
+                                            <span ng-class="{ line_through: baggageItem.removed }" title="{{ (baggageItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                                {{ baggageItem.amount }} {{ baggageItem.title }}
+                                                <wrap ng-if="baggageItem.affectedSegmentIds.length">
+                                                    {{ ' (' }}
+                                                    <wrap ng-repeat="(flightNum, flight) in vm.getAffectedFlightsByIds(baggageItem.affectedSegmentIds)">{{ flightNum ? ', ' : '' }}{{ 'web.extraServices.baggage.flight' | aliasStatic}} {{ flight.company.code || flight.company.code_en }}-{{ flight.racenumber }}</wrap>
+                                                    {{ ')' }}
+                                                </wrap>
+                                            </span>
+                                            <span ng-if="baggageItem.status" class="service-status service-status-{{ baggageItem.status }}">
+                                                {{ 'web.serviceStatus.' | aliasWithPrefix:baggageItem.status }}
+                                            </span>
+                                        </li>
+                                    </wrap>
+                                    <li ng-if="vm.isCommonService(passengerSegmentService.code)">
+                                        <span ng-class="{ line_through: passengerSegmentService.serviceItem.removed }" title="{{ (passengerSegmentService.serviceItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                            {{ 'web.orderInfo.extraServices.' | aliasWithPrefix:passengerSegmentService.code }}
+                                        </span>
+                                        <span ng-if="passengerSegmentService.serviceItem.status" class="service-status service-status-{{ passengerSegmentService.serviceItem.status }}">
+                                            {{ 'web.serviceStatus.' | aliasWithPrefix:passengerSegmentService.serviceItem.status }}
+                                        </span>
+                                    </li>
+                                    <li ng-if="passengerSegmentService.code == 'aeroexpress'">
+                                        <span ng-class="{ line_through: passengerSegmentService.serviceItem.removed }" title="{{ (passengerSegmentService.serviceItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                            {{ 'web.orderInfo.extraServices.aeroexpress' | aliasStatic}}
+                                            {{ passengerSegmentService.serviceItem.departure_date }} {{ passengerSegmentService.serviceItem.departure_name }} - {{ passengerSegmentService.serviceItem.arrival_name }}
+                                        </span>
+                                        <a ng-if="passengerSegmentService.serviceItem.canRefund" href
+                                            fancybox="popupAeroexpressRefund" class="btn-remove"
+                                            data-ticket="{{ passengerSegmentService.serviceItem.ticketNumber }}"
+                                            data-cost="{{ passengerSegmentService.serviceItem.fare.cost }}"
+                                            data-currency="{{ passengerSegmentService.serviceItem.fare.currency }}">
+                                            <span class="infoBoxWrap">
+                                                <i class="icon_remove"></i>
+                                                <span class="infoBox">
+                                                    <span class="infoBox__i">
+                                                        {{ 'web.orderInfo.label.aeroexpressRefund' | aliasStatic}}
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </wrap>
+                            </ul>
+                        </div>
+                    </wrap>
+                </wrap>
+
+            </div>
+        </div>
+
+    </wrap>
+
+    <wrap ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesForAllPassengers' ].length">
+
+        <div class="item">
+            <div class="item__i">
+                <p>
+                    <strong>
+                        {{ 'web.orderInfo.extraServicesForAllPassengers' | aliasStatic}}
+                    </strong>
+                </p>
+                <wrap ng-repeat="orderService in vm.orderInfo[ vm.mode + 'ExtraServicesForAllPassengers' ]">
+                    <p ng-if="orderService.code == 'insurance' && orderService.items[0][0]" ng-bind-html=" 'web.insurance.' | aliasWithPrefix:(orderService.items[0][0].ins + '.' + orderService.items[0][0].tins)"></p>
+                </wrap>
+            </div>
+        </div>
+
+    </wrap>
+
+</wrap>
+
+
+<wrap ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByExtraPassengers' ].length">
+
+    <wrap ng-repeat="(passengerNumber, passenger) in vm.orderInfo.extraPassengers" ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByExtraPassengers' ][passengerNumber]">
+
+        <div class="item">
+            <div class="item__i">
+                <p>
+                    <strong>
+                        {{ passenger.lastName }} {{ passenger.firstName }}
+                    </strong>
+                </p>
+
+                <wrap ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByExtraPassengers' ][passengerNumber].passengerSegmentServices">
+                    <wrap ng-repeat="(segmentNumber, segment) in vm.orderInfo.plainFlights">
+                        <div ng-if="vm.orderInfo[ vm.mode + 'ExtraServicesByExtraPassengers' ][passengerNumber].passengerSegmentServices[segmentNumber]" class="passenger-segment-services">
+                            {{ 'web.orderInfo.extraServices.flight' | aliasStatic}} {{ segment.company.code }}-{{ segment.racenumber }}
+                            <ul>
+                                <wrap ng-repeat="passengerSegmentService in vm.orderInfo[ vm.mode + 'ExtraServicesByExtraPassengers' ][passengerNumber].passengerSegmentServices[segmentNumber]">
+                                    <li ng-if="passengerSegmentService.code == 'aeroexpress'">
+                                        <span ng-class="{ line_through: passengerSegmentService.serviceItem.removed }" title="{{ (passengerSegmentService.serviceItem.removed ? ( 'web.orderInfo.extraServiceRemoved' | aliasStatic) : '') }}">
+                                            {{ 'web.orderInfo.extraServices.aeroexpress' | aliasStatic}}
+                                            {{ passengerSegmentService.serviceItem.departure_date }} {{ passengerSegmentService.serviceItem.departure_name }} - {{ passengerSegmentService.serviceItem.arrival_name }}
+                                        </span>
+                                        <a ng-if="passengerSegmentService.serviceItem.canRefund" href
+                                            fancybox="popupAeroexpressRefund" class="btn-remove"
+                                            data-ticket="{{ passengerSegmentService.serviceItem.ticketNumber }}"
+                                            data-cost="{{ passengerSegmentService.serviceItem.fare.cost }}"
+                                            data-currency="{{ passengerSegmentService.serviceItem.fare.currency }}">
+                                            <span class="infoBoxWrap">
+                                                <i class="icon_remove"></i>
+                                                <span class="infoBox">
+                                                    <span class="infoBox__i">
+                                                        {{ 'web.orderInfo.label.aeroexpressRefund' | aliasStatic}}
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </wrap>
+                            </ul>
+                        </div>
+                    </wrap>
+                </wrap>
+
+            </div>
+        </div>
+
+    </wrap>
+
+</wrap>
+
+
+<wrap ng-if="!vm.orderInfo.allExtraServicesForAllPassengers.length && !vm.orderInfo[ vm.mode + 'ExtraServicesByPassengers' ].length">
+    <p>
+        {{ 'web.orderInfo.extraServicesEmpty' | aliasStatic}}
+    </p>
+</wrap>
