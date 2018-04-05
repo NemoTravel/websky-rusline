@@ -89,7 +89,13 @@
                     </div>
                     <div ng-if="segment.flights.length > 1" class="timeEnRoute">
                     	{{ 'web.choosenFlight.flighttime' | aliasStatic}} {{ segment.flightTime | timeAsWords }}
-                    </div>
+					</div>
+					
+					<div ng-if="segment.flights[0].brandName" class="tariff">
+						<div class="tariff__include">
+							{{ 'web.choosenFlight.tariffIncludeStart' | aliasStatic}} {{ segment.flights[0].brandName }}
+						</div>
+					</div>
 
                     <div class="rsln-choosenFlight__selected__flight__fare__features" ng-if="$root.getBrandProps(segment.flights[0].brand) && $root.getBrandProps(segment.flights[0].brand).length > 0">
 						<div class="rsln-choosenFlight__selected__flight__fare__features__item" ng-repeat="(propNum, prop) in $root.getBrandProps(segment.flights[0].brand)" ng-if="prop.shortDesc">

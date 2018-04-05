@@ -6,5 +6,5 @@ angular.module('app').run(['$rootScope', 'backend', function ($rootScope, backen
             props = brand.props;
         }
         return props;
-    }
-}]);  
+    };
+}]);
