@@ -18,9 +18,11 @@
             <div class="cityDrop cityDrop_js">
                 <div class="cityDrop__i">
                     <ul>
-                        <li ng-repeat="city in filteredCitiesList" class="city-code-{{city.codeEn}}" ng-class="{ popular:city.popular }">
+                        <li ng-repeat="city in filteredCitiesList | orderBy:'direct'" class="city-code-{{city.codeEn}}" ng-class="{ popular:city.popular }">
                             <a class="city_js" href ng-click="cityItemClick(city);">
-                                <span class="name" ng-bind-html="highlightSubstr(city[localNamePropName])"></span>
+                                <span class="name"
+                                      ng-class="{'name--bold': city.direct && role === 'destination'}"
+                                      ng-bind-html="highlightSubstr(city[localNamePropName])"></span>
                                 <span class="iata" ng-bind-html="highlightSubstr(city.codeEn)"></span>
                             </a>
                             <ul ng-class="{ 'single-port-list': city.airports.length == 1 }">

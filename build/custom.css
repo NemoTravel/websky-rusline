@@ -1868,3 +1868,6 @@ search-form .searchParams .wrap {
     margin-left: 10px;
   }
 }
+.name--bold {
+  font-weight: 600;
+}
