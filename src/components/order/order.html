@@ -372,7 +372,7 @@
                     </a>
                 </li>
                 <li ng-if="vm.orderInfo.exchangeAllowed">
-                    <a href ng-click="vm.openExchange(vm.orderInfo.header.regnum, vm.lastName)" class="btn">
+                    <a href ng-click="vm.openExchange(vm.orderInfo.header.regnum, vm.orderInfo.header.lastName)" class="btn">
                         {{ 'web.orderInfo.actions.exchange' | aliasStatic}}
                     </a>
                 </li>
