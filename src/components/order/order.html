@@ -367,7 +367,7 @@
                     </a>
                 </li>
                 <li ng-if="vm.orderInfo.refundAllowed">
-                    <a href ng-click="vm.openRefund(vm.pnrOrTicketNumber, vm.lastName)" class="btn">
+                    <a href ng-click="vm.openRefund(vm.orderInfo.header.regnum, vm.orderInfo.header.lastName)" class="btn">
                         {{ 'web.orderInfo.actions.refund' | aliasStatic}}
                     </a>
                 </li>
