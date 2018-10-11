@@ -252,11 +252,12 @@
 
                 <div class="rsln-flightTable__flightRoute rsln-flightTable__flightRoute_adaptive"
                      ng-if="vm.showDetail(segNum, rowNum)">
-                    <wrap ng-repeat="(flightNum, flight) in row.flights">
+                    <wrap ng-repeat="(flightNum, flight) in row.flights"
+                          ng-init="flightCompany = flight.operatingCompany || flight.company">
                         <div class="rsln-flightTable__flightRoute__header">
                             <div class="rsln-flightTable__flightRoute__header__logo">
                                 <img class="rsln-flightTable__flightRoute__header__logo__image"
-                                     src="https://tickets.rusline.aero/guideStatic/images/carrier/logotype/3494-85a838ffb4e08fd5da8d1a33cca3b055.svg"
+                                     ng-src="/resources/oxygen/logo-{{ flightCompany.code }}.svg"
                                      alt="Rusline Logo">
                             </div>
 
@@ -273,7 +274,10 @@
                                 <div class="rsln-flightTable__flightRoute__header__aircraft__title">
                                     {{ 'web.search.monobrand.aircraft' | alias }}
                                 </div>
-                                <div class="rsln-flightTable__flightRoute__header__aircraft__value">CRJ-100/200</div>
+                                <div class="rsln-flightTable__flightRoute__header__aircraft__value">
+                                    {{ flight.airplane }}
+                                </div>
+
                             </div>
                         </div>
 
