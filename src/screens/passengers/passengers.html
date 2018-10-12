@@ -256,10 +256,16 @@
 															touched="vm.submitTouched">
 														</error-message>
                                                         <info-message
-                                                            ng-if="passenger.documentType && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType)"
+															ng-if="passenger.documentType !== 'SR' && passenger.documentType && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType)"
                                                             touched="vm.submitTouched"
 															control="vm.passengerForms[passengerNumber].documentNumber"
 															format-alias="'web.messages.formatDocumentNumber.' + passenger.documentType">
+														</info-message>
+														<info-message
+                                                            ng-if="passenger.documentType && passenger.documentType === 'SR' && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType) && passenger.nationality === 'RU'"
+                                                            touched="vm.submitTouched"
+                                                            control="vm.passengerForms[passengerNumber].documentNumber"
+                                                            format-alias="'web.messages.formatDocumentNumber.' + passenger.documentType">
 														</info-message>
 														<input type="text"
 															name="documentNumber"
