@@ -11,6 +11,11 @@
         concat = require('gulp-concat'),
         stylus = require('gulp-stylus'),
         autoprefixer = require('autoprefixer-stylus'),
+        browserify = require('browserify'),
+        strictify = require('strictify'),
+        source = require('vinyl-source-stream'),
+        sourcemaps = require('gulp-sourcemaps'),
+        buffer = require('vinyl-buffer'),
         lintFiles = ['src/**/*.js', '*.js'];
 
     gulp.task('clean', function () {
@@ -49,7 +54,18 @@
             .pipe(gulp.dest('build/'));
     });
 
-    gulp.task('build:app', gulp.series('build:app:html'));
+    gulp.task('build:app:js', function () {
+        return browserify('src/index.js', {transform: strictify})
+            .bundle()
+            .pipe(source('controllers-rusline.js'))
+            .pipe(buffer())
+            .pipe(sourcemaps.init({loadMaps: true}))
+            .pipe(uglify())
+            .pipe(sourcemaps.write('./'))
+            .pipe(gulp.dest('build/'));
+    });
+
+    gulp.task('build:app', gulp.series('build:app:html', 'build:app:js'));
 
     gulp.task('build:stylus:css', function () {
         return gulp.src('src/stylus/custom.styl')
@@ -78,6 +94,7 @@
         ),
         gulp.parallel(
             'build:app',
+            'build:app:js',
             'build:stylus:css'
         )
     ));

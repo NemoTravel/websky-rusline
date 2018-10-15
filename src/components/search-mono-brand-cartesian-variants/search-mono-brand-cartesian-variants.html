@@ -134,7 +134,7 @@
                                         {{ 'web.search.monobrand.aircraft' | alias }}
                                     </div>
                                     <div class="rsln-flightTable__flightRoute__header__aircraft__value">
-                                        {{ flight.airplane }}
+                                        {{ flight.airplane | airplaneRename }}
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +188,9 @@
                             </div>
                         </wrap>
 
+                        <!--<a href fancybox="popupRemark">-->
+                        <!--{{ 'web.choosenFlight.remarkLink' | alias }}-->
+                        <!--</a>-->
                         <!-- Всего -->
                         <!--<div class="rsln-flightTable__flightRoute__footer">-->
                         <!--<span class="rsln-flightTable__flightRoute__footer__caption">-->
@@ -275,7 +278,7 @@
                                     {{ 'web.search.monobrand.aircraft' | alias }}
                                 </div>
                                 <div class="rsln-flightTable__flightRoute__header__aircraft__value">
-                                    {{ flight.airplane }}
+                                    {{ flight.airplane | airplaneRename }}
                                 </div>
 
                             </div>
