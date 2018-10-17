@@ -68,7 +68,7 @@
     gulp.task('build:app', gulp.series('build:app:html', 'build:app:js'));
 
     gulp.task('build:stylus:css', function () {
-        return gulp.src('src/stylus/custom.styl')
+        return gulp.src('src/stylus/styles-rusline.styl')
             .pipe(stylus({
                 'use': [autoprefixer('last 2 versions')],
                 'include css': true,
