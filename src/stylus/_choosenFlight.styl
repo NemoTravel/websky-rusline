@@ -1,390 +1,396 @@
 .rsln-choosenFlight {
-	margin: 20px auto;
-	max-width: 1400px;
-	color: #505050;
+  margin: 20px auto;
+  max-width: 1400px;
+  color: #505050;
 
-	&__selected,
-	&__payInfo {
-		&__header {
-			color: #fff;
-			line-height: 50px;
-			font-size: 18px;
-		}
-	}
+  &__selected,
+  &__payInfo {
+    &__header {
+      color: #fff;
+      line-height: 50px;
+      font-size: 18px;
+    }
+  }
 
-	&__selected {
-		display: inline-block;
-		vertical-align: top;
-		width: 59%;
+  &__selected {
+    display: inline-block;
+    vertical-align: top;
+    width: 59%;
 
-		&__flights {
-			border-radius: 4px;
-			background: #fff;
-		}
+    &__flights {
+      border-radius: 4px;
+      background: #fff;
+    }
 
-		&__flight {
-			border-top: 1px solid #eee;
+    &__flight {
+      border-top: 1px solid #eee;
 
-			&:first-child {
-				border-top: 0;
-			}
+      &:first-child {
+        border-top: 0;
+      }
 
-			&__header {
-				padding: 10px 20px;
-				line-height: 30px;
-				font-size: 16px;
-				font-weight: 700;
+      &__header {
+        padding: 10px 20px;
+        line-height: 30px;
+        font-size: 16px;
+        font-weight: 700;
 
-				&__text {
-					color: #a0a0a0;
-					text-transform: capitalize;
-				}
+        &__text {
+          color: #a0a0a0;
+          text-transform: capitalize;
+        }
 
-				&__departure {
-					&:after {
-						content: " \2012";
-					}
-				}
+        &__departure {
+          &:after {
+            content: " \2012";
+          }
+        }
 
-				&__localTime {
-					font-size: 12px;
-					color: #a0a0a0;
-					line-height: 12px;
-					font-weight: 400;
-				}
+        &__localTime {
+          font-size: 12px;
+          color: #a0a0a0;
+          line-height: 12px;
+          font-weight: 400;
+        }
 
-				geo-marker {
-					.dep__point_city,
-					.arr__point_city {
-						margin-right: 5px;
-					}
+        geo-marker {
+          .dep__point_city,
+          .arr__point_city {
+            margin-right: 5px;
+          }
 
-					.dep__point_airport,
-					.arr__point_airport {
-						margin: 0;
-					}
+          .dep__point_airport,
+          .arr__point_airport {
+            margin: 0;
+          }
 
-					.port__ {
-						margin-left: -5px;
-					}
-				}
-			}
+          .port__ {
+            margin-left: -5px;
+          }
+        }
+      }
 
-			&__passengers {
-				padding: 0 20px 10px;
-				font-size: 13px;
+      &__passengers {
+        padding: 0 20px 10px;
+        font-size: 13px;
 
-				&__type {
-					padding-right: 5px;
+        &__type {
+          padding-right: 5px;
 
-					&:after {
-						content: ",";
-					}
+          &:after {
+            content: ",";
+          }
 
-					&:last-child {
-						&:after {
-							content: '';
-						}
-					}
-				}
-			}
+          &:last-child {
+            &:after {
+              content: '';
+            }
+          }
+        }
+      }
 
-			&__route {
-				padding: 10px 20px 10px 300px;
-				border-top: 1px solid #eee;
-				position: relative;
-				min-height: 70px;
-				line-height: 25px;
-				font-size: 12px;
+      &__route {
+        padding: 10px 20px 10px 300px;
+        border-top: 1px solid #eee;
+        position: relative;
+        min-height: 70px;
+        line-height: 25px;
+        font-size: 12px;
 
-				&__departure,
-				&__arrival {
-					position: absolute;
-					width: 50px;
-					height: 45px;
-					text-align: left;
-					top: 10px;
-					font-weight: 700;
+        &__departure,
+        &__arrival {
+          position: absolute;
+          width: 50px;
+          height: 45px;
+          text-align: left;
+          top: 10px;
+          font-weight: 700;
 
-					&__time {
-						line-height: 25px;
-						font-size: 20px;
-						color: #636467;
-					}
+          &__time {
+            line-height: 25px;
+            font-size: 20px;
+            color: #636467;
+          }
 
-					&__IATA {
-						line-height: 20px;
-						font-size: 16px;
-						color: #505050;
-						opacity: .5;
-					}
-				}
+          &__IATA {
+            line-height: 20px;
+            font-size: 16px;
+            color: #505050;
+            opacity: .5;
+          }
+        }
 
-				&__departure {
-					left: 20px;
-				}
+        &__departure {
+          left: 20px;
+        }
 
-				&__arrival {
-					left: 210px;
-				}
+        &__arrival {
+          left: 210px;
+        }
 
-				&__transfers {
-					border-bottom: 1px solid #d0d0d0;
-					position: absolute;
-					left: 85px;
-					width: 110px;
-					text-align: center;
-					font-size: 11px;
+        &__transfers {
+          border-bottom: 1px solid #d0d0d0;
+          position: absolute;
+          left: 85px;
+          width: 110px;
+          text-align: center;
+          font-size: 11px;
 
-					&:after {
-						content: '';
-						position: absolute;
-						height: 4px;
-						width: 4px;
-						border-top: 1px solid #d0d0d0;
-						border-left: 1px solid #d0d0d0;
-						bottom: -3px;
-						right: -1px;
-						transform: rotate(135deg);
-					}
-				}
+          &:after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            width: 4px;
+            border-top: 1px solid #d0d0d0;
+            border-left: 1px solid #d0d0d0;
+            bottom: -3px;
+            right: -1px;
+            transform: rotate(135deg);
+          }
+        }
 
-				&__timeEnRoute {
-					position: absolute;
-					left: 85px;
-					width: 110px;
-					text-align: center;
-					font-size: 11px;
-					top: 35px;
-				}
+        &__timeEnRoute {
+          position: absolute;
+          left: 85px;
+          width: 110px;
+          text-align: center;
+          font-size: 11px;
+          top: 35px;
+        }
 
-				&__fullTransfers {
-					&:last-child {
-						padding: 13px 0;
-					}
+        &__fullTransfers {
+          &:last-child {
+            padding: 13px 0;
+          }
 
-					&__caption {
-						color: #a0a0a0;
-						display: inline-block;
-						margin-right: 10px;
-					}
-				}
+          &__caption {
+            color: #a0a0a0;
+            display: inline-block;
+            margin-right: 10px;
+          }
+        }
 
-				&__arrival + &__landings {
-					padding: 13px 0;
-				}
+        &__arrival + &__landings {
+          padding: 13px 0;
+        }
 
-				&__price {
-					line-height: 20px;
-					font-size: 16px;
-					font-weight: 700;
-					display: none;
-				}
+        &__price {
+          line-height: 20px;
+          font-size: 16px;
+          font-weight: 700;
+          display: none;
+        }
 
-				&__passengers {
-					display: none;
-				}
-			}
+        &__passengers {
+          display: none;
+        }
+      }
 
-			&__fare {
-				padding: 0 20px;
-				border-top: 1px solid #eee;
+      &__fare {
+        padding: 0 20px;
+        border-top: 1px solid #eee;
 
-				&__header {
-					padding: 15px 0;
-					line-height: 20px;
-					font-size: 16px;
+        &__header {
+          padding: 15px 0;
+          line-height: 20px;
+          font-size: 16px;
 
-					&__caption {
-						color: #a0a0a0;
-					}
-				}
+          &__caption {
+            color: #a0a0a0;
+          }
+        }
 
-				&__link {
-					float: right;
-					font-size: 11px;
-					line-height: normal;
-					margin-top: 3px;
-					position: relative;
+        &__link {
+          float: right;
+          font-size: 11px;
+          line-height: normal;
+          margin-top: 3px;
+          position: relative;
 
-					&:before {
-						position: absolute;
-						content: "";
-						top: -1px;
-						left: -20px;
-						background: url(https://tickets.rusline.aero/templates/frida/css/img/attention.svg) no-repeat;
-						width: 15px;
-						height: 15px;
-					}
+          &:before {
+            position: absolute;
+            content: "";
+            top: -1px;
+            left: -20px;
+            background: url(https://tickets.rusline.aero/templates/frida/css/img/attention.svg) no-repeat;
+            width: 15px;
+            height: 15px;
+            display: none
+          }
 
-					a {
-						color: #0a0a0f;
-						border-bottom: 1px dashed #0a0a0f;
-						font-size: 11px;
-					}
-				}
 
-				&__features {
-					padding-bottom: 5px;
+          a {
+            color: #0a0a0f;
+            border-bottom: 1px dashed #0a0a0f;
+            font-size: 11px;
+          }
+        }
 
-					&__item {
-						//padding: 0 10px 5px 20px;
-						padding: 0 10px 5px 20px;
-						margin: 0;
-						display: inline-block;
-						width: 33.3%;
-						vertical-align: top;
-						line-height: 20px;
-						font-size: 11px;
-						position: relative;
-						cursor: pointer;
+        &__features {
+          padding-bottom: 5px;
 
-						&__icon {
-							@extend .rsln-flightTable__fareForFlight__compare__item__icon;
+          &__item {
+            //padding: 0 10px 5px 20px;
+            padding: 0 10px 5px 20px;
+            margin: 0;
+            display: inline-block;
+            width: 33.3%;
+            vertical-align: top;
+            line-height: 20px;
+            font-size: 11px;
+            position: relative;
+            cursor: pointer;
 
-							left: 0;
-							margin-left: 0;
-						}
+            &__icon {
+              @extend .rsln-flightTable__fareForFlight__compare__item__icon;
 
-						&:first-child {
-							margin-top: 0;
-						}
-					}
-				}
-			}
-		}
-	}
+              left: 0;
+              margin-left: 0;
+            }
 
-	&__payInfo {
-		display: inline-block;
-		vertical-align: top;
-		width: 41%;
-		padding-left: 20px;
+            &:first-child {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 
-		&__details {
-			border-radius: 4px;
-			background: #fff;
-			padding: 10px 0;
-			margin-bottom: 15px;
+  &__payInfo {
+    display: inline-block;
+    vertical-align: top;
+    width: 41%;
+    padding-left: 20px;
 
-			&__priceParts {
-				padding: 0 20px;
-				font-size: 13px;
+    &__details {
+      border-radius: 4px;
+      background: #fff;
+      padding: 10px 0;
+      margin-bottom: 15px;
 
-				&__item {
-					line-height: 20px;
-					padding: 7px 0;
+      &__priceParts {
+        padding: 0 20px;
+        font-size: 13px;
 
-					&__name, &__value {
-						display: inline-block;
-						vertical-align: middle;
-						width: 50%;
-					}
+        &__item {
+          line-height: 20px;
+          padding: 7px 0;
 
-					&__value {
-						text-align: right;
-						white-space: nowrap;
-						font-weight: 500;
-						font-size: medium;
-					}
-				}
-			}
-		}
+          &__name, &__value {
+            display: inline-block;
+            vertical-align: middle;
+            width: 50%;
+          }
 
-		&__total {
-			padding: 25px 20px 10px;
-			line-height: 20px;
-			position: relative;
+          &__value {
+            text-align: right;
+            white-space: nowrap;
+            font-weight: 500;
+            font-size: medium;
+          }
+        }
+      }
+    }
 
-			&__caption {
-				display: inline-block;
-				vertical-align: top;
-				width: 40%;
-				color: #a0a0a0;
-				font-size: 16px;
-			}
+    &__total {
+      padding: 25px 20px 10px;
+      line-height: 20px;
+      position: relative;
 
-			&__amount {
-				display: inline-block;
-				vertical-align: top;
-				width: 60%;
-				font-size: 20px;
-				text-align: right;
-				font-weight: 500;
-			}
+      &__caption {
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+        color: #a0a0a0;
+        font-size: 16px;
+      }
 
-			&:after {
-				content: '';
-				position: absolute;
-				left: 20px;
-				right: 20px;
-				border-bottom: 1px solid #eee;
-				top: 10px;
-			}
-		}
-	}
+      &__amount {
+        display: inline-block;
+        vertical-align: top;
+        width: 60%;
+        font-size: 20px;
+        text-align: right;
+        font-weight: 500;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        border-bottom: 1px solid #eee;
+        top: 10px;
+      }
+    }
+  }
 }
 
 .rsln-searchResultsControl {
-	&_selectedVariant {
-		padding-top: 0;
-		padding-bottom: 15px;
-	}
+  &_selectedVariant {
+    padding-top: 0;
+    padding-bottom: 15px;
+  }
 
-	&__btn {
-		font-weight: 700;
-		font-size: 18px;
-		display: inline-block;
-		float: right;
-		height: 50px;
-		line-height: 50px;
-		overflow: hidden;
-		position: relative;
-		background-color: #ff1723;
-		border-radius: 4px;
-		color: #fff;
-		text-transform: uppercase;
-		text-align: center;
-		transition: all .1s ease-in;
-		padding: 0 65px;
-		cursor: pointer;
+  &__btn {
+    font-weight: 700;
+    font-size: 18px;
+    display: inline-block;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    position: relative;
+    background-color: #ff1723;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all .1s ease-in;
+    padding: 0 65px;
+    cursor: pointer;
 
-		&.disabled {
-			background: #ff1723 !important;
-			color: #fff !important;
-			opacity: .5 !important;
-		}
+    &.disabled {
+      background: #ff1723 !important;
+      color: #fff !important;
+      opacity: .5 !important;
+    }
 
-		&:hover,
-		&:active,
-		&:focus,
-		&:focus:hover {
-			background: #ff454f;
-		}
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus:hover {
+      background: #ff454f;
+    }
 
-		&_selectedVariant {
-			float: none;
-			padding: 0 18px;
-			display: block;
-		}
+    &_selectedVariant {
+      float: none;
+      padding: 0 18px;
+      display: block;
+    }
 
-		&.loading-start {
-			&:after {
-				content: '';
-				position: absolute;
-				width: 20px;
-				height: 20px;
-				background: url('https://tickets.rusline.aero/templates/wurst/f2.0/css/images/fsf-sprite.svg') -30px -60px no-repeat;
-				top: 50%;
-				right: 20px;
-				margin-top: -10px;
-				animation: rsln-plane 1s infinite;
-			}
-		}
-	}
+    &.loading-start {
+      &:after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: url('https://tickets.rusline.aero/templates/wurst/f2.0/css/images/fsf-sprite.svg') -30px -60px no-repeat;
+        top: 50%;
+        right: 20px;
+        margin-top: -10px;
+        animation: rsln-plane 1s infinite;
+      }
+    }
+  }
 }
 
 @keyframes rsln-plane {
-	0% {transform: rotate(0deg);}
-	100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
