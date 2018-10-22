@@ -2,8 +2,51 @@
   display: block
 }
 
-.rsln-seat-additional-info{
+.rsln-seat-additional-info {
   white-space: pre-line;
   margin-top: 35px;
 }
 
+.seatSelect {
+  .info {
+    ul {
+      display: flex
+      flex-direction: column
+      li {
+        float: none
+      }
+    }
+  }
+}
+
+.rsln-seat-custom-labels {
+  &__color-marker {
+    &--emergence-exit {
+      background: rgba(27, 117, 188, 0.4);
+      overflow: hidden;
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #8c8c8c;
+      }
+    }
+  }
+  &__descr {
+    padding-left: 0;
+    position: initial !important;
+    top: 0 !important;
+    transform: none !important;
+    width: auto !important;
+  }
+}
+
+tr.row-has-seat-prop-exit {
+  background: #000000
+}
+
+div.seat-prop-exit {
+  background: #000000
+}
