@@ -17,4 +17,15 @@ for_(breakpoints)
 
 // ============== END breakpoint-mixin =========
 
+/* ==== clearfix mixin ==== */
 
+clearfix()
+  zoom 1
+  &:after
+  &:before
+    content ""
+    display table
+  &:after
+    clear both
+
+/* ==== END clearfix mixin ==== */
