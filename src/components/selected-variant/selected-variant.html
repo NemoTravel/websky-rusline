@@ -82,11 +82,17 @@
                             </div>
                         </div>
 
-                        <div class="rsln-choosenFlight__selected__flight__route__comment">
-                            <a href fancybox="luggage-weight-info" class="rsln-choosenFlight__selected__flight__route__comment__fancybox-link">
-                                <!--{{ 'web.popupCompare.comment' | alias }}-->
-                                <i class="rsln-choosenFlight__selected__flight__route__comment__attention-icon"></i>
-                            </a>
+                        <div class="rsln-choosenFlight__selected__flight__route__comment"
+                             ng-init="originCity=vm.selectedVariantsInfo[0].flightsInfo.origincity; destCity=vm.selectedVariantsInfo[0].flightsInfo.destinationcity">
+                            <!-- Если Нижнекамск -> Мин. воды или Мин воды -> Нижнекамск или Москва -> Рига или Рига -> Москва -->
+                            <!-- Показываем web.popupCompare.comment -->
+                            <wrap ng-if="((originCity === 'NBC' && destCity === 'MRV') || (originCity === 'MVR' && destCity === 'NBC')) || (originCity === 'MOW' && destCity === 'RIX') || (originCity === 'RIX' && destCity === 'MOW')">
+                                <span class="rsln-choosenFlight__selected__flight__route__comment__fancybox-link">
+                                    <i class="rsln-choosenFlight__selected__flight__route__comment__attention-icon"></i>
+                                    {{ 'web.popupCompare.comment' | alias }}
+                                </span>
+                            </wrap>
+                            <!--ng-if="originCity === 'NBC' && destCity === 'MRV' ">-->
                         </div>
 
                         <div class="rsln-choosenFlight__selected__flight__route__fullTransfers"
