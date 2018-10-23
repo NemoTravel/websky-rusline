@@ -1,0 +1,32 @@
+<div class="rsln-flights-sorting">
+    <div class="rsln-flights-sorting__sort-by">
+        <ui-select
+                on-select="vm.handleSelect()"
+                ng-model="vm.selectedSortingFilter"
+                search-enabled="false"
+                theme="selectize"
+                name="flightsSortBy">
+            <ui-select-match placeholder="{{ $select.selected.name }}">
+                {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in (vm.sortingVariants | filter: $select.search) track by item.value">
+                <span ng-bind="item.name"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="rsln-flights-sorting__only-direct-flights">
+        <label class="rsln-flights-sorting__only-direct-label">
+            <input type="checkbox"
+                   ng-change="vm.handleDirectCheckboxSwitch(vm.onlyDirect)"
+                   ng-model="vm.onlyDirect"
+                   class="rsln-flights-sorting__only-direct-input">
+
+            <span class="rsln-flights-sorting__custom-checkbox-wrp">
+                <span class="rsln-flights-sorting__custom-checkbox"
+                      ng-class="{'rsln-flights-sorting__custom-checkbox--active': vm.onlyDirect}"
+                ></span>
+                Без пересадок
+            </span>
+        </label>
+    </div>
+</div>
