@@ -2,6 +2,9 @@ offsetTop = 35px;
 
 .rsln-flightTable {
   margin-top: offsetTop + 15px;
+  +for_(mobile) {
+    margin-top: 80px;
+  }
 }
 
 .rsln-flights-sorting {
@@ -12,6 +15,9 @@ offsetTop = 35px;
   top: -(offsetTop);
   width: 100%;
   height: offsetTop;
+  +for_(mobile) {
+    top: -50px;
+  }
 
   &__sort-by {
     width: 250px;
@@ -20,14 +26,17 @@ offsetTop = 35px;
       border: none !important;
       outline: 0 none;
       outline-offset: 0;
-      background: #fff linear-gradient(to bottom, rgba(250, 250, 250, 0.75), rgba(240, 240, 240, 0.75));
+      background: #ebebeb linear-gradient(to bottom, rgba(250, 250, 250, 0.75), rgba(240, 240, 240, 0.75));
       text-overflow: ellipsis;
       border-radius: 4px 4px 0 0;
+      +for_(mobile) {
+        border-radius: 4px;
+      }
       &.focus {
         outline: 0 none;
         outline-offset: 0;
         border-color: #e3e3e3 !important;
-        background: #fff linear-gradient(to top, rgba(250, 250, 250, .75), rgba(240, 240, 240, .75));
+        background: #ebebeb linear-gradient(to top, rgba(250, 250, 250, .75), rgba(240, 240, 240, .75));
       }
       .ui-select-match {
         outline: 0 none;
@@ -77,10 +86,13 @@ offsetTop = 35px;
   }
 
   &__only-direct-label {
-    background: #fff linear-gradient(to bottom, rgba(250, 250, 250, .75), rgba(240, 240, 240, .75));
+    background: #ebebeb linear-gradient(to bottom, rgba(250, 250, 250, .75), rgba(240, 240, 240, .75));
     border-radius: 4px 4px 0 0;
     padding: 8px 8px;
     white-space: nowrap;
+    +for_(mobile) {
+      border-radius: 4px;
+    }
   }
 
   &__custom-checkbox-wrp {
@@ -94,7 +106,7 @@ offsetTop = 35px;
     position: relative;
     border-radius: 5px;
     top: 3px;
-    background: white checkbox-sprite center no-repeat;
+    background: #ebebeb checkbox-sprite center no-repeat;
     background-size: contain;
 
     &--active {
