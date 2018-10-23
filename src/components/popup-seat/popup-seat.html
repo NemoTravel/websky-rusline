@@ -1,0 +1,108 @@
+<div class="popup popup_selectSeat" id="popupSeat" style="display: none;">
+
+	<div class="title">
+		<div class="title__i">
+			<p>{{ 'web.popupSeat.header' | aliasStatic}}</p>
+			<a href ng-click="vm.close()" class="closePopup closePopup_js"></a>
+		</div>
+	</div>
+	<div class="seatSlider">
+		<a href class="prev"></a>
+		<a href class="next"></a>
+
+		<div class="seatSlider__i slick-initialized slick-slider">
+
+			<div class="slick-list draggable">
+                <div class="slick-track" role="listbox">
+                    <div class="item slick-slide slick-cloned">
+
+				        <div class="itemTitle">
+					        <div class="itemTitle__i">
+                                <p>
+									<geo-marker prefix="dep__point" key="popup-seat" city="vm.orderInfo.plainFlights[vm.selectedFlight].origincity"  cityname="vm.orderInfo.plainFlights[vm.selectedFlight].origincityName" port="vm.orderInfo.plainFlights[vm.selectedFlight].originport"  portname="vm.orderInfo.plainFlights[vm.selectedFlight].originportName"></geo-marker>
+									 –
+									<geo-marker prefix="arr__point" key="popup-seat" city="vm.orderInfo.plainFlights[vm.selectedFlight].destinationcity"  cityname="vm.orderInfo.plainFlights[vm.selectedFlight].destinationcityName" port="vm.orderInfo.plainFlights[vm.selectedFlight].destinationport"  portname="vm.orderInfo.plainFlights[vm.selectedFlight].destinationportName"></geo-marker>
+                                </p>
+                                <p>
+                                    {{ vm.orderInfo.passengers[vm.selectedPassenger].lastName }} {{ vm.orderInfo.passengers[vm.selectedPassenger].firstName }}
+                                </p>
+					        </div>
+				        </div>
+        				<div class="seatSelect">
+        					<div class="info">
+        						<div class="info__i">
+        							<p class="plane">
+        							    {{ vm.orderInfo.plainFlights[vm.selectedFlight].airplaneName || vm.orderInfo.plainFlights[vm.selectedFlight].airplane }}
+        							</p>
+        							<p class="sun">
+        							    {{ vm.sunInfo }}
+        							</p>
+                                    <div ng-if="!vm.loadingSeatMap && vm.seatMap" class="seatInfo">
+                                        <ul>
+                                            <li class="free">
+                                                <span></span>
+                                                {{ 'web.extraServices.seat.free' | aliasStatic}}
+                                            </li>
+                                            <li class="selected">
+                                                <span></span>
+                                                {{ 'web.extraServices.seat.selected' | aliasStatic}}
+                                            </li>
+											<li class="selectedByOrderPassenger" ng-if="vm.availablePassengersCount > 1">
+												<span></span>
+												{{ 'web.extraServices.seat.selectedByOrderPassenger' | aliasStatic}}
+											</li>
+                                            <li class="disabled">
+                                                <span></span>
+                                                {{ 'web.extraServices.seat.disabled' | aliasStatic}}
+											</li>
+											<li ng-if="vm.seatMap.hasAutoAssignedSeat && vm.seatMap.hasFreeAndAutoAssignedSeat" class="seat-auto-assigned">
+												<span></span>
+												{{ 'web.extraServices.seat.freeAndAutoAssignedSeat' | aliasStatic}}
+											</li>
+											<li ng-if="vm.seatMap.hasAutoAssignedSeat && !vm.seatMap.hasFreeAndAutoAssignedSeat" class="seat-auto-assigned">
+												<span></span>
+												{{ 'web.extraServices.seat.autoAssignedSeat' | aliasStatic}}
+											</li>
+											<li ng-repeat="svc in vm.seatMap.svcs track by $index" class="rfiscs-seat-label">
+												<span class="color-marker seat-rfisc-{{ svc.rfisc }} seat-map-color-group-{{ svc.index }}"></span>
+												<span class="rfiscs-seat-label-cost" ng-bind-html="{ value: svc.cost, currency: svc.currency } | price"></span>
+												<span ng-if=" 'extraServices.showSeatMapLegendTitleLabel' | param " class="rfiscs-seat-label-title">
+													{{ svc.title }}
+												</span>
+												<span  ng-if=" 'extraServices.showSeatMapLegendDescriptionLabel' | param " class="rfiscs-seat-label-description" ng-bind-html=" svc.description | aliasDynamic "></span>
+											</li>
+                                            <wrap ng-if="vm.hasAlias('web.extraServices.seat.customLabels')" ng-bind-html=" 'web.extraServices.seat.customLabels' | aliasStatic"></wrap>
+                                        </ul>
+										<div class="rsln-seat-additional-info"
+											 ng-bind-html="'web.extraservices.seat.additionalInfo' | aliasStatic "></div>
+                                    </div>
+        						</div>
+        					</div>
+
+                            <seat-map ng-if="vm.seatMap"
+                                map="vm.seatMap"
+                                passenger="vm.selectedPassenger"
+                                flight="vm.selectedFlight"
+                                selected="vm.selectedSeatsByPassengerSegments"
+                                issued="vm.issuedSeatsByPassengerSegments"
+								locked="vm.locked"
+                                set="vm.setPassengerFlightSeat">
+                            </seat-map>
+
+                            <div class="btnRow">
+        						<a href ng-if="vm.selectedSeatsByPassengerSegments[vm.selectedPassenger][vm.selectedFlight]" ng-click="vm.close(); vm.removePassengerFlightSeat(vm.selectedPassenger, vm.selectedFlight);" class="btn btn_ready closePopup_js">
+                                    {{ 'web.popupSeat.clear' | aliasStatic}}
+                                </a>
+        						<a href ng-click="vm.close()" class="btn btn_ready closePopup_js">
+                                    {{ 'web.popupSeat.ok' | aliasStatic}}
+                                </a>
+        					</div>
+        				</div>
+
+			        </div>
+                </div>
+            </div>
+
+		</div>
+	</div>
+</div>

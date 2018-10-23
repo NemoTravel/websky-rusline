@@ -55,62 +55,212 @@
                ng-class="{ 'rsln-chooseDate__arrow_disabled': !vm.checkResetDate(segNum, false, 7) }" href></a>
         </div>
 
-        <div class="rsln-flightTable" ng-if="vm.searchResult">
-            <div class="rsln-flightTable__row rsln-flightTable__row_headrow">
-                <div class="rsln-flightTable__flightsHeader rsln-flightTable__cell">
-                    {{ 'web.search.monobrand.flights' | alias}}
-                </div>
-                <div class="rsln-flightTable__fareHeader rsln-flightTable__cell"
-                     ng-repeat="(brandNum, brand) in vm.searchResult.brandsList"
-                     ng-class="{ control_disabled: (segNum == 1 && !vm.searchResult.brandsCompatibleState[brandNum]) }">
+        <div class="rsln-flightTable__wrp">
+            <div class="rsln-flightTable__sorting-wrp" ng-if="vm.searchResult">
+                <flights-sorting segment="vm.searchResult.segmentRows[segNum]"></flights-sorting>
+            </div>
+            
+            <div class="rsln-flightTable" ng-if="vm.searchResult">
+                <div class="rsln-flightTable__row rsln-flightTable__row_headrow">
+                    <div class="rsln-flightTable__flightsHeader rsln-flightTable__cell">
+                        {{ 'web.search.monobrand.flights' | alias}}
+                    </div>
+                    <div class="rsln-flightTable__fareHeader rsln-flightTable__cell"
+                         ng-repeat="(brandNum, brand) in vm.searchResult.brandsList"
+                         ng-class="{ control_disabled: (segNum == 1 && !vm.searchResult.brandsCompatibleState[brandNum]) }">
                     <span class="rsln-flightTable__fareHeader__title"><span
                             ng-if="backend.sessionParams.lang == 'ru'">«</span>{{ brand.name }}<span
                             ng-if="backend.sessionParams.lang == 'ru'">»</span></span>
-                    <div ng-if="brand.theBest" class="rsln-flightTable__fareHeader_best">
-                        {{ 'web.searchResult.brandTheBest' | alias }}
+                        <div ng-if="brand.theBest" class="rsln-flightTable__fareHeader_best">
+                            {{ 'web.searchResult.brandTheBest' | alias }}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="rsln-flightTable__row rsln-flightTable__row__flight_{{rowNum}}"
-                 ng-repeat="(rowNum, row) in vm.searchResult.segmentRows[segNum]"
-                 ng-class="{ 'rsln-flightTable__row_flightSelected': vm.isSelectedPrice(segNum, rowNum), 'detailOpen': vm.showDetail(segNum, rowNum)}">
-                <div class="rsln-flightTable__flightInfo rsln-flightTable__cell"
-                     ng-class="{ 'rsln-flightTable__flightInfo_flightSelected': vm.isSelectedPrice(segNum, rowNum)}">
-                    <div class="rsln-flightTable__flightInfo__shortInfo"
-                         ng-class="{ 'detailOpen': vm.showDetail(segNum, rowNum)}"
-                         ng-click="vm.setDropState(segNum, rowNum, !vm.showDetail(segNum, rowNum));">
-                        <div class="rsln-flightTable__flightInfo__shortInfo__departure">
-                            <div class="rsln-flightTable__flightInfo__shortInfo__departure__time">
-                                {{ row.flightsInfo.departuretime }}
+                <div class="rsln-flightTable__row rsln-flightTable__row__flight_{{rowNum}}"
+                     ng-repeat="(rowNum, row) in vm.searchResult.segmentRows[segNum]"
+                     ng-if="row.isDirectFlight"
+                     ng-class="{ 'rsln-flightTable__row_flightSelected': vm.isSelectedPrice(segNum, rowNum), 'detailOpen': vm.showDetail(segNum, rowNum)}">
+                    <div class="rsln-flightTable__flightInfo rsln-flightTable__cell"
+                         ng-class="{ 'rsln-flightTable__flightInfo_flightSelected': vm.isSelectedPrice(segNum, rowNum)}">
+                        <div class="rsln-flightTable__flightInfo__shortInfo"
+                             ng-class="{ 'detailOpen': vm.showDetail(segNum, rowNum)}"
+                             ng-click="vm.setDropState(segNum, rowNum, !vm.showDetail(segNum, rowNum));">
+                            <div class="rsln-flightTable__flightInfo__shortInfo__departure">
+                                <div class="rsln-flightTable__flightInfo__shortInfo__departure__time">
+                                    {{ row.flightsInfo.departuretime }}
+                                </div>
+                                <div class="rsln-flightTable__flightInfo__shortInfo__departure__IATA">
+                                    {{ row.flightsInfo.originport || row.flightsInfo.origincity }}
+                                </div>
                             </div>
-                            <div class="rsln-flightTable__flightInfo__shortInfo__departure__IATA">
-                                {{ row.flightsInfo.originport || row.flightsInfo.origincity }}
+                            <div class="rsln-flightTable__flightInfo__shortInfo__transfers">
+                                {{ row.flightsInfo.connectionsMessage }}<span
+                                    ng-if="row.flightsInfo.connections && row.flightsInfo.connections.length == 1">({{ row.flightsInfo.connections[0].nextAirport || row.flightsInfo.connections[0].city }})</span>
+                            </div>
+                            <div class="rsln-flightTable__flightInfo__shortInfo__minPrice">
+                                {{ 'web.search.monobrand.from' | alias}}
+                                <span class="rsln-flightTable__flightInfo__shortInfo__minPrice__price"
+                                      ng-bind-html="{ value: row.minPrice, currency: row.minPriceCurrency } | price"></span>
+                            </div>
+                            <div class="rsln-flightTable__flightInfo__shortInfo__timeEnRoute">
+                                {{ row.flightsInfo.flighttime | timeAsWords }}
+                            </div>
+                            <div class="rsln-flightTable__flightInfo__shortInfo__arrival">
+                                <div class="rsln-flightTable__flightInfo__shortInfo__arrival__time">
+                                    {{ row.flightsInfo.arrivaltime }}
+                                </div>
+                                <div class="rsln-flightTable__flightInfo__shortInfo__arrival__IATA">
+                                    {{ row.flightsInfo.destinationport || row.flightsInfo.destinationcity }}
+                                </div>
                             </div>
                         </div>
-                        <div class="rsln-flightTable__flightInfo__shortInfo__transfers">
-                            {{ row.flightsInfo.connectionsMessage }}<span
-                                ng-if="row.flightsInfo.connections && row.flightsInfo.connections.length == 1">({{ row.flightsInfo.connections[0].nextAirport || row.flightsInfo.connections[0].city }})</span>
-                        </div>
-                        <div class="rsln-flightTable__flightInfo__shortInfo__minPrice">
-                            {{ 'web.search.monobrand.from' | alias}}
-                            <span class="rsln-flightTable__flightInfo__shortInfo__minPrice__price"
-                                  ng-bind-html="{ value: row.minPrice, currency: row.minPriceCurrency } | price"></span>
-                        </div>
-                        <div class="rsln-flightTable__flightInfo__shortInfo__timeEnRoute">
-                            {{ row.flightsInfo.flighttime | timeAsWords }}
-                        </div>
-                        <div class="rsln-flightTable__flightInfo__shortInfo__arrival">
-                            <div class="rsln-flightTable__flightInfo__shortInfo__arrival__time">
-                                {{ row.flightsInfo.arrivaltime }}
-                            </div>
-                            <div class="rsln-flightTable__flightInfo__shortInfo__arrival__IATA">
-                                {{ row.flightsInfo.destinationport || row.flightsInfo.destinationcity }}
-                            </div>
+
+                        <div class="rsln-flightTable__flightRoute" ng-if="vm.showDetail(segNum, rowNum)">
+                            <wrap ng-repeat="(flightNum, flight) in row.flights"
+                                  ng-init="flightCompany = flight.operatingCompany || flight.company">
+                                <div class="rsln-flightTable__flightRoute__header">
+                                    <div class="rsln-flightTable__flightRoute__header__logo">
+                                        <img class="rsln-flightTable__flightRoute__header__logo__image"
+                                             ng-src="/resources/oxygen/logo-{{ flightCompany.code }}.svg"
+                                             alt="Rusline Logo">
+                                    </div>
+
+                                    <div class="rsln-flightTable__flightRoute__header__flight">
+                                        <div class="rsln-flightTable__flightRoute__header__flight__title">
+                                            {{ 'web.search.monobrand.flight' | alias }}
+                                        </div>
+                                        <div class="rsln-flightTable__flightRoute__header__flight__value">
+                                            {{ flight.carrier + '-' + flight.racenumber }}
+                                        </div>
+                                    </div>
+
+                                    <div class="rsln-flightTable__flightRoute__header__aircraft">
+                                        <div class="rsln-flightTable__flightRoute__header__aircraft__title">
+                                            {{ 'web.search.monobrand.aircraft' | alias }}
+                                        </div>
+                                        <div class="rsln-flightTable__flightRoute__header__aircraft__value">
+                                            {{ flight.airplane | airplaneRename }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rsln-flightTable__flightRoute__subHeader" ng-if="flightNum == 0">
+                                    <div class="rsln-flightTable__flightRoute__subHeader__item">
+                                        {{ 'web.search.monobrand.departure' | alias}}
+                                    </div>
+                                    <div class="rsln-flightTable__flightRoute__subHeader__item">
+                                        {{ 'web.search.monobrand.arrival' | alias}}
+                                    </div>
+                                </div>
+
+                                <div class="rsln-flightTable__flightRoute__segment">
+                                    <div class="rsln-flightTable__flightRoute__segment__departure">
+                                        <div class="rsln-flightTable__flightRoute__segment__departure__time">
+                                            {{ flight.departuretime }}
+                                        </div>
+                                        <div class="rsln-flightTable__flightRoute__segment__departure__place">
+                                            {{ flight.origincityName }}<span ng-if="flight.originportName">, {{ flight.originportName }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="rsln-flightTable__flightRoute__segment__arrival">
+                                        <div class="rsln-flightTable__flightRoute__segment__arrival__time">
+                                            {{ flight.arrivaltime }}
+                                        </div>
+                                        <div class="rsln-flightTable__flightRoute__segment__arrival__place">
+                                            {{ flight.destinationcityName }}<span ng-if="flight.destinationportName">, {{ flight.destinationportName }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ng-if="row.flightsInfo.connections[flightNum]"
+                                     ng-init="connection=row.flightsInfo.connections[flightNum]"
+                                     class="rsln-flightTable__flightRoute__transfer">
+								<span class="rsln-flightTable__flightRoute__transfer__caption">
+									{{ 'web.choosenFlight.connection' | alias }}
+								</span>
+                                    <span class="rsln-flightTable__flightRoute__transfer__time">
+									{{ connection.time | timeAsWords}}
+								</span>
+                                </div>
+
+                                <div ng-repeat="landing in flight.landings" class="rsln-flightTable__flightRoute__landing">
+								<span class="rsln-flightTable__flightRoute__landing__caption">
+									{{ 'web.searchScheduleResult.landing' | alias }}
+								</span>
+                                    <span class="rsln-flightTable__flightRoute__landing__time">
+									{{ landing.landingCityName }} ({{ landing.landingTime | timeAsWords }})
+								</span>
+                                </div>
+                            </wrap>
+
+                            <!--<a href fancybox="popupRemark">-->
+                            <!--{{ 'web.choosenFlight.remarkLink' | alias }}-->
+                            <!--</a>-->
+                            <!-- Всего -->
+                            <!--<div class="rsln-flightTable__flightRoute__footer">-->
+                            <!--<span class="rsln-flightTable__flightRoute__footer__caption">-->
+                            <!--Всего:-->
+                            <!--</span>-->
+                            <!--{{ vm.totalTimeInAir(segNum, rowNum) | timeAsWords }}-->
+                            <!--</div>-->
                         </div>
                     </div>
 
-                    <div class="rsln-flightTable__flightRoute" ng-if="vm.showDetail(segNum, rowNum)">
+                    <!-- BEGIN Price buttons -->
+                    <div class="rsln-flightTable__fareForFlight rsln-flightTable__cell"
+                         ng-repeat="(priceNum, priceItem) in row.prices track by $index"
+                         ng-class="{ 'rsln-flightTable__fareForFlight_fareSelected': priceItem.selected ,'rsln-flightTable__fareForFlight_flightSelected': vm.isSelectedPrice(segNum, rowNum)}">
+                        <div class="rsln-flightTable__fareForFlight__short"
+                             ng-class="{ control_disabled: (segNum == 1 && !vm.searchResult.brandsCompatibleState[priceNum]) || priceItem.comparedDateTimeDisable }"
+                             ng-click="vm.selectVariant(segNum, rowNum, priceNum); vm.setDropState(segNum, rowNum, true);"
+                             ng-if="priceItem"
+                             data-popup-alias="web.extraServicesRules.baggage">
+                            <div class="rsln-flightTable__fareForFlight__short__adaptiveFareName">
+                                «{{ vm.searchResult.brandsList[priceNum].name }}»
+                            </div>
+                            <wrap class="rsln-flightTable__fareForFlight__short__price"
+                                  ng-bind-html="{ value: priceItem.price, currency: priceItem.currency } | price"></wrap>
+                        </div>
+
+                        <div class="rsln-flightTable__fareForFlight__noSeats_adaptiveFareName" ng-if="!priceItem">
+                            «{{ vm.searchResult.brandsList[priceNum].name }}»
+                        </div>
+                        <div class="rsln-flightTable__fareForFlight__noSeats" ng-if="!priceItem">
+                            <span>{{ 'web.search.monobrand.sales' | alias}}</span>
+                        </div>
+
+                        <div class="rsln-flightTable__fareForFlight__compare"
+                             ng-if="vm.showDetail(segNum, rowNum) && priceItem">
+                            <div class="rsln-flightTable__fareForFlight__compare__item tooltipster-wrap"
+                                 ng-repeat="(propsNum, propsItem) in vm.searchResult.brandsList[priceNum].props track by $index">
+                            <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_free"
+                                  ng-if="propsItem.available == 'yes'"></span>
+                                <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_paid"
+                                      ng-if="propsItem.available == 'paid'"></span>
+                                <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_no"
+                                      ng-if="propsItem.available == 'no'"></span>
+                                <span class="rsln-flightTable__fareForFlight__compare__item__name"
+                                      ng-bind-html="propsItem.name"></span>
+                                <span class="tooltipster-content" ng-if="propsItem.shortDesc">
+								<span class="tooltipster-text">
+									{{ propsItem.shortDesc }}
+								</span>
+							</span>
+                            </div>
+                        </div>
+
+                        <!--Условия тарифа -->
+                        <!--<div class="rsln-flightTable__fareForFlight__tariff" ng-if="vm.showDetail(segNum, rowNum)">
+                            <a href  class="rsln-flightTable__fareForFlight__tariff__link">
+                                {{ 'web.choosenFlight.remarkLink' | alias }}
+                            </a>
+                        </div>-->
+                    </div>
+                    <!-- END Price buttons -->
+
+                    <div class="rsln-flightTable__flightRoute rsln-flightTable__flightRoute_adaptive"
+                         ng-if="vm.showDetail(segNum, rowNum)">
                         <wrap ng-repeat="(flightNum, flight) in row.flights"
                               ng-init="flightCompany = flight.operatingCompany || flight.company">
                             <div class="rsln-flightTable__flightRoute__header">
@@ -136,6 +286,7 @@
                                     <div class="rsln-flightTable__flightRoute__header__aircraft__value">
                                         {{ flight.airplane | airplaneRename }}
                                     </div>
+
                                 </div>
                             </div>
 
@@ -188,160 +339,16 @@
                             </div>
                         </wrap>
 
-                        <!--<a href fancybox="popupRemark">-->
-                        <!--{{ 'web.choosenFlight.remarkLink' | alias }}-->
-                        <!--</a>-->
                         <!-- Всего -->
-                        <!--<div class="rsln-flightTable__flightRoute__footer">-->
-                        <!--<span class="rsln-flightTable__flightRoute__footer__caption">-->
-                        <!--Всего:-->
-                        <!--</span>-->
-                        <!--{{ vm.totalTimeInAir(segNum, rowNum) | timeAsWords }}-->
-                        <!--</div>-->
+                        <!--<div class="rsln-flightTable__flightRoute__footer">
+                            <span class="rsln-flightTable__flightRoute__footer__caption">
+                                Всего:
+                            </span>
+                            {{ vm.totalTimeInAir(segNum, rowNum) | timeAsWords }}
+                        </div>-->
                     </div>
+
                 </div>
-
-                <!-- BEGIN Price buttons -->
-                <div class="rsln-flightTable__fareForFlight rsln-flightTable__cell"
-                     ng-repeat="(priceNum, priceItem) in row.prices track by $index"
-                     ng-class="{ 'rsln-flightTable__fareForFlight_fareSelected': priceItem.selected ,'rsln-flightTable__fareForFlight_flightSelected': vm.isSelectedPrice(segNum, rowNum)}">
-                    <div class="rsln-flightTable__fareForFlight__short"
-                         ng-class="{ control_disabled: (segNum == 1 && !vm.searchResult.brandsCompatibleState[priceNum]) || priceItem.comparedDateTimeDisable }"
-                         ng-click="vm.selectVariant(segNum, rowNum, priceNum); vm.setDropState(segNum, rowNum, true);"
-                         ng-if="priceItem"
-                         data-popup-alias="web.extraServicesRules.baggage">
-                        <div class="rsln-flightTable__fareForFlight__short__adaptiveFareName">
-                            «{{ vm.searchResult.brandsList[priceNum].name }}»
-                        </div>
-                        <wrap class="rsln-flightTable__fareForFlight__short__price"
-                              ng-bind-html="{ value: priceItem.price, currency: priceItem.currency } | price"></wrap>
-                    </div>
-
-                    <div class="rsln-flightTable__fareForFlight__noSeats_adaptiveFareName" ng-if="!priceItem">
-                        «{{ vm.searchResult.brandsList[priceNum].name }}»
-                    </div>
-                    <div class="rsln-flightTable__fareForFlight__noSeats" ng-if="!priceItem">
-                        <span>{{ 'web.search.monobrand.sales' | alias}}</span>
-                    </div>
-
-                    <div class="rsln-flightTable__fareForFlight__compare"
-                         ng-if="vm.showDetail(segNum, rowNum) && priceItem">
-                        <div class="rsln-flightTable__fareForFlight__compare__item tooltipster-wrap"
-                             ng-repeat="(propsNum, propsItem) in vm.searchResult.brandsList[priceNum].props track by $index">
-                            <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_free"
-                                  ng-if="propsItem.available == 'yes'"></span>
-                            <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_paid"
-                                  ng-if="propsItem.available == 'paid'"></span>
-                            <span class="rsln-flightTable__fareForFlight__compare__item__icon rsln-flightTable__fareForFlight__compare__item__icon_no"
-                                  ng-if="propsItem.available == 'no'"></span>
-                            <span class="rsln-flightTable__fareForFlight__compare__item__name"
-                                  ng-bind-html="propsItem.name"></span>
-                            <span class="tooltipster-content" ng-if="propsItem.shortDesc">
-								<span class="tooltipster-text">
-									{{ propsItem.shortDesc }}
-								</span>
-							</span>
-                        </div>
-                    </div>
-
-                    <!--Условия тарифа -->
-                    <!--<div class="rsln-flightTable__fareForFlight__tariff" ng-if="vm.showDetail(segNum, rowNum)">
-                        <a href  class="rsln-flightTable__fareForFlight__tariff__link">
-                            {{ 'web.choosenFlight.remarkLink' | alias }}
-                        </a>
-                    </div>-->
-                </div>
-                <!-- END Price buttons -->
-
-                <div class="rsln-flightTable__flightRoute rsln-flightTable__flightRoute_adaptive"
-                     ng-if="vm.showDetail(segNum, rowNum)">
-                    <wrap ng-repeat="(flightNum, flight) in row.flights"
-                          ng-init="flightCompany = flight.operatingCompany || flight.company">
-                        <div class="rsln-flightTable__flightRoute__header">
-                            <div class="rsln-flightTable__flightRoute__header__logo">
-                                <img class="rsln-flightTable__flightRoute__header__logo__image"
-                                     ng-src="/resources/oxygen/logo-{{ flightCompany.code }}.svg"
-                                     alt="Rusline Logo">
-                            </div>
-
-                            <div class="rsln-flightTable__flightRoute__header__flight">
-                                <div class="rsln-flightTable__flightRoute__header__flight__title">
-                                    {{ 'web.search.monobrand.flight' | alias }}
-                                </div>
-                                <div class="rsln-flightTable__flightRoute__header__flight__value">
-                                    {{ flight.carrier + '-' + flight.racenumber }}
-                                </div>
-                            </div>
-
-                            <div class="rsln-flightTable__flightRoute__header__aircraft">
-                                <div class="rsln-flightTable__flightRoute__header__aircraft__title">
-                                    {{ 'web.search.monobrand.aircraft' | alias }}
-                                </div>
-                                <div class="rsln-flightTable__flightRoute__header__aircraft__value">
-                                    {{ flight.airplane | airplaneRename }}
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="rsln-flightTable__flightRoute__subHeader" ng-if="flightNum == 0">
-                            <div class="rsln-flightTable__flightRoute__subHeader__item">
-                                {{ 'web.search.monobrand.departure' | alias}}
-                            </div>
-                            <div class="rsln-flightTable__flightRoute__subHeader__item">
-                                {{ 'web.search.monobrand.arrival' | alias}}
-                            </div>
-                        </div>
-
-                        <div class="rsln-flightTable__flightRoute__segment">
-                            <div class="rsln-flightTable__flightRoute__segment__departure">
-                                <div class="rsln-flightTable__flightRoute__segment__departure__time">
-                                    {{ flight.departuretime }}
-                                </div>
-                                <div class="rsln-flightTable__flightRoute__segment__departure__place">
-                                    {{ flight.origincityName }}<span ng-if="flight.originportName">, {{ flight.originportName }}</span>
-                                </div>
-                            </div>
-                            <div class="rsln-flightTable__flightRoute__segment__arrival">
-                                <div class="rsln-flightTable__flightRoute__segment__arrival__time">
-                                    {{ flight.arrivaltime }}
-                                </div>
-                                <div class="rsln-flightTable__flightRoute__segment__arrival__place">
-                                    {{ flight.destinationcityName }}<span ng-if="flight.destinationportName">, {{ flight.destinationportName }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div ng-if="row.flightsInfo.connections[flightNum]"
-                             ng-init="connection=row.flightsInfo.connections[flightNum]"
-                             class="rsln-flightTable__flightRoute__transfer">
-								<span class="rsln-flightTable__flightRoute__transfer__caption">
-									{{ 'web.choosenFlight.connection' | alias }}
-								</span>
-                            <span class="rsln-flightTable__flightRoute__transfer__time">
-									{{ connection.time | timeAsWords}}
-								</span>
-                        </div>
-
-                        <div ng-repeat="landing in flight.landings" class="rsln-flightTable__flightRoute__landing">
-								<span class="rsln-flightTable__flightRoute__landing__caption">
-									{{ 'web.searchScheduleResult.landing' | alias }}
-								</span>
-                            <span class="rsln-flightTable__flightRoute__landing__time">
-									{{ landing.landingCityName }} ({{ landing.landingTime | timeAsWords }})
-								</span>
-                        </div>
-                    </wrap>
-
-                    <!-- Всего -->
-                    <!--<div class="rsln-flightTable__flightRoute__footer">
-                        <span class="rsln-flightTable__flightRoute__footer__caption">
-                            Всего:
-                        </span>
-                        {{ vm.totalTimeInAir(segNum, rowNum) | timeAsWords }}
-                    </div>-->
-                </div>
-
             </div>
         </div>
     </div>
