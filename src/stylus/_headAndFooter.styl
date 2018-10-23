@@ -2737,24 +2737,16 @@ search-form .orderSearchForm.rsln-searchForm .item.item_date .calendarInp:focus 
   display: none;
 }
 
-@keyframes popup-icon-pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
 .rsln-choosenFlight__selected__flight__route__comment {
   font-weight: 700;
   line-height: 1.4;
   position: relative;
+  white-space: pre-line;
   +for_(desktop) {
     padding-left: 0;
   }
   +for_(mobile tablet) {
-    padding-left: 10px
+    padding-left: 20px;
   }
 
   &__attention-icon {
@@ -2764,16 +2756,12 @@ search-form .orderSearchForm.rsln-searchForm .item.item_date .calendarInp:focus 
     background: attention-icon-red no-repeat;
     width: 15px;
     height: 15px;
-    top: 50%;
     background-size: contain;
     transition: transform .1s ease-in-out
-
-    &:hover {
-      transform: scale(1.3);
-    }
-
-    +for_(mobile tablet) {
-      animation: popup-icon-pulse .8s ease-in-out both infinite;
+    position: absolute;
+    top: 0;
+    +for_(mobile) {
+      left: 0;
     }
   }
 }
