@@ -4526,7 +4526,7 @@ div.seat-prop-exit {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 10;
+  z-index: 1;
   position: absolute;
   top: -35px;
   width: 100%;
