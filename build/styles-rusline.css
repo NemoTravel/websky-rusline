@@ -4555,6 +4555,9 @@ div.seat-prop-exit {
     border-radius: 4px;
   }
 }
+.rsln-flights-sorting__sort-by .selectize-input:after {
+  top: 16px !important;
+}
 .rsln-flights-sorting__sort-by .selectize-input.focus {
   outline: 0 none;
   outline-offset: 0;
