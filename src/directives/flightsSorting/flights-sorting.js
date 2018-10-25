@@ -12,37 +12,45 @@ app.directive('flightsSorting', function () {
     }
 });
 
-app.controller('flightsSortingController', ['$scope', 'utils', flightsSortingController]);
+app.controller('flightsSortingController', ['$scope', 'utils', 'backend', flightsSortingController]);
 
-function flightsSortingController($scope, utils) {
+function flightsSortingController($scope, utils, backend) {
     var vm = this;
 
     vm.handleSelect = handleSelect;
     vm.onlyDirect = false;
-    vm.sortingVariants = [
-        {
-            value: 'depTime',
-            name: 'По времени вылета'
-        },
-        {
-            value: 'arrTime',
-            name: 'По времени прилета'
-        },
-        {
-            value: 'flightTime',
-            name: 'По длительности перелета'
-        },
-        {
-            value: 'cheapest',
-            name: 'Сначала дешевые'
-        },
-        {
-            value: 'connectionTime',
-            name: 'По длительности пересадок'
-        }
-    ];
-    vm.selectedSortingFilter = vm.sortingVariants[0];
     vm.handleDirectCheckboxSwitch = onlyDirectToggleHandler;
+    vm.sortingVariants = [];
+    vm.selectedSortingFilter = vm.sortingVariants[0];
+
+    backend.ready.then(function () {
+        vm.sortingVariants = [
+            {
+                value: 'depTime',
+                name: backend.getAlias('web.sortingNames.departureTime')
+            },
+            {
+                value: 'arrTime',
+                name: backend.getAlias('web.sortingNames.arrivalTime')
+            },
+            {
+                value: 'flightTime',
+                name: backend.getAlias('web.sortingNames.flightTime')
+            },
+            {
+                value: 'cheapest',
+                name: backend.getAlias('web.sortingNames.cheapest')
+            },
+            {
+                value: 'connectionTime',
+                name: backend.getAlias('web.sortingNames.connectionTime')
+            }
+        ];
+
+        vm.selectedSortingFilter = vm.sortingVariants[0];
+        // sort by default when aliases load
+        sortFlights();
+    });
 
     $scope.$watch(angular.bind(this, function () {
         return vm.onlyDirect
@@ -50,11 +58,13 @@ function flightsSortingController($scope, utils) {
         setIsDirectPropToFlights();
     });
 
-    function handleSelect() {
-        // console.log(vm.selectedSortingFilter);
-        // removeSearchResults();
+    // helper function with more
+    // convenient name for use inside controller
+    function sortFlights() {
+        handleSelect();
+    }
 
-        // console.log(vm.segment);
+    function handleSelect() {
 
         switch (vm.selectedSortingFilter.value) {
             case 'depTime':
