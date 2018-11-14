@@ -15,7 +15,7 @@
                     {{ vm.orderInfo.header.regnum }}
                 </span>
                 <span class="status" ng-class="{ notPayed: vm.orderInfo.header.status == 'cancelled' }">
-                    {{ 'web.orderInfo.label.orderStatus.' | aliasWithPrefix:vm.orderInfo.header.status }}<wrpa ng-if="vm.orderInfo.paymentform">, {{ 'web.orderinfo.paymenttype.' | aliasWithPrefix:vm.orderInfo.paymentform }}</wrap>{{ '. ' }}
+                    {{ 'web.orderInfo.label.orderStatus.' | aliasWithPrefix:vm.orderInfo.header.status }}<wrap ng-if="vm.orderInfo.paymentform">, {{ 'web.orderinfo.paymenttype.' | aliasWithPrefix:vm.orderInfo.paymentform }}</wrap>{{ '. ' }}
                     <wrap ng-if="vm.orderInfo.header.status == 'booked' || vm.orderInfo.header.status == 'being_paid' || vm.orderInfo.header.status == 'payment_received'">
                         <wrap ng-if="vm.orderInfo.header.paymentNotAllow">
                             {{ 'web.orderInfo.label.timeoutPaymentNotAllow' | aliasStatic}} {{ vm.orderInfo.header.validThru }}
@@ -31,7 +31,8 @@
                 </span>
             </div>
             <div ng-if="vm.orderInfo.header.status == 'paid'" class="btn_receipt_cont">
-                <a ng-href="./receipt?pnr={{ vm.orderInfo.header.regnum }}&lastName={{ vm.lastName }}" target="_blank" class="show_receipt">
+        <a ng-href="./receipt?pnr={{ vm.orderInfo.header.regnum }}&lastName={{ vm.orderInfo.header.lastName }}&tabId={{ vm.tabId }}" target="_blank"
+           class="show_receipt">
                     {{ 'web.orderInfo.actions.receipt' | aliasStatic}}
                 </a>
                 <a href fancybox="popupSendReceipt" class="send_receipt"></a>
