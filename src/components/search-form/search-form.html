@@ -2,25 +2,30 @@
     <div class="wrap">
 
         <div ng-if="vm.searchResultError || vm.nearestDates" class="orderSearchError">
-			<div class="orderSearchError__i">
-				<p ng-if="!vm.nearestDates">
+            <div class="orderSearchError__i">
+                <p ng-if="!vm.nearestDates">
                     {{ vm.searchResultError | alias }}
                 </p>
                 <wrap ng-if="vm.nearestDates">
                     <p>{{ 'web.messages.nearestDates' | alias }}</p>
                     <p ng-repeat="nearestDateSeg in vm.nearestDates">
                         <wrap ng-if="!nearestDateSeg.segId">
-                            <geo-marker-wrapper prefix="dep__point" key="search-form" cityinfo="vm.originCity"></geo-marker-wrapper>
-                             –
-                            <geo-marker-wrapper prefix="arr__point" key="search-form" cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                            <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                                cityinfo="vm.originCity"></geo-marker-wrapper>
+                            –
+                            <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                                cityinfo="vm.destinationCity"></geo-marker-wrapper>
                         </wrap>
                         <wrap ng-if="nearestDateSeg.segId">
-                            <geo-marker-wrapper prefix="arr__point" key="search-form" cityinfo="vm.destinationCity"></geo-marker-wrapper>
-                             –
-                            <geo-marker-wrapper prefix="dep__point" key="search-form" cityinfo="vm.originCity"></geo-marker-wrapper>
+                            <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                                cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                            –
+                            <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                                cityinfo="vm.originCity"></geo-marker-wrapper>
                         </wrap>
                         {{ ' ' }}
-                        <a ng-if="nearestDateSeg.earlierMatching" ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.earlierMatching)">
+                        <a ng-if="nearestDateSeg.earlierMatching"
+                           ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.earlierMatching)">
                             {{ nearestDateSeg.earlierMatching }}
                         </a>
                         {{ ' ' }}
@@ -28,30 +33,37 @@
                             {{ 'web.messages.nearestDatesWrapper' | alias }}
                         </wrap>
                         {{ ' ' }}
-                        <a ng-if="nearestDateSeg.laterMatching" ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.laterMatching)">
+                        <a ng-if="nearestDateSeg.laterMatching"
+                           ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.laterMatching)">
                             {{ nearestDateSeg.laterMatching }}
                         </a>
                     </p>
                 </wrap>
                 <wrap ng-if=" 'search.enableSchedule' | param ">
-				    <p>
+                    <p>
                         {{ 'web.searchForm.scheduleInvitationBegin' | alias }}
-                        <geo-marker-wrapper prefix="dep__point" key="search-form" cityinfo="vm.originCity"></geo-marker-wrapper>
-                         –
-                        <geo-marker-wrapper prefix="arr__point" key="search-form" cityinfo="vm.destinationCity"></geo-marker-wrapper>
-                        {{ 'web.searchForm.scheduleInvitationEnd' | alias }} <a href="./schedule?origin-city-code={{ ::vm.originCity.codeEn }}&destination-city-code={{ ::vm.destinationCity.codeEn }}">{{ 'web.searchForm.scheduleInvitationLink' | alias }}</a>
+                        <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                            cityinfo="vm.originCity"></geo-marker-wrapper>
+                        –
+                        <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                            cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                        {{ 'web.searchForm.scheduleInvitationEnd' | alias }} <a
+                            href="./schedule?origin-city-code={{ ::vm.originCity.codeEn }}&destination-city-code={{ ::vm.destinationCity.codeEn }}">{{
+                        'web.searchForm.scheduleInvitationLink' | alias }}</a>
                     </p>
                 </wrap>
-			</div>
-		</div>
+            </div>
+        </div>
 
         <div class="searchParams__i rsln-searchParams_change" ng-click=" vm.formOpened = !vm.formOpened; ">
             <div class="info" ng-show="!vm.formOpened">
                 <ul>
                     <li ng-show="vm.originCity && vm.destinationCity">
-                        <geo-marker-wrapper prefix="dep__point" key="search-form" cityinfo="vm.originCity"></geo-marker-wrapper>
-                         –
-                        <geo-marker-wrapper prefix="arr__point" key="search-form" cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                        <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                            cityinfo="vm.originCity"></geo-marker-wrapper>
+                        –
+                        <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                            cityinfo="vm.destinationCity"></geo-marker-wrapper>
                     </li>
                     <li ng-show="vm.segCount == 2">{{ 'web.searchForm.roundtrip' | alias }}</li>
                     <li ng-show="vm.segCount == 1">{{ 'web.searchForm.oneway' | alias }}</li>
@@ -69,11 +81,13 @@
             </a>
 
         </div>
-        <div class="orderSearchForm orderSearchForm_change rsln-searchForm" style="display: block;" ng-show="vm.formOpened">
+        <div class="orderSearchForm orderSearchForm_change rsln-searchForm" style="display: block;"
+             ng-show="vm.formOpened">
             <div class="orderSearchForm__i">
 
                 <div class="formBody">
-                    <form name="vm.searchForm" form-submit-error-highlight novalidate class="formBody__i" method="post" autocomplete="off">
+                    <form name="vm.searchForm" form-submit-error-highlight novalidate class="formBody__i" method="post"
+                          autocomplete="off">
 
                         <div class="formBodyItem">
                             <div class="steps active">
@@ -83,9 +97,14 @@
                                     <div class="item item_transfer">
                                         <div class="item__i">
 
-                                            <city-picker role="origin" pickerindex="1" selected="vm.originCity" exclude="vm.destinationCity.codeEn" touched="vm.submitTouched" placeholder="{{ 'web.searchForm.originCity' | alias }}"></city-picker>
+                                            <city-picker role="origin" pickerindex="1" selected="vm.originCity"
+                                                         exclude="vm.destinationCity.codeEn" touched="vm.submitTouched"
+                                                         placeholder="{{ 'web.searchForm.originCity' | alias }}"></city-picker>
 
-                                            <city-picker role="destination" pickerindex="2" selected="vm.destinationCity" depend="vm.originCity.codeEn" touched="vm.submitTouched" placeholder="{{ 'web.searchForm.destinationCity' | alias }}"></city-picker>
+                                            <city-picker role="destination" pickerindex="2"
+                                                         selected="vm.destinationCity" depend="vm.originCity.codeEn"
+                                                         touched="vm.submitTouched"
+                                                         placeholder="{{ 'web.searchForm.destinationCity' | alias }}"></city-picker>
 
                                             <div ng-click="vm.switchCities()" class="rsln-searchForm__citySwap">
                                                 <!--<i class="icon_transfer"></i>-->
@@ -97,49 +116,61 @@
                                     <div class="item item_date" id="calendarContainer">
                                         <div class="item__i">
                                             <div class="col">
-                                                <div class="pikaday__header_mobile" ng-class="{ active: vm.pikadayThereOpen }">
+                                                <div class="pikaday__header_mobile"
+                                                     ng-class="{ active: vm.pikadayThereOpen }">
                                                     <i class="icon_plane"></i>
                                                     <span>{{ 'web.searchForm.thereDate' | alias }}</span>
-                                                    <a href class="pikaday__header_mobile_close" ng-click="vm.pikadayClose('there')"></a>
+                                                    <a href class="pikaday__header_mobile_close"
+                                                       ng-click="vm.pikadayClose('there')"></a>
                                                 </div>
                                                 <div class="inp">
                                                     <div class="inp__i">
                                                         <error-message
-															control="vm.searchForm.thereDate"
-															touched="vm.submitTouched">
-														</error-message>
-                                                        <input type="text" tabindex="3" placeholder="{{ 'web.searchForm.thereDate' | alias }}" class="textInp calendarInp calendarInp_js"
-                                                            ng-class="{ textInp_error:(vm.submitTouched && vm.searchForm.thereDate.$invalid) }"
-                                                            pikaday="vm.pikadayThere" container="calendarContainer" number-of-months="{{ vm.viewMonthCount }}"
-                                                            on-open="vm.pikadayOpen('there'); vm.pikadayThereOpen = true;"
-                                                            on-select="vm.pikadayThereSelectHandler()"
-                                                            on-close="vm.pikadayThereOpen = false"
-                                                            on-draw="vm.pikadayThereDraw()"
-                                                            name="thereDate" ng-model="vm.thereDate" id="book_from" readonly required/>
+                                                                control="vm.searchForm.thereDate"
+                                                                touched="vm.submitTouched">
+                                                        </error-message>
+                                                        <input type="text" tabindex="3"
+                                                               placeholder="{{ 'web.searchForm.thereDate' | alias }}"
+                                                               class="textInp calendarInp calendarInp_js"
+                                                               ng-class="{ textInp_error:(vm.submitTouched && vm.searchForm.thereDate.$invalid) }"
+                                                               pikaday="vm.pikadayThere" container="calendarContainer"
+                                                               number-of-months="{{ vm.viewMonthCount }}"
+                                                               on-open="vm.pikadayOpen('there'); vm.pikadayThereOpen = true;"
+                                                               on-select="vm.pikadayThereSelectHandler()"
+                                                               on-close="vm.pikadayThereOpen = false"
+                                                               on-draw="vm.pikadayThereDraw()"
+                                                               name="thereDate" ng-model="vm.thereDate" id="book_from"
+                                                               readonly required/>
                                                         <label class="calendarIcon" for="book_from"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <div class="pikaday__header_mobile" ng-class="{ active: vm.pikadayBackOpen }">
+                                                <div class="pikaday__header_mobile"
+                                                     ng-class="{ active: vm.pikadayBackOpen }">
                                                     <i class="icon_plane icon_plane_back"></i>
                                                     <span>{{ 'web.searchForm.backDate' | aliasStatic}}</span>
-                                                    <a href class="pikaday__header_mobile_close" ng-click="vm.pikadayClose('back')"></a>
+                                                    <a href class="pikaday__header_mobile_close"
+                                                       ng-click="vm.pikadayClose('back')"></a>
                                                 </div>
                                                 <div class="inp" ng-class="{ locked:vm.segCount != 2 }">
                                                     <div class="inp__i">
                                                         <a href class="locked-lnk" ng-click="vm.unlockBackDate()"></a>
-                                                        <input type="text" tabindex="4" placeholder="{{ 'web.searchForm.backDate' | aliasStatic}}" class="textInp calendarInp calendarInp_js"
-                                                            pikaday="vm.pikadayBack" container="calendarContainer" number-of-months="{{ vm.viewMonthCount }}"
-                                                            on-open="vm.pikadayOpen('back'); vm.pikadayBackOpen = true;"
-                                                            on-close="vm.pikadayBackOpen = false"
-                                                            on-draw="vm.pikadayBackDraw()"
-                                                            name="backDate" ng-model="vm.backDate" id="book_to" readonly/>
+                                                        <input type="text" tabindex="4"
+                                                               placeholder="{{ 'web.searchForm.backDate' | aliasStatic}}"
+                                                               class="textInp calendarInp calendarInp_js"
+                                                               pikaday="vm.pikadayBack" container="calendarContainer"
+                                                               number-of-months="{{ vm.viewMonthCount }}"
+                                                               on-open="vm.pikadayOpen('back'); vm.pikadayBackOpen = true;"
+                                                               on-close="vm.pikadayBackOpen = false"
+                                                               on-draw="vm.pikadayBackDraw()"
+                                                               name="backDate" ng-model="vm.backDate" id="book_to"
+                                                               readonly/>
                                                         <label class="calendarIcon" for="book_to"></label>
                                                     </div>
                                                 </div>
-												<div class="pikaday__clear__back" ng-show="vm.backDate"
-												ng-click="vm.segCount = 1; $scope.$apply(); vm.pikadayBack.setDate(null); vm.pikadayBack.hide(); vm.pikadayThere.setEndRange(null); vm.pikadayBack.setEndRange(null);"></div>
+                                                <div class="pikaday__clear__back" ng-show="vm.backDate"
+                                                     ng-click="vm.segCount = 1; $scope.$apply(); vm.pikadayBack.setDate(null); vm.pikadayBack.hide(); vm.pikadayThere.setEndRange(null); vm.pikadayBack.setEndRange(null);"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -147,10 +178,13 @@
                                     <div class="item item_peoples">
                                         <div class="item__i">
 
-                                            <div class="compactPeopleInfo compactShow" ng-click=" vm.compactPassCountOpened = !vm.compactPassCountOpened; ">
+                                            <div class="compactPeopleInfo compactShow"
+                                                 ng-click=" vm.compactPassCountOpened = !vm.compactPassCountOpened; ">
                                                 <div class="compactPeopleInfo__inner"></div>
-                                                <a href class="compactDropShow compactDropShow_js" ng-class="{ 'open': vm.compactPassCountOpened }">
-                                                    <input type="text" value="{{ vm.getTotalPassCountStr() }}" class="textInp" readonly/>
+                                                <a href class="compactDropShow compactDropShow_js"
+                                                   ng-class="{ 'open': vm.compactPassCountOpened }">
+                                                    <input type="text" value="{{ vm.getTotalPassCountStr() }}"
+                                                           class="textInp" readonly/>
                                                     <div class="arrowDown rsln-searchForm__arrowDown">
                                                         <!--<i class="icon_selectArr"></i>-->
                                                     </div>
@@ -159,10 +193,11 @@
 
                                             <div class="compactDrop" ng-class="{ active:vm.compactPassCountOpened }">
 
-                                                <pass-picker role="countBase" selected="vm.countBase" base="vm.basePassengerCategory"></pass-picker>
+                                                <pass-picker role="countBase" selected="vm.countBase"
+                                                             base="vm.basePassengerCategory"></pass-picker>
 
                                                 <!--<a href ng-click=" vm.showChildPickers = true; " ng-if="!vm.showChildPickers" class="link child-pickers-switch">-->
-                                                    <!--{{ 'web.searchForm.showChildCounters' | alias }}-->
+                                                <!--{{ 'web.searchForm.showChildCounters' | alias }}-->
                                                 <!--</a>-->
 
                                                 <pass-picker role="countRBG" selected="vm.countRBG"></pass-picker>
@@ -247,7 +282,8 @@
                                         </div>
                                     </div>-->
                                     <div class="item item_btn">
-                                        <button ng-click="vm.searchButtonClick()" class="btn btn_search btn_formSearch btn_formSearch_js">
+                                        <button ng-click="vm.searchButtonClick()"
+                                                class="btn btn_search btn_formSearch btn_formSearch_js">
                                             {{ 'web.searchForm.submit' | alias }}
                                         </button>
                                     </div>
