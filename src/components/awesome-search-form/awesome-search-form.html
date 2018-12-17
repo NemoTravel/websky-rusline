@@ -1,0 +1,314 @@
+<div class="searchParams" ng-class="{active: vm.formOpened}">
+    <div class="awesome-search-form-container">
+
+        <div ng-if="vm.searchResultError || vm.nearestDates" class="orderSearchError">
+            <div class="orderSearchError__i">
+                <p ng-if="!vm.nearestDates">
+                    {{ vm.searchResultError | aliasDynamic }}
+                </p>
+                <wrap ng-if="vm.nearestDates">
+                    <p>{{ 'web.messages.nearestDates' | aliasStatic}}</p>
+                    <p ng-repeat="nearestDateSeg in vm.nearestDates">
+                        <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                            cityinfo="nearestDateSeg.segment.origin"></geo-marker-wrapper>
+                        –
+                        <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                            cityinfo="nearestDateSeg.segment.destination"></geo-marker-wrapper>
+                        {{ ' ' }}
+                        <a ng-if="nearestDateSeg.earlierMatching"
+                           ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.earlierMatching)">
+                            {{ nearestDateSeg.earlierMatching }}
+                        </a>
+                        {{ ' ' }}
+                        <wrap ng-if="nearestDateSeg.earlierMatching && nearestDateSeg.laterMatching">
+                            {{ 'web.messages.nearestDatesWrapper' | aliasStatic}}
+                        </wrap>
+                        {{ ' ' }}
+                        <a ng-if="nearestDateSeg.laterMatching"
+                           ng-click="vm.selectNearestDate(nearestDateSeg.segId, nearestDateSeg.laterMatching)">
+                            {{ nearestDateSeg.laterMatching }}
+                        </a>
+                    </p>
+                </wrap>
+                <wrap ng-if=" 'search.enableSchedule' | param ">
+                    <p>
+                        {{ 'web.searchForm.scheduleInvitationBegin' | aliasStatic}}
+                        {{ ' ' }}
+                        <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                            cityinfo="vm.originCity"></geo-marker-wrapper>
+                        –
+                        <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                            cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                        {{ ' ' }}
+                        {{ 'web.searchForm.scheduleInvitationEnd' | aliasStatic}} <a
+                            href="./schedule?origin-city-code={{ ::vm.originCity.codeEn }}&destination-city-code={{ ::vm.destinationCity.codeEn }}">
+                        {{'web.searchForm.scheduleInvitationLink' | aliasStatic}}</a>
+                    </p>
+                </wrap>
+            </div>
+        </div>
+
+        <div class="awesome-search-params searchParams__i rsln-search-params_change" ng-if="vm.showSwitch">
+            <div class="awesome-search-params__wrap">
+
+                <ul class="awesome-search-params__list" ng-if="!vm.formOpened">
+                    <li ng-if="vm.originGeoPoint && vm.destinationGeoPoint">
+                        <geo-marker-wrapper prefix="dep__point" key="search-form"
+                                            cityinfo="vm.originCity"></geo-marker-wrapper>
+                        –
+                        <geo-marker-wrapper prefix="arr__point" key="search-form"
+                                            cityinfo="vm.destinationCity"></geo-marker-wrapper>
+                    </li>
+                    <li ng-if="vm.segCount == 2">
+                        {{ 'web.searchForm.roundtrip' | aliasStatic }}
+                    </li>
+                    <li ng-if="vm.segCount == 1">
+                        {{ 'web.searchForm.oneway' | aliasStatic }}
+                    </li>
+                    <li>
+                        {{ vm.getDescPassCountStr() }}
+                    </li>
+                </ul>
+
+                <a href ng-click="vm.formOpened = !vm.formOpened;" class="awesome-search-params__switch">
+                <span ng-if="!vm.formOpened" class="show">
+                    {{ 'web.searchForm.show' | aliasStatic }}
+                </span>
+                    <span ng-if="vm.formOpened" class="hide">
+                    {{ 'web.searchForm.hide' | aliasStatic }}
+                </span>
+                    <div class="awesome-search-params__switch-icon"
+                         ng-class=" { 'awesome-search-params__switch-icon_active': vm.formOpened } ">
+                        <svg-sprite-icon code="drop-arrow"></svg-sprite-icon>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <form ng-show="vm.formOpened" class="awesome-search-form orderSearchForm orderSearchForm_change rsln-searchForm"
+              ng-submit="vm.submitHandler()"
+              name="vm.searchForm"
+              style="display: block;"
+              novalidate>
+            <div class="awesome-search-form__wrap">
+                <div class="awesome-search-form__column awesome-simple-route">
+                    <div class="awesome-simple-route__row">
+                        <div class="awesome-simple-route__col awesome-simple-route__col-city">
+                            <awesome-city-picker pickerindex="1"
+                                                 placeholder="{{ 'web.searchForm.originCity' | aliasStatic }}"
+                                                 role="origin"
+                                                 selected="vm.originGeoPoint"
+                                                 exclude="vm.destinationGeoPoint.cityCode"
+                                                 update="vm.originCityUpdateHandler"
+                                                 on-open="vm.originCityOpenHandler()">
+                            </awesome-city-picker>
+                            <div ng-if="vm.submitTouched && !vm.originGeoPoint" class="errorMessage">
+                                {{ 'web.searchForm.messages.originCityRequired' | aliasStatic }}
+                            </div>
+                        </div>
+                        <div class="awesome-simple-route__col awesome-simple-route__col-city">
+                            <awesome-city-picker pickerindex="2"
+                                                 placeholder="{{ 'web.searchForm.destinationCity' | aliasStatic }}"
+                                                 role="destination"
+                                                 selected="vm.destinationGeoPoint"
+                                                 depend="vm.originGeoPoint.cityCode"
+                                                 update="vm.destinationCityUpdateHandler"
+                                                 on-open="vm.destinationCityOpenHandler()">
+                            </awesome-city-picker>
+                            <div ng-if="vm.submitTouched && !vm.destinationGeoPoint" class="errorMessage">
+                                {{ 'web.searchForm.messages.destinationCityRequired' | aliasStatic }}
+                            </div>
+                        </div>
+                        <a href class="awesome-simple-route__switch-button" ng-click="vm.switchGeoPoints();"
+                           tabindex="-1">
+                            <svg-sprite-icon code="switch-arrows"></svg-sprite-icon>
+                        </a>
+                    </div>
+                    <div class="awesome-simple-route__row">
+                        <div class="awesome-simple-route__col awesome-simple-route__col-date">
+
+                            <div class="awesome-date-picker">
+                                <div class="awesome-date-picker__header" ng-if="vm.thereDateActive">
+                                    {{ 'web.searchForm.thereDate' | aliasStatic }}
+                                    <span class="awesome-date-picker__close"
+                                          ng-click="vm.hideTherePicker(); $event.stopPropagation();">
+                                    <svg-sprite-icon code="back-arrow"></svg-sprite-icon>
+                                </span>
+                                </div>
+                                <div class="awesome-date-picker__pseudo-input"
+                                     moment-picker="vm.thereDate"
+                                     ng-model="vm.thereDatePicker"
+                                     is-open="vm.thereDateActive"
+                                     selectable="vm.isDateAvailable(0, date)"
+                                     min-date="vm.bookingLimits.min"
+                                     max-date="vm.bookingLimits.max">
+                                    <div ng-if="vm.thereDate" class="awesome-date-picker__value">
+                                        <span class="awesome-date-picker__value-date">{{ vm.thereDate | formatDate:'D MMMM' }}</span>,
+                                        <span class="awesome-date-picker__value-day">{{ vm.thereDate | formatDate:'dd' }}</span>
+                                    </div>
+                                </div>
+                                <div ng-if="!vm.thereDate" class="awesome-date-picker__placeholder">
+                                    {{ 'web.searchForm.thereDate' | aliasStatic }}
+                                </div>
+                                <svg-sprite-icon code="calendar"
+                                                 prefix="awesome-date-picker__icon"
+                                                 ng-click="vm.showTherePicker();">
+                                </svg-sprite-icon>
+                                <div ng-if="vm.submitTouched && !vm.thereDate" class="errorMessage">
+                                    {{ 'web.searchForm.messages.thereDateRequired' | aliasStatic }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="awesome-simple-route__col awesome-simple-route__col-date">
+
+                            <div class="awesome-date-picker">
+                                <div class="awesome-date-picker__header" ng-if="vm.backDateActive">
+                                    {{ 'web.searchForm.backDate' | aliasStatic }}
+                                    <span class="awesome-date-picker__close"
+                                          ng-click="vm.hideBackPicker(); $event.stopPropagation();">
+                                    <svg-sprite-icon code="back-arrow"></svg-sprite-icon>
+                                </span>
+                                </div>
+                                <div class="awesome-date-picker__locker"
+                                     ng-click="vm.unlockBackDate()"
+                                     ng-if="vm.segCount != 2">
+                                    {{ 'web.searchForm.backDate' | aliasStatic }}
+                                </div>
+                                <div class="awesome-date-picker__pseudo-input"
+                                     moment-picker="vm.backDate"
+                                     ng-model="vm.backDatePicker"
+                                     is-open="vm.backDateActive"
+                                     selectable="vm.isDateAvailable(1, date)"
+                                     min-date="vm.thereDate || vm.bookingLimits.min"
+                                     max-date="vm.bookingLimits.max"
+                                     additions="{ bottom: 'components/awesome-search-form/one-way-only-btn.html' }">
+                                    <div ng-if="vm.backDate" class="awesome-date-picker__value">
+                                        <span class="awesome-date-picker__value-date">{{ vm.backDate | formatDate:'D MMMM' }}</span>,
+                                        <span class="awesome-date-picker__value-day">{{ vm.backDate | formatDate:'dd' }}</span>
+                                    </div>
+                                </div>
+                                <div ng-if="!vm.backDate && vm.segCount == 2" class="awesome-date-picker__placeholder">
+                                    {{ 'web.searchForm.backDate' | aliasStatic }}
+                                </div>
+                                <svg-sprite-icon code="calendar"
+                                                 prefix="awesome-date-picker__icon"
+                                                 ng-click="vm.showBackPicker();">
+                                </svg-sprite-icon>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="awesome-search-form__column awesome-search-form-footer">
+                    <div class="awesome-search-form-footer__row">
+                        <div class="awesome-search-form-footer__col">
+                            <passenger-calc selected="vm.selectedPassgengers"
+                                            update="vm.selectedPassgengersUpdateHandler"
+                                            business='vm.isBusiness'>
+                            </passenger-calc>
+                        </div>
+                        <div class="awesome-search-form-footer__col" ng-if="('search.allowPromo' | param) && !vm.ffp">
+                            <div class="bonus-control">
+                                <label class="bonus-control__intro"
+                                       for="promoCode"
+                                       ng-show="!vm.promoActive"
+                                       ng-click="vm.activatePromo()">
+                                    <svg-sprite-icon code="promo"></svg-sprite-icon>
+                                    {{ 'web.searchForm.activatePromo' | aliasStatic}}
+                                </label>
+                                <div class="bonus-control__field" ng-show="vm.promoActive">
+                                    <error-message control="vm.searchForm.promoCode"
+                                                   touched="vm.submitTouched">
+                                    </error-message>
+                                    <input type="text" autocomplete="new-password"
+                                           id="promoCode"
+                                           name="promoCode"
+                                           ng-model="vm.promoCode"
+                                           ng-pattern="'search.promoCodeRegexp' | param"
+                                           error-highlight="{{ vm.submitTouched }}"
+                                           class="textInp"
+                                           placeholder="{{ 'web.searchForm.promoCode' | aliasStatic}}"/>
+                                    <a href ng-click="vm.deactivatePromo()" tabindex="-1"
+                                       class="bonus-control__field-close">
+                                        <svg-sprite-icon code="close"></svg-sprite-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="awesome-search-form-footer__col" ng-if="('ffp.enable' | param) && !vm.ffp">
+                            <div class="bonus-control">
+                                <label class="bonus-control__intro"
+                                       for="ffpCardNumber"
+                                       ng-show="!vm.ffpActive"
+                                       ng-click="vm.activateFFP()">
+                                    <svg-sprite-icon code="ffp"></svg-sprite-icon>
+                                    {{ 'web.searchForm.activateFFP' | aliasStatic}}
+                                </label>
+                                <div class="bonus-control__field-container" ng-show="vm.ffpActive">
+                                    <div class="bonus-control__field bonus-control__field_ffp-card-number">
+                                        <error-message control="vm.searchForm.ffpCardNumber"
+                                                       touched="vm.submitTouched">
+                                        </error-message>
+                                        <input type="text" autocomplete="new-password"
+                                               id="ffpCardNumber"
+                                               name="ffpCardNumber"
+                                               ng-model="vm.ffpCardNumber"
+                                               ng-pattern="'ffp.cardNoRegex' | param"
+                                               error-highlight="{{ vm.submitTouched }}"
+                                               class="textInp"
+                                               ng-class="{ textInp_error: vm.ffpLoginError }"
+                                               placeholder="{{ 'web.searchForm.ffpCardNumber' | aliasStatic}}"/>
+                                        <a href ng-click="vm.deactivateFFP()" tabindex="-1"
+                                           class="bonus-control__field-close">
+                                            <svg-sprite-icon code="close"></svg-sprite-icon>
+                                        </a>
+                                    </div>
+                                    <div class="bonus-control__field bonus-control__field_ffp-card-password">
+                                        <error-message
+                                                control="vm.searchForm.ffpCardPassword"
+                                                touched="vm.submitTouched">
+                                        </error-message>
+                                        <input type="password"
+                                               class="textInp"
+                                               autocomplete="new-password"
+                                               name="ffpCardPassword"
+                                               ng-model="vm.ffpCardPassword"
+                                               ng-pattern="'ffp.passwordRegex' | param"
+                                               error-highlight="{{ vm.submitTouched }}"
+                                               ng-class="{ textInp_error: vm.ffpLoginError }"
+                                               placeholder="{{ 'web.searchForm.ffpCardPassword' | aliasStatic}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="awesome-search-form-footer__row">
+                        <div class="awesome-search-form-footer__col">
+
+                        </div>
+                        <div class="awesome-search-form-footer__col awesome-search-form-footer__col-button">
+                            <button type="submit" class="btn">
+                                {{ 'web.searchForm.submit' | aliasStatic }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div ng-if="vm.ffpLoginError" class="orderSearchError">
+            <div class="orderSearchError__i">
+                <p>{{ 'web.messages.ffpLoginError.header' | aliasStatic }}</p>
+                <p>
+                    {{ 'web.messages.ffpLoginError.start' | aliasStatic }}
+                    <a href ng-click="vm.deactivateFFP(); vm.submitHandler();">
+                        {{ 'web.messages.ffpLoginError.link' | aliasStatic }}
+                    </a>
+                    {{ 'web.messages.ffpLoginError.end' | aliasStatic }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
