@@ -252,9 +252,18 @@
 												<td>
 													<div class="inp inp-animate-outer">
 														<error-message
+															ng-if="passenger.documentType !== 'SR' && passenger.documentType && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType)"
 															control="vm.passengerForms[passengerNumber].documentNumber"
 															touched="vm.submitTouched">
 														</error-message>
+                                                        <error-message
+                                                            ng-if="passenger.documentType && passenger.documentType === 'SR' && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType) && passenger.nationality === 'RU'"
+                                                            ng-class="{'errorMessage--required': vm.passengerForms[passengerNumber].documentNumber.$error.required,
+                                                                'errorMessage--format': vm.passengerForms[passengerNumber].documentNumber.$error.pattern}"
+                                                            control="vm.passengerForms[passengerNumber].documentNumber"
+                                                            format-alias="'web.messages.formatDocumentNumber.SR' | aliasStatic"
+                                                            touched="vm.submitTouched">
+                                                        </error-message>
                                                         <info-message
 															ng-if="passenger.documentType !== 'SR' && passenger.documentType && vm.hasAlias('web.messages.formatDocumentNumber.' + passenger.documentType)"
                                                             touched="vm.submitTouched"
