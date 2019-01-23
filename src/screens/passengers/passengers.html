@@ -591,14 +591,15 @@
 						<a href="#{{$root.ROUTES.SEARCH}}" class="btn btn_back">
                             {{ 'web.buttons.back' | aliasDynamic }}
                         </a>
-						<a href ng-click="vm.submitHandler()" class="btn btn_next"  ng-class="{ disabled: (!vm.personalDataShareAgree && ('passengers.usePersonalDataAgreeCheckbox' | param)) }" ng-if="!vm.submitLoading">
-							<span class="mobileHide">
-                                {{ 'web.buttons.gotoExtraServices' | aliasStatic}}
-                            </span>
-							<span class="mobileShow">
-                                {{ 'web.buttons.next' | aliasStatic}}
-                            </span>
-						</a>
+                        <!-- hide next button -->
+						<!--<a href ng-click="vm.submitHandler()" class="btn btn_next"  ng-class="{ disabled: (!vm.personalDataShareAgree && ('passengers.usePersonalDataAgreeCheckbox' | param)) }" ng-if="!vm.submitLoading">-->
+							<!--<span class="mobileHide">-->
+                                <!--{{ 'web.buttons.gotoExtraServices' | aliasStatic}}-->
+                            <!--</span>-->
+							<!--<span class="mobileShow">-->
+                                <!--{{ 'web.buttons.next' | aliasStatic}}-->
+                            <!--</span>-->
+						<!--</a>-->
 
 						<a href class="btn btn_next disabled loading-start" ng-if="vm.submitLoading">
 							<span class="loader"><img alt="" src="themes/websky/assets/static/img/general/form/loader-circle-64.gif"/></span>
